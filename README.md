@@ -1,4 +1,4 @@
-##Black and White Blog
+# Black and White Blog
 
 Pour ce checkpoint je vais concevoir un blog personnel d'expression libre.
 
