@@ -2,7 +2,7 @@
 
 Pour ce checkpoint je vais concevoir un blog personnel d'expression libre.
 
-Il sera possible pour un utilisateur de lire les articles du blog et de les commenter s'il est inscrit.
+Il sera possible pour un visiteur de lire les articles du blog et de les commenter s'ils sont inscrits.
 
 Pour le design je vais m'inspirer d'un site existant : https://solar.lowtechmagazine.com/fr.
 J'aime beaucoup le ton minimaliste et les images ont un effet trame d'imprimerie que j'apprécie. De mon côté je vais concevoir un habillage noir et blanc pour faire encore plus simple.
