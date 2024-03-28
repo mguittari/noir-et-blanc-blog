@@ -16,20 +16,21 @@
 
 | route                 | Verbe  | Description                                               | status |
 | --------------------- | ------ | --------------------------------------------------------- | ------ |
-| /user                 | post   | enregister un utilisateur                                 |        |
-| /user                 | patch  | mettre à jour les infos de user sans mdp                  |        |
-| /user/:id             | delete | suppr un user                                             |        |
-| /user/update-password | patch  | mettre à jour mdp de user                                 |        |
-| /user/:id/comments    | get    | récupère tous les commentaires liés à un user             |        |
-| /login                | post   | vérifie si user existe et récup token                     |        |
-| /me                   | get    | récup les infos de user avec token                        |        |
-| /logout               | get    | déco user en générant token invalide                      |        |
+| /users                | get    | récup la liste de tous les utilisateurs inscrits          | ok     |
+| /user                 | post   | enregistrer un utilisateur                                | ok     |
+| /user                 | patch  | mettre à jour les infos de user sans mdp                  | ok     |
+| /user/update-password | patch  | mettre à jour mdp de user                                 | ok     |
+| /user/:id             | delete | suppr un user                                             | ok     |
+| /login                | post   | vérifie si user existe et récup token                     | ok     |
+| /me                   | get    | récup les infos de user avec token                        | ok     |
+| /logout               | get    | déco user en générant token invalide                      | ok     |
 | /comment              | post   | poster un commentaire                                     |        |
 | /comment              | delete | suppr un commentaire                                      |        |
-| /article              | post   | poster un article                                         |        |
-| /article/:id          | get    | récup un article par son id                               |        |
-| /articles/all         | get    | récup liste de tous les articles classés par ordre chrono |        |
-| /article/:id          | delete | supprimer un article                                      |        |
-| /article/:id          | put    | modifier un article                                       |        |
+| /user/:id/comments    | get    | récupère tous les commentaires liés à un user             |        |
 | /article/:id/comments | get    | récup les commentaires d'un article                       |        |
-| /article?year=xxxx    | get    | filtrer les articles par année de publication             |        |
+| /article              | post   | poster un article                                         | ok     |
+| /article/:id          | get    | récup un article par son id                               | ok     |
+| /articles/all         | get    | récup liste de tous les articles classés par ordre chrono | ok     |
+| /article/:id          | delete | supprimer un article                                      | ok     |
+| /article/:id          | put    | modifier un article                                       | ok     |
+| /article?year=xxxx    | get    | filtrer les articles par année de publication             | annulé |

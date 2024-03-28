@@ -2,21 +2,40 @@ const express = require("express");
 
 const router = express.Router();
 
-/* ************************************************************************* */
-// Define Your API Routes Here
-/* ************************************************************************* */
+const userControllers = require("./controllers/UserControllers");
+const articleControllers = require("./controllers/ArticleControllers");
+const hashPassword = require("./services/hashPassword");
+const verifyToken = require("./services/auth");
 
-// Import itemControllers module for handling item-related operations
-const itemControllers = require("./controllers/itemControllers");
+// routes publiques
 
-// Route to get a list of items
-router.get("/items", itemControllers.browse);
+router.post("/login", userControllers.getUserByEmail);
+router.post("/user", hashPassword, userControllers.addNewUser);
 
-// Route to get a specific item by ID
-router.get("/items/:id", itemControllers.read);
+// routes utilisateur
+router.get("/me", verifyToken, userControllers.getUserById);
+router.post("/logout", userControllers.logout);
+router.delete("/user", verifyToken, userControllers.deleteUser);
+router.patch("/user", verifyToken, userControllers.updateUser);
+router.patch(
+  "/user/update-password",
+  verifyToken,
+  hashPassword,
+  userControllers.editPassword
+);
+router.get("/article/:id", articleControllers.getArticleById);
+router.get(
+  "/articles",
+  articleControllers.getAllArticleTitlesOrderByPublicationDate
+);
 
-// Route to add a new item
-router.post("/items", itemControllers.add);
+// routes administrateur
+router.get("/users", userControllers.getAllUsers);
+router.post("/article", articleControllers.postArticle);
+router.delete("/article/:id", articleControllers.deleteArticle);
+router.put("/article/:id", articleControllers.updateArticle);
+
+// // Route to add a new item
 
 /* ************************************************************************* */
 
