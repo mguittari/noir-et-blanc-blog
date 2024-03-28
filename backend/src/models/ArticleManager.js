@@ -15,7 +15,9 @@ class ArticleManager extends AbstractManager {
   }
 
   getArticleById(id) {
-    return this.database.query(`select * from ${this.table} where id=${id}`);
+    return this.database.query(
+      `select id, title, content, DATE_FORMAT(created_at, '%d-%m-%Y %H:%i:%s') AS published_at from ${this.table} where id=${id}`
+    );
   }
 
   deleteArticle(id) {
@@ -32,6 +34,12 @@ class ArticleManager extends AbstractManager {
   getTitlesOrderByDate() {
     return this.database.query(
       `SELECT title, created_at from ${this.table} order by created_at DESC`
+    );
+  }
+
+  getAllCommentsByArticle(id) {
+    return this.database.query(
+      `SELECT a.id, a.title, JSON_ARRAYAGG(JSON_OBJECT('title', c.title, 'comment', c.content, 'date', DATE_FORMAT(c.created_at, '%d-%m-%Y %H:%i:%s'))) AS comments from article as a join comment as c on a.id = c.id_article where a.id = ${id}`
     );
   }
 }

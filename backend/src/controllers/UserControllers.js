@@ -157,6 +157,20 @@ const logout = async (req, res) => {
   }
 };
 
+const getAllCommentsByUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const [comments] = await tables.user.getAllCommentsByUser(id);
+    if (comments) {
+      res.json(comments);
+    } else {
+      res.status(401).send("Erreur");
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 // const editPassword = async (req, res) => {
 //   try {
 //     const { id } = req.params;
@@ -226,4 +240,5 @@ module.exports = {
   logout,
   editPassword,
   updateUser,
+  getAllCommentsByUser,
 };

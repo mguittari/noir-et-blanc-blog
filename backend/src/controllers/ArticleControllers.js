@@ -82,10 +82,25 @@ const updateArticle = async (req, res) => {
   }
 };
 
+const getAllCommentsByArticle = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const [comments] = await await tables.article.getAllCommentsByArticle(id);
+    if (comments) {
+      res.json(comments);
+    } else {
+      res.status(401).send("client n'existe pas avec cette reservation");
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   postArticle,
   getArticleById,
   deleteArticle,
   updateArticle,
   getAllArticleTitlesOrderByPublicationDate,
+  getAllCommentsByArticle,
 };

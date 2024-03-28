@@ -52,6 +52,15 @@ class UserManager extends AbstractManager {
     );
   }
 
+  getAllCommentsByUser(id) {
+    return this.database.query(
+      `SELECT u.id, u.pseudo, JSON_ARRAYAGG(JSON_OBJECT('article title', a.title, 'comment title', c.title, 'comment', c.content, 'comment date', DATE_FORMAT(c.created_at, '%d-%m-%Y %H:%i:%s'))) AS comments from user as u 
+      join comment as c on u.id = c.id_user
+      join article as a on a.id = c.id_article
+      where u.id = ${id}`
+    );
+  }
+
   // editUserButOnlyPassword(id, hashed_password) {
   //   return this.database.query(
   //     `UPDATE ${this.table} set hashed_password = ? where id=?`,
