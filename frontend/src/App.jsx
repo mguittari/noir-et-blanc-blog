@@ -1,7 +1,13 @@
 import "./App.css";
+import Layout from "./components/Layout/Layout";
 
 function App() {
-  return <p className="text-3xl font-bold underline text-center">hello</p>;
+  return (
+    <Layout>
+      <main className="min-h-[calc(100vh-40px)]" />
+      <p className="text-center">APP</p>
+    </Layout>
+  );
 }
 
 export default App;
