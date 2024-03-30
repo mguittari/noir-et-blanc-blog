@@ -1,11 +1,19 @@
 import { Link } from "react-router-dom";
+import inst from "../../assets/instagram.png";
+import linkd from "../../assets/linkedin.png";
+import x from "../../assets/twitter.png";
+import youtb from "../../assets/youtube.png";
+import fb from "../../assets/facebook.png";
+import cube from "../../assets/cube.png";
 
 function Footer() {
   return (
-    <footer className="container font-serif">
-      <div className="flex flex-row justify-center">
-        <h1 className="text-[20px] -mb-1 ml-2">NOIR ET BLANC</h1>
-        <ul className="text-[14px] mb-2">
+    <footer className="w-full font-serif">
+      <ul className="grid grid-cols-2 gap-2 md:grid-cols-4 text-center">
+        <li className="mb-2 p-[5px] flex justify-center items-start">
+          <img className="w-[100px] h-[100px]" src={cube} alt="logo cube" />
+        </li>
+        <ul className="text-[14px] mb-2 p-[5px]">
           <h2 className="text-[18px]">Infos</h2>
           <li>
             <Link to="/">À propos</Link>
@@ -17,17 +25,52 @@ function Footer() {
             <Link to="/">Politique de confidentialité</Link>
           </li>
         </ul>
-        <ul className="text-[14px] mb-2">
+        <ul className="text-[14px] mb-2 p-[5px]">
           <h2 className="text-[18px]">Contact</h2>
           <li>Matt Guittari</li>
           <li>mattguittari [at] blackandwhite [dot] com </li>
-          <div className="flex flex-row">
-            <li>Icone 1</li>
-            <li>Icone 2</li>
-            <li>Icone 3</li>
+          <div className="">
+            <ul className="inline-flex gap-2 mt-1">
+              <li className="w-6 h-6">
+                <a
+                  href="http://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={inst} alt="logo instagram" />
+                </a>
+              </li>
+              <li className="w-6 h-6">
+                <img src={linkd} alt="logo linkedin" />
+              </li>
+              <li className="w-6 h-6">
+                <img src={x} alt="logo x" />
+              </li>
+              <li className="w-6 h-6">
+                <img src={youtb} alt="logo youtube" />
+              </li>
+              <li className="w-6 h-6">
+                <img src={fb} alt="logo fb" />
+              </li>
+            </ul>
           </div>
         </ul>
-      </div>
+        <ul className="text-[14px] mb-2 p-[5px]">
+          <h2 className="text-[18px]">Rubriques</h2>
+          <li>
+            <Link to="/">Pandas</Link>
+          </li>
+          <li>
+            <Link to="/">Echecs</Link>
+          </li>
+          <li>
+            <Link to="/">Ying yang</Link>
+          </li>
+          <li>
+            <Link to="/">Pour ou contre ?</Link>
+          </li>
+        </ul>
+      </ul>
     </footer>
   );
 }
