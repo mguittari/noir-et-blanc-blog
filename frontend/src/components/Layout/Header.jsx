@@ -1,7 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { FiMenu } from "react-icons/fi";
+import { TiThMenu } from "react-icons/ti";
 import { useState } from "react";
 import NavMobile from "../NavMobile/NavMobile";
+import finger from "../../assets/finger.png";
 
 function Header() {
   const [active, setActive] = useState(false);
@@ -9,17 +10,24 @@ function Header() {
     setActive(!active);
   };
   return (
-    <header className="w-full font-serif">
-      <div className="ml-2 mb-2">
-        <h1 className="text-[40px] -mt-1">NOIR ET BLANC</h1>
-        <p className="text-[15px] ">Un blog pour s'entrainer à coder</p>
+    <header className="w-full font-serif mt-5 border-b border-black">
+      <h1 className="text-[40px] font-serif ml-3 mr-[65px] leading-[50px]">
+        NOIR ET BLANC
+      </h1>
+      <div className="flex mb-[10px]">
+        <img className="w-12 h-12 ml-1 mr-1" src={finger} alt="finger up" />
+        <p className="text-[28px] pt-[10px] mr-1">
+          Un blog pour s'entrainer à coder
+        </p>
       </div>
-
       <nav>
-        <div className="absolute right-6 md:hidden top-8 scale-150">
-          <FiMenu onClick={showMenu} className="scale=150 cursor-pointer" />
+        <div
+          id="menu"
+          className="absolute right-8 md:hidden top-[43px] scale-x-250 scale-y-230"
+        >
+          <TiThMenu onClick={showMenu} className="scale-150 cursor-pointer" />
         </div>
-        <ul className="hidden md:flex text-[15px] gap-1 ml-2">
+        <ul className="hidden md:flex ml-3 mb-5 text-[28px] gap-1">
           <li>À propos</li>
           <li>|</li>
           <li>Articles</li>

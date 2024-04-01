@@ -8,13 +8,13 @@ import cube from "../../assets/cube.png";
 
 function Footer() {
   return (
-    <footer className="w-full font-serif">
+    <footer className="w-full font-serif border-t border-black pt-5">
       <ul className="grid grid-cols-2 gap-2 md:grid-cols-4 text-center">
         <li className="mb-2 p-[5px] flex justify-center items-start">
           <img className="w-[100px] h-[100px]" src={cube} alt="logo cube" />
         </li>
-        <ul className="text-[14px] mb-2 p-[5px]">
-          <h2 className="text-[18px]">Infos</h2>
+        <ul className="text-[18px] mb-2 p-[5px]">
+          <h2 className="text-[22px]">Infos</h2>
           <li>
             <Link to="/">À propos</Link>
           </li>
@@ -25,8 +25,8 @@ function Footer() {
             <Link to="/">Politique de confidentialité</Link>
           </li>
         </ul>
-        <ul className="text-[14px] mb-2 p-[5px]">
-          <h2 className="text-[18px]">Contact</h2>
+        <ul className="text-[18px] mb-2 p-[5px]">
+          <h2 className="text-[22px]">Contact</h2>
           <li>Matt Guittari</li>
           <li>mattguittari [at] blackandwhite [dot] com </li>
           <div className="">
@@ -55,16 +55,16 @@ function Footer() {
             </ul>
           </div>
         </ul>
-        <ul className="text-[14px] mb-2 p-[5px]">
-          <h2 className="text-[18px]">Rubriques</h2>
+        <ul className="text-[18px] mb-2 p-[5px]">
+          <h2 className="text-[22px]">Rubriques</h2>
           <li>
             <Link to="/">Pandas</Link>
           </li>
           <li>
-            <Link to="/">Echecs</Link>
+            <Link to="/">Échecs</Link>
           </li>
           <li>
-            <Link to="/">Ying yang</Link>
+            <Link to="/">Yin Yang</Link>
           </li>
           <li>
             <Link to="/">Pour ou contre ?</Link>
