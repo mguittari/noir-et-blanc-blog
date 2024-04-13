@@ -1,45 +1,53 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { TiThMenu } from "react-icons/ti";
 import { useState } from "react";
-import NavMobile from "../NavMobile/NavMobile";
-import finger from "../../assets/finger.png";
+import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
+import NavMobile from "../Nav/NavMobile";
+import NavDesktop from "../Nav/NavDesktop";
+import cube from "../../assets/cube.png";
 
 function Header() {
-  const [active, setActive] = useState(false);
-  const showMenu = () => {
-    setActive(!active);
+  const [showMenu, setShowMenu] = useState(false);
+  const handleClick = () => {
+    setShowMenu(!showMenu);
   };
   return (
-    <header className="w-full font-serif mt-5 border-b border-black">
-      <h1 className="text-[40px] font-serif ml-3 mr-[65px] leading-[50px]">
-        NOIR ET BLANC
-      </h1>
-      <div className="flex mb-[10px]">
-        <img className="w-12 h-12 ml-1 mr-1" src={finger} alt="finger up" />
-        <p className="text-[28px] pt-[10px] mr-1">
-          Un blog pour s'entrainer à coder
-        </p>
-      </div>
-      <nav>
-        <div
-          id="menu"
-          className="absolute right-8 md:hidden top-[43px] scale-x-250 scale-y-230"
-        >
-          <TiThMenu onClick={showMenu} className="scale-150 cursor-pointer" />
+    <header className="w-full font-serif mt-3 border-b border-black pb-1">
+      <div className="">
+        <div className="ml-4">
+          <h1 className="text-[40px] md:text-[65px] font-serif leading-[50px] md:leading-[75px]">
+            NOIR ET BLANC
+          </h1>
+          <div className="flex items-center gap-1">
+            <img
+              className="w-8 h-8 md:w-12 md:h-12"
+              src={cube}
+              alt="cube logo"
+            />
+            <p className="text-[22px] md:text-[35px]">
+              Un blog pour apprendre à coder
+            </p>
+          </div>
         </div>
-        <ul className="hidden md:flex ml-3 mb-5 text-[28px] gap-1">
-          <li>À propos</li>
-          <li>|</li>
-          <li>Articles</li>
-          <li>|</li>
-          <li>Archives</li>
-          <li>|</li>
-          <li>Au hasard</li>
-          <li>|</li>
-          <li> Faire un don</li>
-        </ul>
-        <NavMobile showMenu={showMenu} active={active} />
-      </nav>
+        <div className="ml-2 text-[22px] md:text-[35px] md:hidden">
+          <div className="flex flex-row items-center">
+            <button
+              type="button"
+              onClick={handleClick}
+              className="cursor-pointer ml-2"
+            >
+              Menu
+            </button>
+            {showMenu ? (
+              <IoMdArrowDropup className="w-8 h-8" onClick={handleClick} />
+            ) : (
+              <IoMdArrowDropdown className="w-8 h-8" onClick={handleClick} />
+            )}
+          </div>
+          {showMenu && <NavMobile className="flex-col flex items-center" />}
+        </div>
+        <div className="hidden md:flex">
+          <NavDesktop />
+        </div>
+      </div>
     </header>
   );
 }

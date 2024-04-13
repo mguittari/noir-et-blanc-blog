@@ -5,16 +5,17 @@ import x from "../../assets/twitter.png";
 import youtb from "../../assets/youtube.png";
 import fb from "../../assets/facebook.png";
 import cube from "../../assets/cube.png";
+import GoToTopButton from "../Go-to-top-button/GoToTopButton";
 
 function Footer() {
   return (
-    <footer className="w-full font-serif border-t border-black pt-5">
-      <ul className="grid grid-cols-2 gap-2 md:grid-cols-4 text-center">
-        <li className="mb-2 p-[5px] flex justify-center items-start">
-          <img className="w-[100px] h-[100px]" src={cube} alt="logo cube" />
+    <footer className="w-full font-serif border-t border-black pt-1 px-5">
+      <ul className="grid grid-cols-2 gap-2 md:grid-cols-4 text-center relative">
+        <li className="p-[5px] flex justify-center items-start">
+          <img className="w-[185px] h-[185px]" src={cube} alt="logo cube" />
         </li>
-        <ul className="text-[18px] mb-2 p-[5px]">
-          <h2 className="text-[22px]">Infos</h2>
+        <ul className="text-[18px] md:text-[22px] p-[5px]">
+          <h2 className="text-[22px] md:text-[35px]">Infos</h2>
           <li>
             <Link to="/">À propos</Link>
           </li>
@@ -24,13 +25,17 @@ function Footer() {
           <li>
             <Link to="/">Politique de confidentialité</Link>
           </li>
+          <li>
+            <Link to="/">Wild Code School</Link>
+          </li>
         </ul>
-        <ul className="text-[18px] mb-2 p-[5px]">
-          <h2 className="text-[22px]">Contact</h2>
+        <ul className="text-[18px] md:text-[22px] p-[5px]">
+          <h2 className="text-[22px] md:text-[35px]">Contact</h2>
           <li>Matt Guittari</li>
+          <li>~</li>
           <li>mattguittari [at] blackandwhite [dot] com </li>
           <div className="">
-            <ul className="inline-flex gap-2 mt-1">
+            <ul className="inline-flex gap-2 mt-2">
               <li className="w-6 h-6">
                 <a
                   href="http://instagram.com"
@@ -41,36 +46,70 @@ function Footer() {
                 </a>
               </li>
               <li className="w-6 h-6">
-                <img src={linkd} alt="logo linkedin" />
+                <a
+                  href="http://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={linkd} alt="logo linkedin" />
+                </a>
               </li>
               <li className="w-6 h-6">
-                <img src={x} alt="logo x" />
+                <a
+                  href="http://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={x} alt="logo x" />
+                </a>
               </li>
               <li className="w-6 h-6">
-                <img src={youtb} alt="logo youtube" />
+                <a
+                  href="http://youtube.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={youtb} alt="logo youtube" />
+                </a>
               </li>
               <li className="w-6 h-6">
-                <img src={fb} alt="logo fb" />
+                <a
+                  href="http://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={fb} alt="logo fb" />
+                </a>
               </li>
             </ul>
           </div>
         </ul>
-        <ul className="text-[18px] mb-2 p-[5px]">
-          <h2 className="text-[22px]">Rubriques</h2>
+        <ul className="text-[18px] md:text-[22px] p-[5px] relative">
+          <h2 className="text-[22px] md:text-[35px]">Articles</h2>
           <li>
             <Link to="/">Pandas</Link>
           </li>
           <li>
-            <Link to="/">Échecs</Link>
+            <Link to="/">Jeu d'Échecs</Link>
           </li>
           <li>
-            <Link to="/">Yin Yang</Link>
+            <Link to="/">Yin et Yang</Link>
           </li>
           <li>
-            <Link to="/">Pour ou contre ?</Link>
+            <Link to="/">Manichéïsme</Link>
+          </li>
+          <li>
+            <a
+              href="https://g.co/kgs/XmXomR6"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <p>Pile ou face ?</p>
+            </a>
           </li>
         </ul>
       </ul>
+      <GoToTopButton />
     </footer>
   );
 }
