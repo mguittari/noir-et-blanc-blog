@@ -12,7 +12,11 @@ function Footer() {
     <footer className="w-full font-serif border-t border-black pt-1 px-5">
       <ul className="grid grid-cols-2 gap-2 md:grid-cols-4 text-center relative">
         <li className="p-[5px] flex justify-center items-start">
-          <img className="w-[185px] h-[185px]" src={cube} alt="logo cube" />
+          <img
+            className="w-[155px] h-[155px] md:w-[185px] md:h-[185px]"
+            src={cube}
+            alt="logo cube"
+          />
         </li>
         <ul className="text-[18px] md:text-[22px] p-[5px]">
           <h2 className="text-[22px] md:text-[35px]">Infos</h2>
