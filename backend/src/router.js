@@ -7,6 +7,7 @@ const articleControllers = require("./controllers/ArticleControllers");
 const commentControllers = require("./controllers/CommentControllers");
 const hashPassword = require("./services/hashPassword");
 const verifyToken = require("./services/auth");
+const upload = require("./services/upload");
 
 // routes publiques
 
@@ -38,12 +39,15 @@ router.delete("/comment/:id", commentControllers.deleteComment);
 // routes administrateur
 
 router.get("/users", userControllers.getAllUsers);
-router.post("/article", articleControllers.postArticle);
+router.post("/article", upload, articleControllers.postArticle);
+router.patch(
+  "/article/:id/update-thumbnail",
+  upload,
+  articleControllers.updateThumbnail
+);
 router.delete("/article/:id", articleControllers.deleteArticle);
 router.put("/article/:id", articleControllers.updateArticle);
 router.get("/user/:id/comments", userControllers.getAllCommentsByUser);
-
-// // Route to add a new item
 
 /* ************************************************************************* */
 
