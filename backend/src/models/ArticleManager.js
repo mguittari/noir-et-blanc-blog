@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const AbstractManager = require("./AbstractManager");
 
 class ArticleManager extends AbstractManager {
@@ -7,16 +8,17 @@ class ArticleManager extends AbstractManager {
     super({ table: "article" });
   }
 
-  postArticle(title, content) {
+  postArticle(title, content, img_url) {
     return this.database.query(
-      `INSERT INTO ${this.table} (title, content) VALUES (?, ?)`,
-      [title, content]
+      `INSERT INTO ${this.table} (title, content, img_url) VALUES (?, ?, ?)`,
+      [title, content, img_url]
     );
   }
 
   getArticleById(id) {
     return this.database.query(
-      `select id, title, content, DATE_FORMAT(created_at, '%d-%m-%Y %H:%i:%s') AS published_at from ${this.table} where id=${id}`
+      `select *, DATE_FORMAT(created_at, '%d-%m-%Y %H:%i:%s') AS published_at from ${this.table} where id= ?`,
+      [id]
     );
   }
 
@@ -28,6 +30,14 @@ class ArticleManager extends AbstractManager {
     return this.database.query(
       `UPDATE ${this.table} set title = ?, content = ? where id=${id}`,
       [title, content, id]
+    );
+  }
+
+  updateThumbnailArticle(id, img_url) {
+    return this.database.query(
+      `UPDATE ${this.table} SET img_url = ? WHERE id = ?`,
+      // eslint-disable-next-line camelcase
+      [img_url, id]
     );
   }
 
