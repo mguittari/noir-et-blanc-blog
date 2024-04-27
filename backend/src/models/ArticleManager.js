@@ -8,6 +8,12 @@ class ArticleManager extends AbstractManager {
     super({ table: "article" });
   }
 
+  getFirstFourArticles() {
+    return this.database.query(
+      `select *, DATE_FORMAT(created_at, '%d-%m-%Y') AS published_at from ${this.table} LIMIT 4`
+    );
+  }
+
   postArticle(title, content, img_url) {
     return this.database.query(
       `INSERT INTO ${this.table} (title, content, img_url) VALUES (?, ?, ?)`,

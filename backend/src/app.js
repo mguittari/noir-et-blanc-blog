@@ -25,7 +25,6 @@ const app = express();
 // 4. Be sure to only have URLs in the array with domains from which you want to allow requests.
 // For example: ["http://mysite.com", "http://another-domain.com"]
 
-/*
 const cors = require("cors");
 
 app.use(
@@ -34,11 +33,11 @@ app.use(
       process.env.FRONTEND_URL, // keep this one, after checking the value in `backend/.env`
       "http://mysite.com",
       "http://another-domain.com",
-    ]
+      "http://localhost:3000",
+    ],
   })
 );
-*/
-
+console.info(process.env.FRONTEND_URL);
 /* ************************************************************************* */
 
 // Request Parsing: Understanding the purpose of this part
@@ -89,6 +88,7 @@ const router = require("./router");
 
 // Mount the API routes under the "/api" endpoint
 app.use("/api", router);
+app.use("/uploads", express.static("uploads"));
 
 /* ************************************************************************* */
 

@@ -11,6 +11,7 @@ const upload = require("./services/upload");
 
 // routes publiques
 
+router.get("/home", articleControllers.getFirstFourArticles);
 router.post("/login", userControllers.getUserByEmail);
 router.post("/user", hashPassword, userControllers.addNewUser);
 router.get("/article/:id", articleControllers.getArticleById);

@@ -1,11 +1,11 @@
 import "./App.css";
-import Layout from "./components/Layout/Layout";
+import Home from "./pages/Home/Home";
 
 function App() {
   return (
-    <Layout>
-      <main className="min-h-[calc(100vh-40px)]" />
-    </Layout>
+    <main className="min-h-[calc(100vh-40px)]">
+      <Home />
+    </main>
   );
 }
 

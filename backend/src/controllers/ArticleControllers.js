@@ -2,6 +2,19 @@
 const fs = require("fs");
 const tables = require("../tables");
 
+const getFirstFourArticles = async (req, res) => {
+  try {
+    const [articles] = await tables.article.getFirstFourArticles();
+    if (articles.length) {
+      res.status(200).json(articles);
+    } else {
+      res.status(401).send("Erreur");
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 const getAllArticleTitlesOrderByPublicationDate = async (req, res) => {
   try {
     // Récupérer les titres des articles triés par date de publication
@@ -127,6 +140,7 @@ const getAllCommentsByArticle = async (req, res) => {
 };
 
 module.exports = {
+  getFirstFourArticles,
   postArticle,
   getArticleById,
   deleteArticle,
