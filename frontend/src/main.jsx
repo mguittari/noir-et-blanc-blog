@@ -1,14 +1,33 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Outlet, createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
+import Article from "./pages/Article/Article";
+import Layout from "./components/Layout/Layout";
+
+function AppLayout() {
+  return (
+    <Layout>
+      <Outlet />
+    </Layout>
+  );
+}
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <App />,
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <App />,
+      },
+      {
+        path: "/article/:id",
+        element: <Article />,
+      },
+    ],
   },
 ]);
 

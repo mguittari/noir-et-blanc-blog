@@ -21,6 +21,7 @@ create table comment (
 create table article (
 id INT PRIMARY KEY AUTO_INCREMENT,
 title VARCHAR(250) NOT NULL,
+description VARCHAR(250) NOT NULL,
 content TEXT NOT NULL,
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
