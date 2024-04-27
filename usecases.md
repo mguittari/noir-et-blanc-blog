@@ -8,7 +8,7 @@
 | user            | écrire un commentaire                                                     | d'apporter ma pierre à l'édifice                                       | ////// |
 | user            | supprimer mon commentaire                                                 | me rétracter si je regrette mes propos                                 | ////// |
 | user            | liker/unliker un commentaire                                              | appuyer un commentaire que je trouve pertinent et pouvoir se rétracter | ////// |
-| user            | activer/désactiver un éventuel dark mode                                  | reposer mes yeux le soir                                               | ////// |
+| user            | activer/désactiver dark mode                                              | reposer mes yeux le soir                                               | ////// |
 | user            | récupérer la liste de tous les articles par date                          | parcourir la liste des articles écrits                                 | ////// |
 | user            | changer mon mot de passe                                                  | changer mon mot de passe                                               | ////// |
 | user            | répondre à un commentaire                                                 | intéragir directement avec un autre utilisateur                        | ////// |
