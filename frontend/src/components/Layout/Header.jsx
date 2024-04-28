@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import NavMobile from "../Nav/NavMobile";
 import NavDesktop from "../Nav/NavDesktop";
 import cube from "../../assets/cube.png";
+import CircleMenu from "../Circle-menu/CircleMenu";
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
@@ -11,15 +11,14 @@ function Header() {
     setShowMenu(!showMenu);
   };
   return (
-    <header className="w-full font-serif mt-3 border-b border-black pb-1">
+    <header className="relative w-full font-serif mt-3 border-b border-black pb-1">
       <div className="">
-        <div className="mx-4">
-          <Link to="/">
-            <h1 className="text-[40px] md:text-[65px] font-serif leading-[50px] md:leading-[75px]">
-              NOIR ET BLANC
-            </h1>
-          </Link>
-          <div className="flex items-center gap-1">
+        <div className="ml-4 mr-16 grid">
+          <CircleMenu />
+          <h1 className="text-[40px] md:text-[65px] font-serif leading-[50px] md:leading-[75px]">
+            NOIR ET BLANC
+          </h1>
+          <div className="flex items-center gap-2">
             <img
               className="w-8 h-8 md:w-12 md:h-12"
               src={cube}
