@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaLongArrowAltRight } from "react-icons/fa";
+import { FaLongArrowAltRight, FaPenAlt } from "react-icons/fa";
 
 export default function Home() {
   const [articles, setArticles] = useState([]);
@@ -18,8 +18,12 @@ export default function Home() {
           <Link to="/">
             <img src={`http://localhost:3310/${img_url}`} alt={title} />
           </Link>
-          <h1 className="font-bold mt-1">{title}</h1>
+          <h1 className="font-bold mt-1 text-xl">{title}</h1>
           <p className="italic">Publié le {published_at}</p>
+          <div className="flex flex-row items-center gap-1">
+            <FaPenAlt className="w-4 h-4" />
+            <p className="font-medium">Matt Guittari</p>
+          </div>
           <p>
             Description Lorem ipsum dolor sit amet, consectetur adipiscing elit,
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

@@ -23,7 +23,7 @@ class ArticleManager extends AbstractManager {
 
   getArticleById(id) {
     return this.database.query(
-      `select *, DATE_FORMAT(created_at, '%d-%m-%Y %H:%i:%s') AS published_at from ${this.table} where id= ?`,
+      `select *, DATE_FORMAT(created_at, '%d-%m-%Y') AS published_at from ${this.table} where id= ?`,
       [id]
     );
   }

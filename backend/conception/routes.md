@@ -4,11 +4,11 @@
 
 | route        | Description                                      | status |
 | ------------ | ------------------------------------------------ | ------ |
-| /            | consulter la page d'accueil                      |        |
+| /            | consulter la page d'accueil                      | ok     |
 | /inscription | accéder à la page d'inscription                  |        |
 | /connexion   | accéder à la page de connexion                   |        |
 | /profil      | accéder à mes informations                       |        |
-| /article     | accéder à un article                             |        |
+| /article/:id | accéder à un article                             | ok     |
 | /archives    | accéder à la liste des articles classés par date |        |
 | /about       | accéder à la bio de l'auteur et ses coordonnées  |        |
 
