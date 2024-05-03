@@ -5,6 +5,7 @@ import { Outlet, createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
 import Article from "./pages/Article/Article";
+import SignupPage from "./pages/Signup/SignupPage";
 import Layout from "./components/Layout/Layout";
 
 function AppLayout() {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/article/:id",
         element: <Article />,
+      },
+      {
+        path: "/signup",
+        element: <SignupPage />,
       },
     ],
   },
