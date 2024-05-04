@@ -78,13 +78,14 @@ const addNewUser = async (req, res) => {
   try {
     const newUser = req.body;
     const [result] = await tables.user.addNewUser(newUser);
-
+    console.info("result-->", result);
+    console.info("User created-->", newUser);
     if (result.affectedRows) {
-      res.send(`User created with id: ${result.insertId}`);
+      res.status(201).json(`User created with id: ${result.insertId}`);
     } else {
       res
         .status(400)
-        .send(
+        .json(
           "Erreur, veuillez réessayer ultérieurement ou contacter l'administrateur de ce site"
         );
     }
