@@ -2,6 +2,13 @@
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    variants: {
+      extend: {
+        backgroundColor: ["valid", "invalid"],
+        borderColor: ["valid", "invalid"],
+        textColor: ["valid", "invalid"],
+      },
+    },
     extend: {
       fontFamily: {
         questrial: ["questrial", "sans-serif"],

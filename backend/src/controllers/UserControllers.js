@@ -43,18 +43,18 @@ const getUserByEmail = async (req, res) => {
             }
           );
 
-          res.status(200).send(token);
+          res.status(200).json(token);
         } else {
-          res.status(401).send("Adresse mail ou mot de passe incorrect");
+          res.status(401).json("Adresse mail ou mot de passe incorrect");
         }
       } else {
         res
           .status(401)
-          .send("Cette adresse mail n'existe pas dans notre base de donnée");
+          .json("Cette adresse mail n'existe pas dans notre base de donnée");
       }
     }
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).json(error);
   }
 };
 
