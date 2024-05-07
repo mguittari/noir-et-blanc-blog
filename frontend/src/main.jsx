@@ -9,6 +9,7 @@ import Article from "./pages/Article/Article";
 import SignupPage from "./pages/Signup/SignupPage";
 import LoginPage from "./pages/Login/LoginPage";
 import Layout from "./components/Layout/Layout";
+import WelcomePage from "./pages/Welcome/WelcomePage";
 
 function AppLayout() {
   return (
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LoginPage />,
+      },
+      {
+        path: "/welcome",
+        element: <WelcomePage />,
       },
     ],
   },

@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 
 export default function LoginPage() {
   const { updateToken } = useContext(UserContext);
+  const navigate = useNavigate();
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -12,8 +14,13 @@ export default function LoginPage() {
     setData({ ...data, [name]: value });
   };
 
-  console.info(updateToken);
-
+  const [isSubmitting, setIsSubmitting] = useState();
+  const handleSubmitConnexionButton = () => {
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+    }, 1000);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -24,9 +31,16 @@ export default function LoginPage() {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        console.info(res);
+        if (!res.ok) {
+          throw new Error("Identifiants incorrects");
+        }
+        return res.json();
+      })
       .then((res) => {
         updateToken(res);
+        navigate("/welcome");
       })
       .catch((err) => console.info("err :>>", err));
   };
@@ -66,9 +80,10 @@ export default function LoginPage() {
         <div className="flex justify-center">
           <button
             type="submit"
+            onClick={handleSubmitConnexionButton}
             className="bg-white text-black border border-black py-2 px-4 mt-2 rounded transition duration-300 hover:bg-black hover:text-white shadow-md"
           >
-            Se connecter
+            {isSubmitting ? "Connexion..." : "Se connecter"}
           </button>
         </div>
       </form>
