@@ -1,3 +1,9 @@
+DROP DATABASE IF EXISTS bwblog;
+
+CREATE DATABASE bwblog;
+
+USE bwblog;
+
 create table user (
   id INT PRIMARY KEY AUTO_INCREMENT,
   pseudo VARCHAR(20) NOT NULL,

@@ -43,18 +43,18 @@ const getUserByEmail = async (req, res) => {
             }
           );
 
-          res.status(200).send(token);
+          res.status(200).json(token);
         } else {
-          res.status(401).send("Adresse mail ou mot de passe incorrect");
+          res.status(401).json("Adresse mail ou mot de passe incorrect");
         }
       } else {
         res
           .status(401)
-          .send("Cette adresse mail n'existe pas dans notre base de donnée");
+          .json("Cette adresse mail n'existe pas dans notre base de donnée");
       }
     }
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).json(error);
   }
 };
 
@@ -78,13 +78,14 @@ const addNewUser = async (req, res) => {
   try {
     const newUser = req.body;
     const [result] = await tables.user.addNewUser(newUser);
-
+    console.info("result-->", result);
+    console.info("User created-->", newUser);
     if (result.affectedRows) {
-      res.send(`User created with id: ${result.insertId}`);
+      res.status(201).json(`User created with id: ${result.insertId}`);
     } else {
       res
         .status(400)
-        .send(
+        .json(
           "Erreur, veuillez réessayer ultérieurement ou contacter l'administrateur de ce site"
         );
     }
