@@ -63,9 +63,7 @@ const getUserById = async (req, res) => {
     const id = req.payload;
     const [user] = await tables.user.getUserById(id);
     if (user.length) {
-      res
-        .status(200)
-        .json({ message: `Bienvenue ${user[0].pseudo} !`, user: user[0] });
+      res.status(200).json({ message: `isLogged`, user: user[0] });
     } else {
       res.status(401).send("Erreur");
     }
