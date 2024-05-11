@@ -1,8 +1,11 @@
 import { useContext } from "react";
+
 import { UserContext } from "../../context/userContext";
+import LogoutButton from "../../components/Logout-Button/LogoutButton";
 
 export default function WelcomePage() {
   const { user } = useContext(UserContext);
+
   return (
     <div className="flex flex-col items-start m-5 gap-4">
       <div className="border-2 border-black mx-auto max-w-md w-full rounded-xl p-8 shadow-lg text-justify">
@@ -30,12 +33,9 @@ export default function WelcomePage() {
           >
             Mes infos
           </button>
-          <button
-            className="bg-black text-white p-4 rounded-xl transition duration-300 hover:bg-white hover:text-black hover:drop-shadow-[0_7px_1.5px_rgba(0,0,0,0.25)]"
-            type="button"
-          >
-            Déconnexion
-          </button>
+          <div className="bg-black text-white text-center cursor-pointer p-4 rounded-xl transition duration-300 hover:bg-white hover:text-black hover:drop-shadow-[0_7px_1.5px_rgba(0,0,0,0.25)]">
+            <LogoutButton />
+          </div>
         </div>
       </div>
     </div>
