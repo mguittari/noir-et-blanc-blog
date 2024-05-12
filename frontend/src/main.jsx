@@ -43,13 +43,13 @@ function UnauthorizedAccess() {
       .catch((err) => console.info("Error fetching user data:", err));
   }, [localStorage.getItem("token")]);
 
-  console.info("message???", user?.message);
+  console.info("message???", user.message);
 
   return (
     <UserProvider>
       <Layout>
         {user.message === "isLogged" && <Outlet />}
-        {!user.message !== "isLogged" && <ForbiddenAccess />}
+        {user?.message !== "isLogged" && <ForbiddenAccess />}
       </Layout>
     </UserProvider>
   );
