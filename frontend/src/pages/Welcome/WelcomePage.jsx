@@ -1,5 +1,6 @@
 import { useContext } from "react";
 
+import { Link } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import LogoutButton from "../../components/Logout-Button/LogoutButton";
 
@@ -15,24 +16,27 @@ export default function WelcomePage() {
           Ici, tu peux consulter et modifier tes informations.
         </p>
         <p>
-          Mais aussi consulter l'historique de tes commentaires postés sur le
+          Tu peux aussi consulter l'historique de tes commentaires postés sur le
           blog et te déconnecter.
         </p>
       </div>
       <div className="border-2 border-black mx-auto max-w-md w-full rounded-xl p-8 shadow-lg text-justify">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 text-center">
           <button
             className="bg-black text-white p-4 rounded-xl transition duration-300 hover:bg-white hover:text-black hover:drop-shadow-[0_7px_1.5px_rgba(0,0,0,0.25)]"
             type="button"
           >
             Mes commentaires
           </button>
-          <button
-            className="bg-black text-white p-4 rounded-xl transition duration-300 hover:bg-white hover:text-black hover:drop-shadow-[0_7px_1.5px_rgba(0,0,0,0.25)]"
+          <Link
+            to="/update"
+            className="bg-black text-white p-4 rounded-xl transition
+            duration-300 hover:bg-white hover:text-black
+            hover:drop-shadow-[0_7px_1.5px_rgba(0,0,0,0.25)]"
             type="button"
           >
             Mes infos
-          </button>
+          </Link>
           <div className="bg-black text-white text-center cursor-pointer p-4 rounded-xl transition duration-300 hover:bg-white hover:text-black hover:drop-shadow-[0_7px_1.5px_rgba(0,0,0,0.25)]">
             <LogoutButton />
           </div>
