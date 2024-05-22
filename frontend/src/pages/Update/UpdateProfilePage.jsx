@@ -11,6 +11,7 @@ export default function UpdateProfilePage() {
     pseudo: user.user?.pseudo,
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
@@ -24,6 +25,7 @@ export default function UpdateProfilePage() {
 
   const handleSubmitInfoUser = (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     fetch(`http://localhost:3310/api/user/${user.user?.id_user}`, {
       method: "PATCH",
       headers: {
@@ -52,8 +54,8 @@ export default function UpdateProfilePage() {
         className="font-serif text-xl border-2 border-black p-8 rounded-xl max-w-md w-full shadow-lg"
         onSubmit={handleSubmitInfoUser}
       >
-        <div className=" flex flex-col items-center mb-4">
-          <label htmlFor="pseudo">pseudo</label>
+        <div className=" flex flex-col items-center mb-6">
+          <label htmlFor="pseudo">Pseudo</label>
           <input
             className="border border-black h-10 focus:outline-none rounded-md focus:border-2 shadow-md p-2"
             type="text"
@@ -70,7 +72,12 @@ export default function UpdateProfilePage() {
         <div className="flex justify-center">
           <button
             type="submit"
-            className="bg-white text-black border border-black py-2 px-4 rounded transition duration-300 hover:bg-black hover:text-white shadow-md text-sm"
+            className={
+              isSubmitting
+                ? "bg-white text-black border border-black py-2 px-4 rounded shadow-md text-[16px]"
+                : `bg-black text-white border border-black py-2 px-4 rounded transition duration-300 hover:bg-white hover:text-black shadow-md text-[16px]`
+            }
+            disabled={isSubmitting}
           >
             Mettre à jour mon pseudo
           </button>
@@ -89,11 +96,11 @@ export default function UpdateProfilePage() {
         )}
         <div className=" flex flex-col items-center">
           <Link
-            to="/"
+            to="/update-password"
             type="button"
-            className="border border-black flex items-center text-center rounded py-2 px-4 text-sm bg-black text-white transition duration-300 hover:bg-white hover:text-black shadow-md mt-4"
+            className="border border-black flex items-center text-center rounded py-2 px-4 bg-black text-white transition duration-300 hover:bg-white hover:text-black shadow-md mt-6 text-[16px] "
           >
-            Mise à jour de mot de passe
+            Mise à jour du mot de passe
           </Link>
         </div>
       </form>

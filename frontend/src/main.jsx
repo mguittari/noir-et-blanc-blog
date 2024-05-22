@@ -12,6 +12,7 @@ import Layout from "./components/Layout/Layout";
 import WelcomePage from "./pages/Welcome/WelcomePage";
 import ForbiddenAccess from "./components/Unauthorized/UnauthorizedAccess";
 import UpdateProfilePage from "./pages/Update/UpdateProfilePage";
+import UpdatePasswordPage from "./pages/Update/UpdatePasswordPage";
 
 function AppLayout() {
   return (
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
       {
         path: "/update",
         element: <UpdateProfilePage />,
+      },
+      {
+        path: "/update-password",
+        element: <UpdatePasswordPage />,
       },
     ],
   },
