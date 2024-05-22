@@ -116,15 +116,16 @@ const updateUser = async (req, res) => {
   try {
     const id = req.payload;
     const [result] = await tables.user.updateUserWithoutPassword(id, req.body);
+    console.info("req point body", req.body);
     if (result.affectedRows) {
       res.status(200).json({ message: "Votre profil a bien été mis à jour" });
     } else {
       res
         .status(401)
-        .send("Modification impossible, vérifiez vos informations");
+        .json("Modification impossible, vérifiez vos informations");
     }
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).json(error);
   }
 };
 

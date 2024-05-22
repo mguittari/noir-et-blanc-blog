@@ -26,7 +26,7 @@ router.get("/article/:id/comments", articleControllers.getAllCommentsByArticle);
 router.get("/me", verifyToken, userControllers.getUserById);
 router.post("/logout", userControllers.logout);
 router.delete("/user", verifyToken, userControllers.deleteUser);
-router.patch("/user", verifyToken, userControllers.updateUser);
+router.patch("/user/:id", verifyToken, userControllers.updateUser);
 router.patch(
   "/user/update-password",
   verifyToken,

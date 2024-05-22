@@ -45,9 +45,12 @@ class UserManager extends AbstractManager {
     const columns = Object.keys(userWithoutPassword);
     const valuesColumns = Object.values(userWithoutPassword);
     const values = columns.map((column) => `${column} = ?`).join(", ");
+    console.info("columns", columns);
+    console.info("valuesColumns", valuesColumns);
+    console.info("values", values);
 
     return this.database.query(
-      `UPDATE ${this.table} set ${values} where id=?`,
+      `UPDATE ${this.table} set ${values} where id = ?`,
       [...valuesColumns, id]
     );
   }
