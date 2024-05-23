@@ -36,7 +36,7 @@ class UserManager extends AbstractManager {
 
   editUserOnlyPassword(id, hashed_password) {
     return this.database.query(
-      `UPDATE ${this.table} set hashed_password = ? where id=id`,
+      `UPDATE ${this.table} set hashed_password = ? where id= ?`,
       [hashed_password, id]
     );
   }

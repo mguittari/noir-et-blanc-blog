@@ -6,6 +6,7 @@ const userControllers = require("./controllers/UserControllers");
 const articleControllers = require("./controllers/ArticleControllers");
 const commentControllers = require("./controllers/CommentControllers");
 const hashPassword = require("./services/hashPassword");
+const hashEditPassword = require("./services/hashEditPassword");
 const verifyToken = require("./services/auth");
 const upload = require("./services/upload");
 
@@ -30,7 +31,7 @@ router.patch("/user/:id", verifyToken, userControllers.updateUser);
 router.patch(
   "/user/update-password",
   verifyToken,
-  hashPassword,
+  hashEditPassword,
   userControllers.editPassword
 );
 

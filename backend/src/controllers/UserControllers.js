@@ -96,6 +96,7 @@ const editPassword = async (req, res) => {
   try {
     const id = req.payload;
     const { hashed_password } = req.body;
+    console.info("req point body in editPassword controller", req.body);
     const [result] = await tables.user.editUserOnlyPassword(
       id,
       hashed_password
