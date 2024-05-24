@@ -6,6 +6,7 @@ const userControllers = require("./controllers/UserControllers");
 const articleControllers = require("./controllers/ArticleControllers");
 const commentControllers = require("./controllers/CommentControllers");
 const hashPassword = require("./services/hashPassword");
+const hashEditPassword = require("./services/hashEditPassword");
 const verifyToken = require("./services/auth");
 const upload = require("./services/upload");
 
@@ -26,11 +27,11 @@ router.get("/article/:id/comments", articleControllers.getAllCommentsByArticle);
 router.get("/me", verifyToken, userControllers.getUserById);
 router.post("/logout", userControllers.logout);
 router.delete("/user", verifyToken, userControllers.deleteUser);
-router.patch("/user", verifyToken, userControllers.updateUser);
+router.patch("/user/:id", verifyToken, userControllers.updateUser);
 router.patch(
-  "/user/update-password",
+  "/users/update-password",
   verifyToken,
-  hashPassword,
+  hashEditPassword,
   userControllers.editPassword
 );
 

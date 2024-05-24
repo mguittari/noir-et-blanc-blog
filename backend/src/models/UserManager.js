@@ -25,7 +25,7 @@ class UserManager extends AbstractManager {
 
   getUserById(id) {
     return this.database.query(
-      `select id as id_user, pseudo, email from ${this.table} where id = ?`,
+      `select id as id_user, pseudo, hashed_password, email from ${this.table} where id = ?`,
       [id]
     );
   }
@@ -36,7 +36,7 @@ class UserManager extends AbstractManager {
 
   editUserOnlyPassword(id, hashed_password) {
     return this.database.query(
-      `UPDATE ${this.table} set hashed_password = ? where id=id`,
+      `UPDATE ${this.table} set hashed_password = ? where id= ?`,
       [hashed_password, id]
     );
   }
@@ -45,9 +45,12 @@ class UserManager extends AbstractManager {
     const columns = Object.keys(userWithoutPassword);
     const valuesColumns = Object.values(userWithoutPassword);
     const values = columns.map((column) => `${column} = ?`).join(", ");
+    console.info("columns", columns);
+    console.info("valuesColumns", valuesColumns);
+    console.info("values", values);
 
     return this.database.query(
-      `UPDATE ${this.table} set ${values} where id=?`,
+      `UPDATE ${this.table} set ${values} where id = ?`,
       [...valuesColumns, id]
     );
   }

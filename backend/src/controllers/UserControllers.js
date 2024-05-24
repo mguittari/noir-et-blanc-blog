@@ -61,7 +61,9 @@ const getUserByEmail = async (req, res) => {
 const getUserById = async (req, res) => {
   try {
     const id = req.payload;
+    console.info("id in controller -->", id);
     const [user] = await tables.user.getUserById(id);
+    console.info("user in controller -->", user);
     if (user.length) {
       res.status(200).json({ message: `isLogged`, user: user[0] });
     } else {
@@ -96,6 +98,7 @@ const editPassword = async (req, res) => {
   try {
     const id = req.payload;
     const { hashed_password } = req.body;
+    console.info("req point body in editPassword controller", req.body);
     const [result] = await tables.user.editUserOnlyPassword(
       id,
       hashed_password
@@ -116,15 +119,16 @@ const updateUser = async (req, res) => {
   try {
     const id = req.payload;
     const [result] = await tables.user.updateUserWithoutPassword(id, req.body);
+    console.info("req point body", req.body);
     if (result.affectedRows) {
       res.status(200).json({ message: "Votre profil a bien été mis à jour" });
     } else {
       res
         .status(401)
-        .send("Modification impossible, vérifiez vos informations");
+        .json("Modification impossible, vérifiez vos informations");
     }
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).json(error);
   }
 };
 
