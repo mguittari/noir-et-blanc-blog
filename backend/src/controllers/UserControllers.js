@@ -61,7 +61,9 @@ const getUserByEmail = async (req, res) => {
 const getUserById = async (req, res) => {
   try {
     const id = req.payload;
+    console.info("id in controller -->", id);
     const [user] = await tables.user.getUserById(id);
+    console.info("user in controller -->", user);
     if (user.length) {
       res.status(200).json({ message: `isLogged`, user: user[0] });
     } else {

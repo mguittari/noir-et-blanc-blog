@@ -1,7 +1,10 @@
 import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
+import arrowReturn from "../../assets/return.svg";
 
 export default function UpdatePasswordPage() {
+  const navigate = useNavigate();
   const { token } = useContext(UserContext);
   const [data, setData] = useState({
     oldPassword: "",
@@ -9,9 +12,18 @@ export default function UpdatePasswordPage() {
     confirmNewPassword: "",
   });
 
+  const [message, setMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
+  console.info("message", message);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
+  };
+
+  const handleClickReturn = () => {
+    navigate("/welcome");
   };
 
   const handleSubmit = (e) => {
@@ -22,7 +34,7 @@ export default function UpdatePasswordPage() {
       return;
     }
 
-    fetch(`http://localhost:3310/api/user/update-password`, {
+    fetch(`http://localhost:3310/api/users/update-password`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -30,13 +42,22 @@ export default function UpdatePasswordPage() {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        console.info(res);
+        if (!res.ok) {
+          throw new Error("Ancien mot de passe incorrect");
+        }
+        setMessage("");
+        setSuccessMessage("Mise à jour réussie !");
+        return res.json();
+      })
       // eslint-disable-next-line no-unused-vars
       .then((responseData) => {
         console.info("Réponse du serveur:", responseData);
       })
       .catch((error) => {
-        console.error("Error:", error);
+        setMessage("Vérifiez votre ancien mot de passe");
+        console.error(error);
       });
   };
   return (
@@ -93,12 +114,27 @@ export default function UpdatePasswordPage() {
             Mettre à jour mon mot de passe
           </button>
         </div>
+        {successMessage && (
+          <div className="flex flex-col justify-center items-center gap-2">
+            <div className="text-black text-center mt-4">{successMessage}</div>
+            <button type="button" label="button" onClick={handleClickReturn}>
+              <img
+                src={arrowReturn}
+                alt="arrow return"
+                className="h-10 w-14 md:transition-transform md:hover:scale-110 md:cursor-pointer"
+              />
+            </button>
+          </div>
+        )}
+        {message && (
+          <p className="text-red-600 text-center mt-4 italic">{message}</p>
+        )}
+        {data.newPassword !== data.confirmNewPassword && (
+          <p className="text-red-600 text-center mt-4 italic">
+            Les nouveaux mots de passe ne correspondent pas
+          </p>
+        )}
       </form>
-      {data.newPassword !== data.confirmNewPassword && (
-        <p className="text-black">
-          Les nouveaux mots de passe ne correspondent pas
-        </p>
-      )}
     </div>
   );
 }

@@ -2,7 +2,6 @@ const argon2 = require("argon2");
 const tables = require("../tables");
 
 const hashEditPassword = async (req, res, next) => {
-  console.info(req.body);
   const hashOptions = {
     type: argon2.argon2id,
     memoryCost: 2 ** 16,
@@ -14,10 +13,10 @@ const hashEditPassword = async (req, res, next) => {
 
     if (oldPassword) {
       const id = req.payload;
-      console.info(id);
+      console.info("id -->", id);
 
       const [user] = await tables.user.getUserById(id);
-      console.info(user);
+      console.info("user -->", user);
       if (user.length) {
         const isVerify = await argon2.verify(
           user[0].hashed_password,

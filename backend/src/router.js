@@ -29,7 +29,7 @@ router.post("/logout", userControllers.logout);
 router.delete("/user", verifyToken, userControllers.deleteUser);
 router.patch("/user/:id", verifyToken, userControllers.updateUser);
 router.patch(
-  "/user/update-password",
+  "/users/update-password",
   verifyToken,
   hashEditPassword,
   userControllers.editPassword

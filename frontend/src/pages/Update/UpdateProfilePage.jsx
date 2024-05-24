@@ -94,11 +94,11 @@ export default function UpdateProfilePage() {
             </button>
           </div>
         )}
-        <div className=" flex flex-col items-center">
+        <div className=" flex flex-col items-center mt-4">
           <Link
             to="/update-password"
             type="button"
-            className="border border-black flex items-center text-center rounded py-2 px-4 bg-black text-white transition duration-300 hover:bg-white hover:text-black shadow-md mt-6 text-[16px] "
+            className="border border-black flex items-center text-center rounded py-2 px-4 bg-black text-white transition duration-300 hover:bg-white hover:text-black shadow-md text-[16px] "
           >
             Mise à jour du mot de passe
           </Link>

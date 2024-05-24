@@ -25,7 +25,7 @@ class UserManager extends AbstractManager {
 
   getUserById(id) {
     return this.database.query(
-      `select id as id_user, pseudo, email from ${this.table} where id = ?`,
+      `select id as id_user, pseudo, hashed_password, email from ${this.table} where id = ?`,
       [id]
     );
   }
