@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import arrowReturn from "../../assets/return.svg";
 import { UserContext } from "../../context/userContext";
@@ -16,6 +16,16 @@ export default function UpdateProfilePage() {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
   };
+
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  useEffect(() => {
+    if (data.pseudo !== user.user?.pseudo) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [data.pseudo, user.user?.pseudo]);
 
   console.info(data);
   const handleClickReturn = () => {
@@ -73,11 +83,11 @@ export default function UpdateProfilePage() {
           <button
             type="submit"
             className={
-              isSubmitting
+              isSubmitting || isDisabled
                 ? "bg-white text-black border border-black py-2 px-4 rounded shadow-md text-[16px]"
                 : `bg-black text-white border border-black py-2 px-4 rounded transition duration-300 hover:bg-white hover:text-black shadow-md text-[16px]`
             }
-            disabled={isSubmitting}
+            disabled={isSubmitting || isDisabled}
           >
             Mettre à jour mon pseudo
           </button>

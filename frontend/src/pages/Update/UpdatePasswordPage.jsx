@@ -14,6 +14,7 @@ export default function UpdatePasswordPage() {
 
   const [message, setMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   console.info("message", message);
 
@@ -27,6 +28,7 @@ export default function UpdatePasswordPage() {
   };
 
   const handleSubmit = (e) => {
+    setIsSubmitting(true);
     e.preventDefault();
 
     if (data.newPassword !== data.confirmNewPassword) {
@@ -45,10 +47,12 @@ export default function UpdatePasswordPage() {
       .then((res) => {
         console.info(res);
         if (!res.ok) {
+          setIsSubmitting(false);
           throw new Error("Ancien mot de passe incorrect");
         }
         setMessage("");
         setSuccessMessage("Mise à jour réussie !");
+
         return res.json();
       })
       // eslint-disable-next-line no-unused-vars
@@ -109,7 +113,12 @@ export default function UpdatePasswordPage() {
         <div className="flex justify-center">
           <button
             type="submit"
-            className="bg-black text-white border border-black py-2 px-4 rounded transition duration-300 hover:bg-white hover:text-black shadow-md text-[16px] mt-2"
+            className={
+              isSubmitting
+                ? "bg-white text-black border border-black py-2 px-4 rounded shadow-md text-[16px]"
+                : `bg-black text-white border border-black py-2 px-4 rounded transition duration-300 hover:bg-white hover:text-black shadow-md text-[16px]`
+            }
+            disabled={isSubmitting}
           >
             Mettre à jour mon mot de passe
           </button>
