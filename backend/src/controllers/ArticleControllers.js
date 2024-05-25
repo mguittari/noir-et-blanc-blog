@@ -132,7 +132,9 @@ const getAllCommentsByArticle = async (req, res) => {
     if (comments) {
       res.json(comments);
     } else {
-      res.status(401).send("client n'existe pas avec cette reservation");
+      res
+        .status(401)
+        .send("Cet article n'a pas de commentaires pour l'instant");
     }
   } catch (error) {
     res.status(500).send(error);

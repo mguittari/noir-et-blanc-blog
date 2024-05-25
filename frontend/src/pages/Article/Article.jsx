@@ -2,6 +2,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaPenAlt } from "react-icons/fa";
+import CommentsButton from "../../components/Comments/CommentsButton";
 
 export default function Article() {
   const params = useParams();
@@ -11,6 +12,8 @@ export default function Article() {
       .then((res) => res.json())
       .then((data) => setArticle(data));
   }, []);
+
+  console.info("params", params.id);
 
   return (
     <div>
@@ -89,6 +92,7 @@ export default function Article() {
               massa.
             </p>
           </div>
+          <CommentsButton idArticle={params.id} />
         </div>
       ))}
     </div>
