@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import PropTypes from "prop-types";
 import { UserContext } from "../../context/userContext";
 
 export default function CommentsForm({ idArticle }) {
@@ -32,7 +33,13 @@ export default function CommentsForm({ idArticle }) {
       }),
     })
       .then((res) => res.json())
-      .then((res) => console.info("res", res))
+      .then((res) => {
+        console.info("res", res);
+        setData({
+          title: "",
+          comment: "",
+        });
+      })
       // eslint-disable-next-line no-unused-vars
       .catch((error) => {
         console.error("Error:", error);
@@ -40,38 +47,40 @@ export default function CommentsForm({ idArticle }) {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Titre
-            <input
-              name="title"
-              value={data.title}
-              onChange={handleChange}
-              className="border border-black h-10 focus:outline-none rounded-md focus:border-2 shadow-md p-2"
-            />
-          </label>
-          <label>
-            Ecrivez un commentaire
-            <textarea
-              name="comment"
-              value={data.comment}
-              onChange={handleChange}
-              placeholder="Exprimez-vous..."
-              className="border border-black w-full"
-            />
-          </label>
-        </div>
-        <div>
-          <button
-            type="submit"
-            className="bg-black text-white border border-black py-2 px-4 rounded transition duration-300 hover:bg-white hover:text-black shadow-md"
-          >
-            Publier
-          </button>
-        </div>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>
+          Ecrivez un commentaire
+          <input
+            name="title"
+            value={data.title}
+            onChange={handleChange}
+            placeholder="Titre"
+            className="border border-black h-10 focus:outline-none shadow-md"
+            required
+          />
+          <textarea
+            name="comment"
+            value={data.comment}
+            onChange={handleChange}
+            placeholder="Exprimez-vous..."
+            className="border border-black w-full focus:outline-none"
+            required
+          />
+        </label>
+      </div>
+      <div>
+        <button
+          type="submit"
+          className="bg-black text-white border border-black py-2 px-4 rounded transition duration-300 hover:bg-white hover:text-black shadow-md"
+        >
+          Publier
+        </button>
+      </div>
+    </form>
   );
 }
+
+CommentsForm.propTypes = {
+  idArticle: PropTypes.number.isRequired,
+};

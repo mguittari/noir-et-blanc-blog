@@ -55,7 +55,21 @@ class ArticleManager extends AbstractManager {
 
   getAllCommentsByArticle(id) {
     return this.database.query(
-      `SELECT a.id, a.title, JSON_ARRAYAGG(JSON_OBJECT('title', c.title, 'comment', c.content, 'date', DATE_FORMAT(c.created_at, '%d-%m-%Y %H:%i:%s'))) AS comments from article as a join comment as c on a.id = c.id_article where a.id = ${id}`
+      `SELECT 
+            a.id AS articleId, 
+            a.title AS articleTitle, 
+            c.id AS commentId, 
+            c.title AS commentTitle, 
+            c.content AS commentContent, 
+            DATE_FORMAT(c.created_at, '%d-%m-%Y %H:%i:%s') AS commentDate 
+        FROM 
+            article AS a 
+        LEFT JOIN 
+            comment AS c 
+        ON 
+            a.id = c.id_article 
+        WHERE 
+            a.id = ${id}`
     );
   }
 }

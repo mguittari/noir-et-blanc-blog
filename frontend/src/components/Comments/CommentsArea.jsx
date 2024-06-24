@@ -1,11 +1,16 @@
+import PropTypes from "prop-types";
 import CommentForm from "./CommentForm";
 import CommentsDisplay from "./CommentsDisplay";
 
 export default function CommentsArea({ idArticle }) {
   return (
-    <div>
-      <CommentForm idArticle={idArticle} />
-      <CommentsDisplay />
-    </div>
+    <>
+      <CommentsDisplay idArticle={idArticle} />
+      <CommentForm className="flex flex-col" idArticle={idArticle} />
+    </>
   );
 }
+
+CommentsArea.propTypes = {
+  idArticle: PropTypes.number.isRequired,
+};

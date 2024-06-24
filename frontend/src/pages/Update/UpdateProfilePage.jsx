@@ -7,6 +7,7 @@ export default function UpdateProfilePage() {
   const navigate = useNavigate();
   const [message, setMessage] = useState(null);
   const { user, token } = useContext(UserContext);
+
   const [data, setData] = useState({
     pseudo: user.user?.pseudo,
   });
