@@ -60,7 +60,8 @@ class ArticleManager extends AbstractManager {
             a.title AS articleTitle, 
             c.id AS commentId, 
             c.title AS commentTitle, 
-            c.content AS commentContent, 
+            c.content AS commentContent,
+            u.pseudo AS pseudoUser,
             DATE_FORMAT(c.created_at, '%d-%m-%Y %H:%i:%s') AS commentDate 
         FROM 
             article AS a 
@@ -68,8 +69,12 @@ class ArticleManager extends AbstractManager {
             comment AS c 
         ON 
             a.id = c.id_article 
+        LEFT JOIN 
+        user AS u
+        ON 
+        c.id_user = u.id
         WHERE 
-            a.id = ${id}`
+        a.id = ${id};`
     );
   }
 }

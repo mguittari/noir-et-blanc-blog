@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CommentsArea from "./CommentsArea";
 
+// eslint-disable-next-line react/prop-types
 export default function Comments({ idArticle }) {
   const [showCommentsArea, setShowCommentsArea] = useState(false);
 

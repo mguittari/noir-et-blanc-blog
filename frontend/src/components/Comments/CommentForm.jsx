@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
-import PropTypes from "prop-types";
 import { UserContext } from "../../context/userContext";
 
+// eslint-disable-next-line react/prop-types
 export default function CommentsForm({ idArticle }) {
   const [data, setData] = useState({
     title: "",
@@ -80,7 +80,3 @@ export default function CommentsForm({ idArticle }) {
     </form>
   );
 }
-
-CommentsForm.propTypes = {
-  idArticle: PropTypes.number.isRequired,
-};

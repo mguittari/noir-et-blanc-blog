@@ -1,7 +1,7 @@
-import PropTypes from "prop-types";
 import CommentForm from "./CommentForm";
 import CommentsDisplay from "./CommentsDisplay";
 
+// eslint-disable-next-line react/prop-types
 export default function CommentsArea({ idArticle }) {
   return (
     <>
@@ -10,7 +10,3 @@ export default function CommentsArea({ idArticle }) {
     </>
   );
 }
-
-CommentsArea.propTypes = {
-  idArticle: PropTypes.number.isRequired,
-};

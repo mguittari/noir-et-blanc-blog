@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+// eslint-disable-next-line react/prop-types
 export default function CommentsDisplay({ idArticle }) {
   const [comments, setComments] = useState([]);
   console.info("id article ---> ", idArticle);
@@ -8,20 +9,29 @@ export default function CommentsDisplay({ idArticle }) {
       .then((res) => res.json())
       .then((data) => {
         setComments(data);
-        console.info(data);
+        console.info("data -->", data);
       });
   }, []);
 
   return (
     <div>
-      {comments.map(({ commentTitle, commentDate, commentContent }) => (
-        <div>
-          <p>{commentTitle}</p>
-          <p>{commentDate}</p>
-          <p>{commentContent}</p>
-          <hr />
-        </div>
-      ))}
+      {comments.map(
+        ({
+          commentId,
+          commentTitle,
+          commentDate,
+          commentContent,
+          pseudoUser,
+        }) => (
+          <div key={commentId}>
+            <p className="font-bold">{pseudoUser}</p>
+            <p>{commentTitle}</p>
+            <p>{commentDate}</p>
+            <p>{commentContent}</p>
+            <hr />
+          </div>
+        )
+      )}
     </div>
   );
 }
