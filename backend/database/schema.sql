@@ -15,7 +15,6 @@ create table user (
 
 create table comment (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  title VARCHAR(20) NOT NULL,
   content VARCHAR(1000) NOT NULL,
   id_user INT NOT NULL,
   id_article INT NOT NULL,

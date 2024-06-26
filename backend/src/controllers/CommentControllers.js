@@ -3,10 +3,9 @@ const tables = require("../tables");
 
 const postComment = async (req, res) => {
   try {
-    const { title, content, id_user, id_article } = req.body;
+    const { content, id_user, id_article } = req.body;
     console.info(req.body);
     const [result] = await tables.comment.postComment(
-      title,
       content,
       id_user,
       id_article

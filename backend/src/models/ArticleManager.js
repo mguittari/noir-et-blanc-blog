@@ -58,8 +58,7 @@ class ArticleManager extends AbstractManager {
       `SELECT 
             a.id AS articleId, 
             a.title AS articleTitle, 
-            c.id AS commentId, 
-            c.title AS commentTitle, 
+            c.id AS commentId,  
             c.content AS commentContent,
             u.pseudo AS pseudoUser,
             DATE_FORMAT(c.created_at, '%d-%m-%Y %H:%i:%s') AS commentDate 

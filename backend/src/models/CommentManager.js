@@ -10,7 +10,7 @@ class CommentManager extends AbstractManager {
 
   postComment(title, content, id_user, id_article) {
     return this.database.query(
-      `INSERT INTO ${this.table} (title, content, id_user, id_article) VALUES (?, ?, ?, ?)`,
+      `INSERT INTO ${this.table} (content, id_user, id_article) VALUES (?, ?, ?)`,
       [title, content, id_user, id_article]
     );
   }
