@@ -1,9 +1,9 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../context/userContext";
+// test pour push
 
 // eslint-disable-next-line react/prop-types
 export default function CommentsForm({ idArticle, onNewComment }) {
-  // Ajoutez onNewComment ici
   const [data, setData] = useState({
     comment: "",
   });
