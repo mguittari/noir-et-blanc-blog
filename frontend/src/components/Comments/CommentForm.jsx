@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../context/userContext";
+import { Link } from "react-router-dom";
 // test pour push
 
 // eslint-disable-next-line react/prop-types
@@ -44,29 +45,42 @@ export default function CommentsForm({ idArticle, onNewComment }) {
       });
   };
 
+  console.info(token);
+
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>
-          Ecrivez un commentaire
-          <textarea
-            name="comment"
-            value={data.comment}
-            onChange={handleChange}
-            placeholder="Exprimez-vous..."
-            className="border border-black w-full focus:outline-none"
-            required
-          />
-        </label>
-      </div>
-      <div>
-        <button
-          type="submit"
-          className="bg-black text-white border border-black py-2 px-4 rounded transition duration-300 hover:bg-white hover:text-black shadow-md"
-        >
-          Publier
-        </button>
-      </div>
-    </form>
+    <div>
+      {!token || token.message === "vous avez été déconnecté" ? (
+        <div>
+          <p>Vous devez être connecté pour poster un commentaire</p>
+          <Link to="/login">
+            <p className="text-blue-800 font-bold">Connexion</p>
+          </Link>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>
+              Ecrivez un commentaire
+              <textarea
+                name="comment"
+                value={data.comment}
+                onChange={handleChange}
+                placeholder="Exprimez-vous..."
+                className="border border-black w-full focus:outline-none"
+                required
+              />
+            </label>
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="bg-black text-white border border-black py-2 px-4 rounded transition duration-300 hover:bg-white hover:text-black shadow-md"
+            >
+              Publier
+            </button>
+          </div>
+        </form>
+      )}
+    </div>
   );
 }
