@@ -63,7 +63,6 @@ const getUserById = async (req, res) => {
     const id = req.payload;
     console.info("id in controller -->", id);
     const [user] = await tables.user.getUserById(id);
-    console.info("user in controller -->", user);
     if (user.length) {
       res.status(200).json({ message: `isLogged`, user: user[0] });
     } else {
@@ -78,8 +77,6 @@ const addNewUser = async (req, res) => {
   try {
     const newUser = req.body;
     const [result] = await tables.user.addNewUser(newUser);
-    console.info("result-->", result);
-    console.info("User created-->", newUser);
     if (result.affectedRows) {
       res.status(201).json(`User created with id: ${result.insertId}`);
     } else {
@@ -98,7 +95,6 @@ const editPassword = async (req, res) => {
   try {
     const id = req.payload;
     const { hashed_password } = req.body;
-    console.info("req point body in editPassword controller", req.body);
     const [result] = await tables.user.editUserOnlyPassword(
       id,
       hashed_password
@@ -119,7 +115,6 @@ const updateUser = async (req, res) => {
   try {
     const id = req.payload;
     const [result] = await tables.user.updateUserWithoutPassword(id, req.body);
-    console.info("req point body", req.body);
     if (result.affectedRows) {
       res.status(200).json({ message: "Votre profil a bien été mis à jour" });
     } else {
