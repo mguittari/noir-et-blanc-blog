@@ -9,8 +9,6 @@ export default function CommentsForm({ idArticle, onNewComment }) {
     comment: "",
   });
 
-  console.info(idArticle);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
@@ -44,8 +42,6 @@ export default function CommentsForm({ idArticle, onNewComment }) {
         console.error("Error:", error);
       });
   };
-
-  console.info(token);
 
   return (
     <div>

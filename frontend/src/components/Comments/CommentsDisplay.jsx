@@ -2,8 +2,9 @@
 import { useContext } from "react";
 import { UserContext } from "../../context/userContext";
 import LogoutButtonComments from "../Logout-Button/LogoutCommentsDisplay";
+import DeleteButton from "./DeleteButton";
 
-export default function CommentsDisplay({ comments }) {
+export default function CommentsDisplay({ comments, onDeleteComment }) {
   const { user } = useContext(UserContext);
   console.info("user-->", user);
   console.info("comments-->", comments);
@@ -24,6 +25,12 @@ export default function CommentsDisplay({ comments }) {
               <div key={commentId}>
                 <p className="font-bold">{pseudoUser}</p>
                 <p>{commentDate}</p>
+                <DeleteButton
+                  comments={comments}
+                  commentId={commentId}
+                  onDeleteComment={onDeleteComment}
+                  pseudoUser={pseudoUser}
+                />
                 <p>{commentContent}</p>
                 <hr />
               </div>

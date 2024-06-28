@@ -23,9 +23,16 @@ export default function CommentsArea({ idArticle }) {
     fetchComments();
   };
 
+  const handleDeleteComment = () => {
+    fetchComments();
+  };
+
   return (
     <>
-      <CommentsDisplay comments={comments} />
+      <CommentsDisplay
+        comments={comments}
+        onDeleteComment={handleDeleteComment}
+      />
       <CommentForm
         className="flex flex-col"
         idArticle={idArticle}
