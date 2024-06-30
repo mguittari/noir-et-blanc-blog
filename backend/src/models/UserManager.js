@@ -16,6 +16,10 @@ class UserManager extends AbstractManager {
     return this.database.query("select * from user where email = ?", [email]);
   }
 
+  getUserByPseudo(pseudo) {
+    return this.database.query("select * from user where pseudo = ?", [pseudo]);
+  }
+
   addNewUser({ pseudo, email, hashed_password }) {
     return this.database.query(
       `insert into user(pseudo, email, hashed_password) values(?, ?, ?)`,

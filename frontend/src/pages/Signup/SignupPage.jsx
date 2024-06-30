@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 export default function InscriptionPage() {
   const navigate = useNavigate();
 
+  const [errorMessagePseudo, setErrorMessagePseudo] = useState("");
+
+  console.info("error?", errorMessagePseudo);
+
   const [formData, setFormData] = useState({
     pseudo: "",
     email: "",
@@ -13,10 +17,12 @@ export default function InscriptionPage() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setErrorMessagePseudo("");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setErrorMessagePseudo("");
 
     fetch("http://localhost:3310/api/user", {
       method: "POST",
@@ -25,10 +31,12 @@ export default function InscriptionPage() {
       },
       body: JSON.stringify(formData),
     })
-      .then((res) => res.json())
-      // eslint-disable-next-line no-unused-vars
       .then((res) => {
-        navigate("/login");
+        console.info(res);
+        if (!res.ok) {
+          return setErrorMessagePseudo("Ce pseudo est déjà pris");
+        }
+        return navigate("/login");
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -54,8 +62,8 @@ export default function InscriptionPage() {
             value={formData.pseudo}
             onChange={handleChange}
             minLength={4}
-            maxLength={15}
-            title="Votre pseudo doit contenir au moins 4 caractères et 15 maximum"
+            maxLength={20}
+            title="Votre pseudo doit contenir au moins 4 caractères et 20 maximum"
             required
           />
         </div>
@@ -83,6 +91,11 @@ export default function InscriptionPage() {
             required
           />
         </div>
+        {errorMessagePseudo && (
+          <div className="text-red-500 text-center mb-4">
+            {errorMessagePseudo}
+          </div>
+        )}
         <div className="flex justify-center">
           <button
             type="submit"

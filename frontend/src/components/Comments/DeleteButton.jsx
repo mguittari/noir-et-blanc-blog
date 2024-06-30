@@ -8,9 +8,7 @@ export default function DeleteButton({
   pseudoUser,
 }) {
   const { user, token } = useContext(UserContext);
-  console.info("user ?", user);
-  console.info("id user ?", user.user.id_user);
-  console.info("pseudo user ?", pseudoUser);
+
   const handleClick = (e) => {
     e.preventDefault();
 

@@ -72,21 +72,30 @@ const getUserById = async (req, res) => {
   }
 };
 
+// eslint-disable-next-line consistent-return
 const addNewUser = async (req, res) => {
   try {
     const newUser = req.body;
+
+    const existingUser = await tables.user.getUserByPseudo(newUser.pseudo);
+    if (existingUser === newUser.pseudo) {
+      return res.status(409).json({ message: "Pseudo already taken" });
+    }
+
     const [result] = await tables.user.addNewUser(newUser);
     if (result.affectedRows) {
-      res.status(201).json(`User created with id: ${result.insertId}`);
-    } else {
-      res
-        .status(400)
-        .json(
-          "Erreur, veuillez réessayer ultérieurement ou contacter l'administrateur de ce site"
-        );
+      return res.status(201).json(`User created with id: ${result.insertId}`);
     }
+    return res
+      .status(400)
+      .json(
+        "Erreur, veuillez réessayer ultérieurement ou contacter l'administrateur de ce site"
+      );
   } catch (error) {
-    res.status(500).send(error);
+    if (error.code === "ER_DUP_ENTRY") {
+      return res.status(409).json({ message: "Pseudo already taken" });
+    }
+    return res.status(500).json(error);
   }
 };
 
