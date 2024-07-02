@@ -5,6 +5,7 @@ export default function InscriptionPage() {
   const navigate = useNavigate();
 
   const [errorMessagePseudo, setErrorMessagePseudo] = useState("");
+  const [errorMessageEmail, setErrorMessageEmail] = useState("");
 
   console.info("error?", errorMessagePseudo);
 
@@ -17,12 +18,12 @@ export default function InscriptionPage() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    setErrorMessagePseudo("");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrorMessagePseudo("");
+    setErrorMessageEmail("");
 
     fetch("http://localhost:3310/api/user", {
       method: "POST",
@@ -32,14 +33,28 @@ export default function InscriptionPage() {
       body: JSON.stringify(formData),
     })
       .then((res) => {
-        console.info(res);
         if (!res.ok) {
-          return setErrorMessagePseudo("Ce pseudo est déjà pris");
+          return res.json().then((data) => {
+            console.info(data);
+            if (res.status === 409 && data.errors) {
+              data.errors.map((error) => {
+                if (error.includes("pseudo")) {
+                  setErrorMessagePseudo(error);
+                }
+                if (error.includes("courriel")) {
+                  setErrorMessageEmail(error);
+                }
+                return null;
+              });
+            } else {
+              throw new Error(data.message || "Erreur inattendue");
+            }
+          });
         }
         return navigate("/login");
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.error("Erreur:", error.message);
       });
   };
 
@@ -68,7 +83,7 @@ export default function InscriptionPage() {
           />
         </div>
         {errorMessagePseudo && (
-          <div className="text-red-500 text-center mb-4">
+          <div className="text-red-500 text-center mb-2">
             {errorMessagePseudo}
           </div>
         )}
@@ -84,6 +99,11 @@ export default function InscriptionPage() {
             required
           />
         </div>
+        {errorMessageEmail && (
+          <div className="text-red-500 text-center mb-2">
+            {errorMessageEmail}
+          </div>
+        )}
         <div className=" flex flex-col items-center mb-4">
           <label htmlFor="password">Mot de passe</label>
           <input

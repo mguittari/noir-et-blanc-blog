@@ -22,7 +22,16 @@ class UserManager extends AbstractManager {
         pseudo,
       ])
       .then((result) => {
-        console.info("Result from SQL:", result);
+        return result;
+      });
+  }
+
+  checkIfEmailExist(email) {
+    return this.database
+      .query(`SELECT COUNT(email) AS emailCount FROM user WHERE email = ?`, [
+        email,
+      ])
+      .then((result) => {
         return result;
       });
   }

@@ -77,13 +77,27 @@ const addNewUser = async (req, res) => {
   try {
     const newUser = req.body;
 
+    const errors = [];
+
     const [[{ pseudoCount }]] = await tables.user.checkIfPseudoExist(
       newUser.pseudo
     );
-    console.info("Pseudo Count:", pseudoCount);
+
+    const [[{ emailCount }]] = await tables.user.checkIfEmailExist(
+      newUser.email
+    );
 
     if (pseudoCount !== 0) {
-      return res.status(409).json("Le pseudo est déjà pris");
+      errors.push("Le pseudo est déjà pris, veuillez en saisir un autre");
+    }
+    if (emailCount !== 0) {
+      errors.push(
+        "Le courriel est déjà enregistré dans la base de donnée, veuillez en saisir un autre"
+      );
+    }
+
+    if (errors.length > 0) {
+      return res.status(409).json({ errors });
     }
 
     const [result] = await tables.user.addNewUser(newUser);
