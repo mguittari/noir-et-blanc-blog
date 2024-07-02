@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { UserContext } from "../../context/userContext";
 import LogoutButtonComments from "../Logout-Button/LogoutCommentsDisplay";
 import DeleteButton from "./DeleteButton";
+import LikeButton from "../Buttons/LikeButton";
 
 export default function CommentsDisplay({ comments, onDeleteComment }) {
   const { user } = useContext(UserContext);
@@ -21,11 +22,19 @@ export default function CommentsDisplay({ comments, onDeleteComment }) {
       ) : (
         <div>
           {comments.map(
-            ({ commentId, commentDate, commentContent, pseudoUser }) => (
+            ({
+              commentId,
+              commentDate,
+              commentContent,
+              pseudoUser,
+              nbLike,
+            }) => (
               <div key={commentId}>
                 <div className="flex flex-col-3 gap-2">
                   <p className="font-bold">{pseudoUser}</p>
                   <p>{commentDate}</p>
+                  <LikeButton />
+                  <p>{nbLike}</p>
                   <DeleteButton
                     comments={comments}
                     commentId={commentId}

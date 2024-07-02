@@ -18,6 +18,7 @@ create table comment (
   content VARCHAR(1000) NOT NULL,
   id_user INT NOT NULL,
   id_article INT NOT NULL,
+  nb_like INT DEFAULT 0,
   FOREIGN KEY (id_user) REFERENCES user(id) ON DELETE CASCADE,
   FOREIGN KEY (id_article) REFERENCES article(id) ON DELETE CASCADE,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

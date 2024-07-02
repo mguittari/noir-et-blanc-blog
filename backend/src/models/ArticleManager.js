@@ -60,6 +60,7 @@ class ArticleManager extends AbstractManager {
             a.title AS articleTitle, 
             c.id AS commentId,  
             c.content AS commentContent,
+            c.nb_like AS nbLike,
             u.pseudo AS pseudoUser,
             DATE_FORMAT(c.created_at, '%d-%m-%Y à %H:%i:%s') AS commentDate 
         FROM 
