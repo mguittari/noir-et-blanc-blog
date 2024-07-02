@@ -67,6 +67,11 @@ export default function InscriptionPage() {
             required
           />
         </div>
+        {errorMessagePseudo && (
+          <div className="text-red-500 text-center mb-4">
+            {errorMessagePseudo}
+          </div>
+        )}
         <div className=" flex flex-col items-center mb-4">
           <label htmlFor="email">Courriel</label>
           <input
@@ -91,11 +96,6 @@ export default function InscriptionPage() {
             required
           />
         </div>
-        {errorMessagePseudo && (
-          <div className="text-red-500 text-center mb-4">
-            {errorMessagePseudo}
-          </div>
-        )}
         <div className="flex justify-center">
           <button
             type="submit"

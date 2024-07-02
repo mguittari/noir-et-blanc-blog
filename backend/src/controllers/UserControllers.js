@@ -77,24 +77,20 @@ const addNewUser = async (req, res) => {
   try {
     const newUser = req.body;
 
-    const existingUser = await tables.user.getUserByPseudo(newUser.pseudo);
-    if (existingUser === newUser.pseudo) {
-      return res.status(409).json({ message: "Pseudo already taken" });
+    const [[{ pseudoCount }]] = await tables.user.checkIfPseudoExist(
+      newUser.pseudo
+    );
+    console.info("Pseudo Count:", pseudoCount);
+
+    if (pseudoCount !== 0) {
+      return res.status(409).json("Le pseudo est déjà pris");
     }
 
     const [result] = await tables.user.addNewUser(newUser);
-    if (result.affectedRows) {
-      return res.status(201).json(`User created with id: ${result.insertId}`);
-    }
     return res
-      .status(400)
-      .json(
-        "Erreur, veuillez réessayer ultérieurement ou contacter l'administrateur de ce site"
-      );
+      .status(201)
+      .json(`Utilisateur créé avec l'ID : ${result.insertId}`);
   } catch (error) {
-    if (error.code === "ER_DUP_ENTRY") {
-      return res.status(409).json({ message: "Pseudo already taken" });
-    }
     return res.status(500).json(error);
   }
 };
