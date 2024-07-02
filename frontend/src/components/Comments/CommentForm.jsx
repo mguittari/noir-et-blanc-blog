@@ -18,6 +18,7 @@ export default function CommentsForm({ idArticle, onNewComment }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     fetch("http://localhost:3310/api/comment", {
       method: "POST",
       headers: {
@@ -61,8 +62,10 @@ export default function CommentsForm({ idArticle, onNewComment }) {
                 name="comment"
                 value={data.comment}
                 onChange={handleChange}
-                placeholder="Exprimez-vous..."
+                placeholder="Exprimez-vous... (500 caractères max)"
                 className="border border-black w-full focus:outline-none"
+                minLength={3}
+                maxLength={500}
                 required
               />
             </label>

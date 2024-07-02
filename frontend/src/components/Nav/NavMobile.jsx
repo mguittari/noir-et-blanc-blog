@@ -10,7 +10,7 @@ export default function NavMobile() {
       </li>
       <li>
         <Link to="/" className="hover:text-black">
-          Articles
+          Au hasard
         </Link>
       </li>
       <li>

@@ -23,15 +23,17 @@ export default function CommentsDisplay({ comments, onDeleteComment }) {
           {comments.map(
             ({ commentId, commentDate, commentContent, pseudoUser }) => (
               <div key={commentId}>
-                <p className="font-bold">{pseudoUser}</p>
-                <p>{commentDate}</p>
-                <DeleteButton
-                  comments={comments}
-                  commentId={commentId}
-                  onDeleteComment={onDeleteComment}
-                  pseudoUser={pseudoUser}
-                />
-                <p>{commentContent}</p>
+                <div className="flex flex-col-3 gap-2">
+                  <p className="font-bold">{pseudoUser}</p>
+                  <p>{commentDate}</p>
+                  <DeleteButton
+                    comments={comments}
+                    commentId={commentId}
+                    onDeleteComment={onDeleteComment}
+                    pseudoUser={pseudoUser}
+                  />
+                </div>
+                <p className="whitespace-pre-wrap">{commentContent}</p>
                 <hr />
               </div>
             )

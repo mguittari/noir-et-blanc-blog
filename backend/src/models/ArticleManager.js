@@ -61,7 +61,7 @@ class ArticleManager extends AbstractManager {
             c.id AS commentId,  
             c.content AS commentContent,
             u.pseudo AS pseudoUser,
-            DATE_FORMAT(c.created_at, '%d-%m-%Y %H:%i:%s') AS commentDate 
+            DATE_FORMAT(c.created_at, '%d-%m-%Y à %H:%i:%s') AS commentDate 
         FROM 
             article AS a 
         LEFT JOIN 

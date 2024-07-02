@@ -11,7 +11,7 @@ export default function NavDesktop() {
       <li>|</li>
       <li>
         <Link to="/" className="hover:text-black">
-          Articles
+          Au hasard
         </Link>
       </li>
       <li>|</li>
