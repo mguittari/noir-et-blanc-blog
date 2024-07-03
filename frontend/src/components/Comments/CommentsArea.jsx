@@ -27,11 +27,16 @@ export default function CommentsArea({ idArticle }) {
     fetchComments();
   };
 
+  const refreshLikeCounter = () => {
+    fetchComments();
+  };
+
   return (
     <>
       <CommentsDisplay
         comments={comments}
         onDeleteComment={handleDeleteComment}
+        onRefreshLikeCounter={refreshLikeCounter}
       />
       <CommentForm
         className="flex flex-col"

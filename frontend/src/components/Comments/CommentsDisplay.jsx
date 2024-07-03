@@ -5,7 +5,11 @@ import LogoutButtonComments from "../Logout-Button/LogoutCommentsDisplay";
 import DeleteButton from "./DeleteButton";
 import LikeButton from "../Buttons/LikeButton";
 
-export default function CommentsDisplay({ comments, onDeleteComment }) {
+export default function CommentsDisplay({
+  comments,
+  onDeleteComment,
+  onRefreshLikeCounter,
+}) {
   const { user } = useContext(UserContext);
   console.info("user-->", user);
   console.info("comments-->", comments);
@@ -33,7 +37,11 @@ export default function CommentsDisplay({ comments, onDeleteComment }) {
                 <div className="flex flex-col-3 gap-2">
                   <p className="font-bold">{pseudoUser}</p>
                   <p>{commentDate}</p>
-                  <LikeButton />
+                  <LikeButton
+                    nbLike={nbLike}
+                    commentId={commentId}
+                    onRefreshLikeCounter={onRefreshLikeCounter}
+                  />
                   <p>{nbLike}</p>
                   <DeleteButton
                     comments={comments}

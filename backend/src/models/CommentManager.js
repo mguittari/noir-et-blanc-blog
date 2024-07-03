@@ -15,6 +15,13 @@ class CommentManager extends AbstractManager {
     );
   }
 
+  clickToLike(id, nb_like) {
+    return this.database.query(
+      `UPDATE ${this.table} SET nb_like = ${nb_like + 1} WHERE id = ${id}`,
+      [id, nb_like]
+    );
+  }
+
   deleteComment(id) {
     return this.database.query(`delete from ${this.table} where id=${id}`);
   }

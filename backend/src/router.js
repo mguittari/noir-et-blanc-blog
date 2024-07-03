@@ -36,6 +36,7 @@ router.patch(
 );
 
 router.post("/comment", commentControllers.postComment);
+router.put("/comment/:id/like", commentControllers.clickToLike);
 router.delete("/comment/:id", commentControllers.deleteComment);
 
 // routes administrateur
