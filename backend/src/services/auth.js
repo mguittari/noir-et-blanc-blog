@@ -11,6 +11,7 @@ const verifyToken = (req, res, next) => {
       const { payload } = jwt.verify(token, process.env.SECRET_KEY_JWT);
 
       req.payload = payload;
+
       next();
     }
   } catch (error) {

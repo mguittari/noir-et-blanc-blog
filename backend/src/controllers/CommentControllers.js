@@ -23,22 +23,6 @@ const postComment = async (req, res) => {
   }
 };
 
-const clickToLike = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { nb_like } = req.body;
-    const [result] = await tables.comment.clickToLike(id, nb_like);
-
-    if (result.affectedRows) {
-      res.status(201).json({ message: "Commentaire liké !" });
-    } else {
-      res.status(401).send("Impossible de liker. Erreur 401.");
-    }
-  } catch (error) {
-    res.status(500).send(error);
-  }
-};
-
 const deleteComment = async (req, res) => {
   try {
     const { id } = req.params;
@@ -57,6 +41,5 @@ const deleteComment = async (req, res) => {
 
 module.exports = {
   postComment,
-  clickToLike,
   deleteComment,
 };

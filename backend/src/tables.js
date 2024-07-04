@@ -6,11 +6,13 @@
 const UserManager = require("./models/UserManager");
 const ArticleManager = require("./models/ArticleManager");
 const CommentManager = require("./models/CommentManager");
+const UserLikeManager = require("./models/UserLikeManager");
 
 const managers = [
   UserManager,
   ArticleManager,
   CommentManager,
+  UserLikeManager,
   // Add other managers here
 ];
 

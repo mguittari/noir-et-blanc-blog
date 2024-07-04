@@ -15,10 +15,17 @@ class CommentManager extends AbstractManager {
     );
   }
 
-  clickToLike(id, nb_like) {
+  clickToLike(id) {
     return this.database.query(
-      `UPDATE ${this.table} SET nb_like = ${nb_like + 1} WHERE id = ${id}`,
-      [id, nb_like]
+      `UPDATE ${this.table} SET nb_like = nb_like + 1 WHERE id = ${id}`,
+      [id]
+    );
+  }
+
+  clickToUnlike(id) {
+    return this.database.query(
+      `UPDATE ${this.table} SET nb_like = nb_like - 1 WHERE id = ${id}`,
+      [id]
     );
   }
 

@@ -9,18 +9,19 @@ export default function LikeButton({
 }) {
   const [like, setLike] = useState(nbLike);
 
-  const { token } = useContext(UserContext);
+  const { token, user } = useContext(UserContext);
 
   const handleClick = (e) => {
     e.preventDefault();
     fetch(`http://localhost:3310/api/comment/${commentId}/like`, {
-      method: "PUT",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        nb_like: nbLike,
+        id_comment: commentId,
+        id_user: user.user?.id,
       }),
     })
       .then(() => {

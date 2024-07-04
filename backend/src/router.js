@@ -5,6 +5,7 @@ const router = express.Router();
 const userControllers = require("./controllers/UserControllers");
 const articleControllers = require("./controllers/ArticleControllers");
 const commentControllers = require("./controllers/CommentControllers");
+const userLikeControllers = require("./controllers/UserLikeControllers");
 const hashPassword = require("./services/hashPassword");
 const hashEditPassword = require("./services/hashEditPassword");
 const verifyToken = require("./services/auth");
@@ -36,7 +37,11 @@ router.patch(
 );
 
 router.post("/comment", commentControllers.postComment);
-router.put("/comment/:id/like", commentControllers.clickToLike);
+router.post(
+  "/comment/:id_comment/like",
+  verifyToken,
+  userLikeControllers.toggleLike
+);
 router.delete("/comment/:id", commentControllers.deleteComment);
 
 // routes administrateur
