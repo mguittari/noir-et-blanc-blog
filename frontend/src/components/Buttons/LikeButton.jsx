@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { UserContext } from "../../context/userContext";
 
 export default function LikeButton({
@@ -7,7 +7,7 @@ export default function LikeButton({
   commentId,
   onRefreshLikeCounter,
 }) {
-  const [like, setLike] = useState(nbLike);
+  console.info("nbLike?", nbLike);
 
   const { token, user } = useContext(UserContext);
 
@@ -25,7 +25,6 @@ export default function LikeButton({
       }),
     })
       .then(() => {
-        setLike(like + 1);
         onRefreshLikeCounter();
       })
       .catch((error) => {
