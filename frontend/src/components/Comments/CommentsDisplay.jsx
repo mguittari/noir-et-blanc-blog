@@ -38,7 +38,6 @@ export default function CommentsDisplay({
                   <p className="font-bold">{pseudoUser}</p>
                   <p>{commentDate}</p>
                   <LikeButton
-                    nbLike={nbLike}
                     commentId={commentId}
                     onRefreshLikeCounter={onRefreshLikeCounter}
                   />
