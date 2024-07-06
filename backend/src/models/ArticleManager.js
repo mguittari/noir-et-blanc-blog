@@ -58,18 +58,23 @@ class ArticleManager extends AbstractManager {
       `SELECT 
             a.id AS articleId, 
             a.title AS articleTitle, 
-            c.id AS commentId, 
-            c.title AS commentTitle, 
-            c.content AS commentContent, 
-            DATE_FORMAT(c.created_at, '%d-%m-%Y %H:%i:%s') AS commentDate 
+            c.id AS commentId,  
+            c.content AS commentContent,
+            c.nb_like AS nbLike,
+            u.pseudo AS pseudoUser,
+            DATE_FORMAT(c.created_at, '%d-%m-%Y à %H:%i:%s') AS commentDate 
         FROM 
             article AS a 
         LEFT JOIN 
             comment AS c 
         ON 
             a.id = c.id_article 
+        LEFT JOIN 
+        user AS u
+        ON 
+        c.id_user = u.id
         WHERE 
-            a.id = ${id}`
+        a.id = ${id};`
     );
   }
 }

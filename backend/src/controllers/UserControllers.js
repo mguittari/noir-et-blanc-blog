@@ -61,9 +61,7 @@ const getUserByEmail = async (req, res) => {
 const getUserById = async (req, res) => {
   try {
     const id = req.payload;
-    console.info("id in controller -->", id);
     const [user] = await tables.user.getUserById(id);
-    console.info("user in controller -->", user);
     if (user.length) {
       res.status(200).json({ message: `isLogged`, user: user[0] });
     } else {
@@ -74,23 +72,40 @@ const getUserById = async (req, res) => {
   }
 };
 
+// eslint-disable-next-line consistent-return
 const addNewUser = async (req, res) => {
   try {
     const newUser = req.body;
-    const [result] = await tables.user.addNewUser(newUser);
-    console.info("result-->", result);
-    console.info("User created-->", newUser);
-    if (result.affectedRows) {
-      res.status(201).json(`User created with id: ${result.insertId}`);
-    } else {
-      res
-        .status(400)
-        .json(
-          "Erreur, veuillez réessayer ultérieurement ou contacter l'administrateur de ce site"
-        );
+
+    const errors = [];
+
+    const [[{ pseudoCount }]] = await tables.user.checkIfPseudoExist(
+      newUser.pseudo
+    );
+
+    const [[{ emailCount }]] = await tables.user.checkIfEmailExist(
+      newUser.email
+    );
+
+    if (pseudoCount !== 0) {
+      errors.push("Le pseudo est déjà pris, veuillez en saisir un autre");
     }
+    if (emailCount !== 0) {
+      errors.push(
+        "Le courriel est déjà enregistré dans la base de donnée, veuillez en saisir un autre"
+      );
+    }
+
+    if (errors.length > 0) {
+      return res.status(409).json({ errors });
+    }
+
+    const [result] = await tables.user.addNewUser(newUser);
+    return res
+      .status(201)
+      .json(`Utilisateur créé avec l'ID : ${result.insertId}`);
   } catch (error) {
-    res.status(500).send(error);
+    return res.status(500).json(error);
   }
 };
 
@@ -98,7 +113,6 @@ const editPassword = async (req, res) => {
   try {
     const id = req.payload;
     const { hashed_password } = req.body;
-    console.info("req point body in editPassword controller", req.body);
     const [result] = await tables.user.editUserOnlyPassword(
       id,
       hashed_password
@@ -119,7 +133,6 @@ const updateUser = async (req, res) => {
   try {
     const id = req.payload;
     const [result] = await tables.user.updateUserWithoutPassword(id, req.body);
-    console.info("req point body", req.body);
     if (result.affectedRows) {
       res.status(200).json({ message: "Votre profil a bien été mis à jour" });
     } else {

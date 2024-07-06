@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 
 export default function LoginPage() {
@@ -45,7 +45,7 @@ export default function LoginPage() {
       .catch((err) => console.info("err :>>", err));
   };
   return (
-    <div className="flex flex-col m-2 justify-center items-center my-14 mx-8">
+    <div className="flex flex-col justify-center items-center m-8">
       <h1 className="text-3xl font-serif font-semibold mb-14 bg-black text-white p-4 rounded-xl max-w-md w-full text-center shadow-lg">
         CONNEXION
       </h1>
@@ -86,6 +86,13 @@ export default function LoginPage() {
             {isSubmitting ? "Connexion..." : "Se connecter"}
           </button>
         </div>
+        <p className="text-center mt-4">Pas encore inscrit ?</p>
+        <Link
+          to="/signup"
+          className="text-center font-semibold hover:underline cursor-pointer flex justify-center"
+        >
+          Créez votre compte ici
+        </Link>
       </form>
     </div>
   );

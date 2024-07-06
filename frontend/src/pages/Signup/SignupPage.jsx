@@ -4,6 +4,11 @@ import { useNavigate } from "react-router-dom";
 export default function InscriptionPage() {
   const navigate = useNavigate();
 
+  const [errorMessagePseudo, setErrorMessagePseudo] = useState("");
+  const [errorMessageEmail, setErrorMessageEmail] = useState("");
+
+  console.info("error?", errorMessagePseudo);
+
   const [formData, setFormData] = useState({
     pseudo: "",
     email: "",
@@ -17,6 +22,8 @@ export default function InscriptionPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setErrorMessagePseudo("");
+    setErrorMessageEmail("");
 
     fetch("http://localhost:3310/api/user", {
       method: "POST",
@@ -25,18 +32,34 @@ export default function InscriptionPage() {
       },
       body: JSON.stringify(formData),
     })
-      .then((res) => res.json())
-      // eslint-disable-next-line no-unused-vars
       .then((res) => {
-        navigate("/login");
+        if (!res.ok) {
+          return res.json().then((data) => {
+            console.info(data);
+            if (res.status === 409 && data.errors) {
+              data.errors.map((error) => {
+                if (error.includes("pseudo")) {
+                  setErrorMessagePseudo(error);
+                }
+                if (error.includes("courriel")) {
+                  setErrorMessageEmail(error);
+                }
+                return null;
+              });
+            } else {
+              throw new Error(data.message || "Erreur inattendue");
+            }
+          });
+        }
+        return navigate("/login");
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.error("Erreur:", error.message);
       });
   };
 
   return (
-    <div className="flex flex-col m-2 justify-center items-center my-14 mx-8">
+    <div className="flex flex-col justify-center items-center m-8">
       <h1 className="text-3xl font-serif font-semibold mb-14 bg-black text-white p-4 rounded-xl max-w-md w-full text-center shadow-lg">
         INSCRIPTION
       </h1>
@@ -54,11 +77,16 @@ export default function InscriptionPage() {
             value={formData.pseudo}
             onChange={handleChange}
             minLength={4}
-            maxLength={15}
-            title="Votre pseudo doit contenir au moins 4 caractères et 15 maximum"
+            maxLength={20}
+            title="Votre pseudo doit contenir au moins 4 caractères et 20 maximum"
             required
           />
         </div>
+        {errorMessagePseudo && (
+          <div className="text-red-500 text-center mb-2">
+            {errorMessagePseudo}
+          </div>
+        )}
         <div className=" flex flex-col items-center mb-4">
           <label htmlFor="email">Courriel</label>
           <input
@@ -71,6 +99,11 @@ export default function InscriptionPage() {
             required
           />
         </div>
+        {errorMessageEmail && (
+          <div className="text-red-500 text-center mb-2">
+            {errorMessageEmail}
+          </div>
+        )}
         <div className=" flex flex-col items-center mb-4">
           <label htmlFor="password">Mot de passe</label>
           <input

@@ -1,14 +1,13 @@
 import { useState, useContext } from "react";
-import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
+// test pour push
 
-export default function CommentsForm({ idArticle }) {
+// eslint-disable-next-line react/prop-types
+export default function CommentsForm({ idArticle, onNewComment }) {
   const [data, setData] = useState({
-    title: "",
     comment: "",
   });
-
-  console.info(idArticle);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,6 +18,7 @@ export default function CommentsForm({ idArticle }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     fetch("http://localhost:3310/api/comment", {
       method: "POST",
       headers: {
@@ -26,7 +26,6 @@ export default function CommentsForm({ idArticle }) {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        title: data.title,
         content: data.comment,
         id_user: user.user.id_user,
         id_article: idArticle,
@@ -36,51 +35,51 @@ export default function CommentsForm({ idArticle }) {
       .then((res) => {
         console.info("res", res);
         setData({
-          title: "",
           comment: "",
         });
+        onNewComment(); // Appelez onNewComment ici
       })
-      // eslint-disable-next-line no-unused-vars
       .catch((error) => {
         console.error("Error:", error);
       });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>
-          Ecrivez un commentaire
-          <input
-            name="title"
-            value={data.title}
-            onChange={handleChange}
-            placeholder="Titre"
-            className="border border-black h-10 focus:outline-none shadow-md"
-            required
-          />
-          <textarea
-            name="comment"
-            value={data.comment}
-            onChange={handleChange}
-            placeholder="Exprimez-vous..."
-            className="border border-black w-full focus:outline-none"
-            required
-          />
-        </label>
-      </div>
-      <div>
-        <button
-          type="submit"
-          className="bg-black text-white border border-black py-2 px-4 rounded transition duration-300 hover:bg-white hover:text-black shadow-md"
-        >
-          Publier
-        </button>
-      </div>
-    </form>
+    <div>
+      {!token || token.message === "vous avez été déconnecté" ? (
+        <div>
+          <p>Vous devez être connecté pour poster un commentaire</p>
+          <Link to="/login">
+            <p className="text-blue-800 font-bold">Connexion</p>
+          </Link>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>
+              Ecrivez un commentaire
+              <textarea
+                name="comment"
+                value={data.comment}
+                onChange={handleChange}
+                placeholder="Exprimez-vous... (500 caractères max)"
+                className="border border-black w-full focus:outline-none"
+                minLength={3}
+                maxLength={500}
+                required
+              />
+            </label>
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="bg-black text-white border border-black py-2 px-4 rounded transition duration-300 hover:bg-white hover:text-black shadow-md"
+            >
+              Publier
+            </button>
+          </div>
+        </form>
+      )}
+    </div>
   );
 }
-
-CommentsForm.propTypes = {
-  idArticle: PropTypes.number.isRequired,
-};

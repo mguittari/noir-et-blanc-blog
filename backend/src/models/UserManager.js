@@ -16,6 +16,26 @@ class UserManager extends AbstractManager {
     return this.database.query("select * from user where email = ?", [email]);
   }
 
+  checkIfPseudoExist(pseudo) {
+    return this.database
+      .query(`SELECT COUNT(pseudo) AS pseudoCount FROM user WHERE pseudo = ?`, [
+        pseudo,
+      ])
+      .then((result) => {
+        return result;
+      });
+  }
+
+  checkIfEmailExist(email) {
+    return this.database
+      .query(`SELECT COUNT(email) AS emailCount FROM user WHERE email = ?`, [
+        email,
+      ])
+      .then((result) => {
+        return result;
+      });
+  }
+
   addNewUser({ pseudo, email, hashed_password }) {
     return this.database.query(
       `insert into user(pseudo, email, hashed_password) values(?, ?, ?)`,

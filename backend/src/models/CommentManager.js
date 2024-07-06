@@ -10,8 +10,22 @@ class CommentManager extends AbstractManager {
 
   postComment(title, content, id_user, id_article) {
     return this.database.query(
-      `INSERT INTO ${this.table} (title, content, id_user, id_article) VALUES (?, ?, ?, ?)`,
+      `INSERT INTO ${this.table} (content, id_user, id_article) VALUES (?, ?, ?)`,
       [title, content, id_user, id_article]
+    );
+  }
+
+  clickToLike(id) {
+    return this.database.query(
+      `UPDATE ${this.table} SET nb_like = nb_like + 1 WHERE id = ${id}`,
+      [id]
+    );
+  }
+
+  clickToUnlike(id) {
+    return this.database.query(
+      `UPDATE ${this.table} SET nb_like = nb_like - 1 WHERE id = ${id}`,
+      [id]
     );
   }
 

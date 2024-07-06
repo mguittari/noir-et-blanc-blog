@@ -128,7 +128,7 @@ const updateThumbnail = async (req, res) => {
 const getAllCommentsByArticle = async (req, res) => {
   try {
     const { id } = req.params;
-    const [comments] = await await tables.article.getAllCommentsByArticle(id);
+    const [comments] = await tables.article.getAllCommentsByArticle(id);
     if (comments) {
       res.json(comments);
     } else {

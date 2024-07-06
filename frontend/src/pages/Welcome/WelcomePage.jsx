@@ -8,11 +8,11 @@ export default function WelcomePage() {
   const { user } = useContext(UserContext);
 
   return (
-    <div className="flex flex-col items-start m-5 gap-4">
+    <div className="flex flex-col items-start m-8 gap-4">
       <div className="border-2 border-black mx-auto max-w-md w-full rounded-xl p-8 shadow-lg text-justify">
-        <h1 className="mb-1.5">Hello {user.user?.pseudo} !</h1>
-        <p className="mb-1.5">Bienvenue sur ta page profil.</p>
-        <p className="mb-1.5">
+        <h1 className="mb-2">Hello {user.user?.pseudo} !</h1>
+        <p className="mb-2">Bienvenue sur ta page profil.</p>
+        <p className="mb-2">
           Ici, tu peux consulter et modifier tes informations.
         </p>
         <p>
