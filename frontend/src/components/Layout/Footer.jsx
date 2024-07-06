@@ -21,7 +21,7 @@ function Footer() {
         <ul className="text-[18px] md:text-[22px] p-[5px]">
           <h2 className="text-[22px] md:text-[35px]">Infos</h2>
           <li>
-            <Link to="/">À propos</Link>
+            <Link to="/about">À propos</Link>
           </li>
           <li>
             <Link to="/">Faire un don</Link>
@@ -30,7 +30,13 @@ function Footer() {
             <Link to="/">Politique de confidentialité</Link>
           </li>
           <li>
-            <Link to="/">Wild Code School</Link>
+            <Link
+              to="https://wildcodeschool.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Wild Code School
+            </Link>
           </li>
         </ul>
         <ul className="text-[18px] md:text-[22px] p-[5px]">

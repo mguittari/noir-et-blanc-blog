@@ -45,7 +45,7 @@ export default function LoginPage() {
       .catch((err) => console.info("err :>>", err));
   };
   return (
-    <div className="flex flex-col m-2 justify-center items-center my-14 mx-8">
+    <div className="flex flex-col justify-center items-center m-8">
       <h1 className="text-3xl font-serif font-semibold mb-14 bg-black text-white p-4 rounded-xl max-w-md w-full text-center shadow-lg">
         CONNEXION
       </h1>

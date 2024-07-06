@@ -4,7 +4,7 @@ export default function NavDesktop() {
   return (
     <ul className="flex flex-row text-[35px] gap-2 ml-4">
       <li>
-        <Link to="/" className="hover:text-black">
+        <Link to="/about" className="hover:text-black">
           À propos
         </Link>
       </li>

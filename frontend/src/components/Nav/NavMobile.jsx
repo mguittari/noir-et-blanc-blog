@@ -4,7 +4,7 @@ export default function NavMobile() {
   return (
     <ul className="ml-2">
       <li>
-        <Link to="/" className="hover:text-black">
+        <Link to="/about" className="hover:text-black">
           À propos
         </Link>
       </li>
