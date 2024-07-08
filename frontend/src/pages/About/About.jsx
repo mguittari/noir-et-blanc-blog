@@ -1,7 +1,7 @@
 export default function About() {
   return (
-    <div className="flex flex-col items-start m-8">
-      <h1 className="text-3xl font-serif font-semibold mb-14 bg-black text-white p-4 rounded-xl max-w-md w-full text-center shadow-lg italic">
+    <div className="flex flex-col items-center m-8">
+      <h1 className="text-3xl font-serif font-semibold mb-14 bg-black text-white p-4 rounded-xl max-w-md w-full text-center shadow-lg">
         À PROPOS
       </h1>
       <div className="border-2 border-black mx-auto max-w-md w-full rounded-xl p-8 shadow-lg text-justify">

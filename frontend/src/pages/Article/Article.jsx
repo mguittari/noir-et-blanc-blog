@@ -11,7 +11,7 @@ export default function Article() {
     fetch(`http://localhost:3310/api/article/${params.id}`)
       .then((res) => res.json())
       .then((data) => setArticle(data));
-  }, []);
+  }, [params.id]);
 
   console.info("params", params.id);
 

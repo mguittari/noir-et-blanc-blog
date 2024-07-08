@@ -141,6 +141,20 @@ const getAllCommentsByArticle = async (req, res) => {
   }
 };
 
+const getAllIdsArticles = async (req, res) => {
+  try {
+    const id = req.body;
+    const [ids] = await tables.article.getAllIdsArticles(id);
+    if (ids.length) {
+      res.status(200).json(ids);
+    } else {
+      res.status(401).send("Erreur");
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   getFirstFourArticles,
   postArticle,
@@ -150,4 +164,5 @@ module.exports = {
   getAllArticleTitlesOrderByPublicationDate,
   getAllCommentsByArticle,
   updateThumbnail,
+  getAllIdsArticles,
 };

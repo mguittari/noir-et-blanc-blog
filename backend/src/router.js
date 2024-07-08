@@ -17,6 +17,7 @@ router.get("/home", articleControllers.getFirstFourArticles);
 router.post("/login", userControllers.getUserByEmail);
 router.post("/user", hashPassword, userControllers.addNewUser);
 router.get("/article/:id", articleControllers.getArticleById);
+router.get("/articles-ids", articleControllers.getAllIdsArticles);
 router.get(
   "/articles",
   articleControllers.getAllArticleTitlesOrderByPublicationDate
