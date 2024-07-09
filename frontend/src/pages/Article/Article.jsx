@@ -13,8 +13,6 @@ export default function Article() {
       .then((data) => setArticle(data));
   }, [params.id]);
 
-  console.info("params", params.id);
-
   return (
     <div>
       {article.map(({ id, title, published_at, img_url, content }) => (
