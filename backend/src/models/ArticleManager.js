@@ -77,6 +77,10 @@ class ArticleManager extends AbstractManager {
         a.id = ${id};`
     );
   }
+
+  getAllIdsArticles(id) {
+    return this.database.query(`select id from ${this.table}`, [id]);
+  }
 }
 
 module.exports = ArticleManager;
