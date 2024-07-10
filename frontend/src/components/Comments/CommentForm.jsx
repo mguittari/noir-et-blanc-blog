@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
+import CommentsAreaLoginButton from "../Buttons/CommentsAreaLoginButton";
 // test pour push
 
 // eslint-disable-next-line react/prop-types
@@ -62,10 +62,8 @@ export default function CommentsForm({ idArticle, onNewComment }) {
     <div>
       {!token || token.message === "vous avez été déconnecté" ? (
         <div>
-          <p>Vous devez être connecté pour poster un commentaire</p>
-          <Link to="/login">
-            <p className="text-blue-800 font-bold">Connexion</p>
-          </Link>
+          <p>Vous devez être connecté pour poster ou liker un commentaire</p>
+          <CommentsAreaLoginButton />
         </div>
       ) : (
         <form onSubmit={handleSubmit}>
