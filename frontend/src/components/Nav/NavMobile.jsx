@@ -1,22 +1,17 @@
 import { Link } from "react-router-dom";
+import RandomButton from "../Buttons/RandomButton";
 
 export default function NavMobile() {
   return (
     <ul className="ml-2">
       <li>
-        <Link to="/about" className="hover:text-black">
-          À propos
-        </Link>
+        <Link to="/about">À propos</Link>
       </li>
       <li>
-        <Link to="/" className="hover:text-black">
-          Au hasard
-        </Link>
+        <RandomButton />
       </li>
       <li>
-        <Link to="/" className="hover:text-black">
-          Archives
-        </Link>
+        <Link to="/">Archives</Link>
       </li>
     </ul>
   );
