@@ -79,25 +79,21 @@ const addNewUser = async (req, res) => {
 
     const errors = [];
 
-    const [[{ pseudoCount }]] = await tables.user.checkIfPseudoExist(
-      newUser.pseudo
-    );
-
-    const [[{ emailCount }]] = await tables.user.checkIfEmailExist(
-      newUser.email
-    );
-
-    if (pseudoCount !== 0) {
-      errors.push("Le pseudo est déjà pris, veuillez en saisir un autre");
+    // Vérifier si l'email existe déjà dans la base de données
+    const [existingUser] = await tables.user.getUserByEmail(newUser.email);
+    if (existingUser.length > 0) {
+      errors.push("Cet email est déjà utilisé.");
     }
-    if (emailCount !== 0) {
-      errors.push(
-        "Le courriel est déjà enregistré dans la base de donnée, veuillez en saisir un autre"
-      );
+
+    const [existingPseudo] = await tables.user.getUserByPseudo(newUser.pseudo);
+    console.info("existingPseudo:", existingPseudo);
+    if (existingPseudo.length > 0) {
+      console.info("existingPseudo:", existingPseudo);
+      errors.push("Ce pseudo est déjà utilisé.");
     }
 
     if (errors.length > 0) {
-      return res.status(409).json({ errors });
+      return res.status(400).json({ messages: errors });
     }
 
     const [result] = await tables.user.addNewUser(newUser);
