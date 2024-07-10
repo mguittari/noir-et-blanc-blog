@@ -9,6 +9,8 @@ export default function CommentsForm({ idArticle, onNewComment }) {
     comment: "",
   });
 
+  const [spaceError, setSpaceError] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
@@ -16,8 +18,17 @@ export default function CommentsForm({ idArticle, onNewComment }) {
 
   const { user, token } = useContext(UserContext);
 
+  const trimmedComment = data.comment.trim();
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (trimmedComment === "") {
+      setSpaceError(
+        "Le commentaire ne peut pas être vide ou contenir seulement des espaces."
+      );
+      return;
+    }
 
     fetch("http://localhost:3310/api/comment", {
       method: "POST",
@@ -26,7 +37,7 @@ export default function CommentsForm({ idArticle, onNewComment }) {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        content: data.comment,
+        content: trimmedComment,
         id_user: user.user.id_user,
         id_article: idArticle,
       }),
@@ -37,7 +48,10 @@ export default function CommentsForm({ idArticle, onNewComment }) {
         setData({
           comment: "",
         });
-        onNewComment(); // Appelez onNewComment ici
+        onNewComment();
+        if (spaceError) {
+          setSpaceError("");
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -71,6 +85,7 @@ export default function CommentsForm({ idArticle, onNewComment }) {
             </label>
           </div>
           <div>
+            {spaceError && <p className="text-red-600">{spaceError}</p>}
             <button
               type="submit"
               className="bg-black text-white border border-black py-2 px-4 rounded transition duration-300 hover:bg-white hover:text-black shadow-md"
