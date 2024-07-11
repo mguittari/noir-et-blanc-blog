@@ -45,17 +45,10 @@ class UserManager extends AbstractManager {
     );
   }
 
-  updateUserWithoutPassword(id, userWithoutPassword) {
-    const columns = Object.keys(userWithoutPassword);
-    const valuesColumns = Object.values(userWithoutPassword);
-    const values = columns.map((column) => `${column} = ?`).join(", ");
-    console.info("columns", columns);
-    console.info("valuesColumns", valuesColumns);
-    console.info("values", values);
-
+  updateUserWithoutPassword(id, pseudo) {
     return this.database.query(
-      `UPDATE ${this.table} set ${values} where id = ?`,
-      [...valuesColumns, id]
+      `UPDATE ${this.table} set pseudo = '${pseudo}' where id = ${id}`,
+      [id, pseudo]
     );
   }
 
@@ -68,51 +61,19 @@ class UserManager extends AbstractManager {
     );
   }
 
-  // editUserButOnlyPassword(id, hashed_password) {
-  //   return this.database.query(
-  //     `UPDATE ${this.table} set hashed_password = ? where id=?`,
-  //     [hashed_password, id]
-  //   );
-  // }
+  //   updateUserWithoutPassword(id, userWithoutPassword) {
+  //     const columns = Object.keys(userWithoutPassword);
+  //     const valuesColumns = Object.values(userWithoutPassword);
+  //     const values = columns.map((column) => `${column} = ?`).join(", ");
+  //     console.info("columns", columns);
+  //     console.info("valuesColumns", valuesColumns);
+  //     console.info("values", values);
 
-  // The C of CRUD - Create operation
-
-  // async create(user) {
-  //   // Execute the SQL INSERT query to add a new User to the "User" table
-  //   const [result] = await this.database.query(
-  //     `insert into ${this.table} (title) values (?)`,
-  //     [user.title]
-  //   );
-
-  //   // Return the ID of the newly inserted User
-  //   return result.insertId;
-  // }
-
-  // The Rs of CRUD - Read operations
-
-  // Return the first row of the result, which represents the User
-
-  // async readAll() {
-  //   // Execute the SQL SELECT query to retrieve all Users from the "User" table
-  //   const [rows] = await this.database.query(`select * from ${this.table}`);
-
-  //   // Return the array of Users
-  //   return rows;
-  // }
-
-  // The U of CRUD - Update operation
-  // TODO: Implement the update operation to modify an existing User
-
-  // async update(User) {
-  //   ...
-  // }
-
-  // The D of CRUD - Delete operation
-  // TODO: Implement the delete operation to remove an User by its ID
-
-  // async delete(id) {
-  //   ...
-  // }
+  //     return this.database.query(
+  //       `UPDATE ${this.table} set ${values} where id = ?`,
+  //       [...valuesColumns, id]
+  //     );
+  //   }
 }
 
 module.exports = UserManager;

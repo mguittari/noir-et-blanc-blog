@@ -33,25 +33,30 @@ export default function InscriptionPage() {
       body: JSON.stringify(formData),
     })
       .then((res) => {
-        if (!res.ok) {
-          return res.json().then((data) => {
+        console.info(res);
+        res.json().then((data) => {
+          if (!res.ok) {
             console.info(data);
-            if (res.status === 409 && data.errors) {
-              data.errors.map((error) => {
+            console.info(data.messages);
+            if (res.status === 409 && data.messages) {
+              data.messages.map((error) => {
                 if (error.includes("pseudo")) {
-                  setErrorMessagePseudo(error);
+                  setErrorMessagePseudo(
+                    "Ce pseudo est déjà pris, veuillez en choisir un autre"
+                  );
                 }
                 if (error.includes("courriel")) {
-                  setErrorMessageEmail(error);
+                  setErrorMessageEmail(
+                    "Ce courriel est déjà enregistré dans notre base de données"
+                  );
                 }
                 return null;
               });
-            } else {
-              throw new Error(data.message || "Erreur inattendue");
             }
-          });
-        }
-        return navigate("/login");
+          } else if (res.ok) {
+            navigate("/login");
+          }
+        });
       })
       .catch((error) => {
         console.error("Erreur:", error.message);
@@ -128,3 +133,25 @@ export default function InscriptionPage() {
     </div>
   );
 }
+
+// .then((res) => {
+//   if (!res.ok) {
+//     return res.json().then((data) => {
+//       console.info(data);
+//       if (res.status === 409 && data.errors) {
+//         data.errors.map((error) => {
+//           if (error.includes("pseudo")) {
+//             setErrorMessagePseudo(error);
+//           }
+//           if (error.includes("courriel")) {
+//             setErrorMessageEmail(error);
+//           }
+//           return null;
+//         });
+//       } else {
+//         throw new Error(data.message || "Erreur inattendue");
+//       }
+//     });
+//   }
+//   return navigate("/login");
+// })

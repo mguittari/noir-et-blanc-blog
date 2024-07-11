@@ -79,10 +79,9 @@ const addNewUser = async (req, res) => {
 
     const errors = [];
 
-    // Vérifier si l'email existe déjà dans la base de données
     const [existingUser] = await tables.user.getUserByEmail(newUser.email);
     if (existingUser.length > 0) {
-      errors.push("Cet email est déjà utilisé.");
+      errors.push("Ce courriel est déjà utilisé.");
     }
 
     const [existingPseudo] = await tables.user.getUserByPseudo(newUser.pseudo);
@@ -93,7 +92,7 @@ const addNewUser = async (req, res) => {
     }
 
     if (errors.length > 0) {
-      return res.status(400).json({ messages: errors });
+      return res.status(409).json({ messages: errors });
     }
 
     const [result] = await tables.user.addNewUser(newUser);
@@ -128,16 +127,25 @@ const editPassword = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const id = req.payload;
-    const [result] = await tables.user.updateUserWithoutPassword(id, req.body);
-    if (result.affectedRows) {
-      res.status(200).json({ message: "Votre profil a bien été mis à jour" });
-    } else {
-      res
-        .status(401)
-        .json("Modification impossible, vérifiez vos informations");
+    const { pseudo } = req.body;
+    const [existingPseudo] = await tables.user.getUserByPseudo(pseudo);
+    console.info(pseudo);
+    if (existingPseudo.length > 0) {
+      return res.status(409).json({ message: "Ce pseudo est déjà pris" });
     }
+    console.info(id);
+
+    const [result] = await tables.user.updateUserWithoutPassword(id, pseudo);
+    if (result.affectedRows) {
+      return res
+        .status(200)
+        .json({ message: "Votre profil a bien été mis à jour" });
+    }
+    return res
+      .status(401)
+      .json("Modification impossible, vérifiez vos informations");
   } catch (error) {
-    res.status(500).json(error);
+    return res.status(500).json(error);
   }
 };
 
