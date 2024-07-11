@@ -50,7 +50,7 @@ export default function LoginForm({ onClick, show, setShow }) {
     <div className="flex flex-col justify-center items-center">
       <form className="font-serif text-xl" onSubmit={handleSubmit}>
         <div className=" flex flex-col items-center mb-4">
-          <h1 className="text-xl font-serif font-semibold mb-7 bg-black text-white p-4 max-w-md w-full text-center shadow-lg">
+          <h1 className="text-xl font-serif font-semibold mb-7 bg-black text-white p-4 max-w-md w-full text-center shadow-lg rounded-xl">
             CONNEXION
           </h1>
           <label htmlFor="email">Courriel</label>

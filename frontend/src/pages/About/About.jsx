@@ -4,7 +4,7 @@ export default function About() {
       <h1 className="text-3xl font-serif font-semibold mb-14 bg-black text-white p-4 rounded-xl max-w-md w-full text-center shadow-lg">
         À PROPOS
       </h1>
-      <div className="border-2 border-black mx-auto max-w-md w-full rounded-xl p-8 shadow-lg text-justify">
+      <div className="border-2 border-black mx-auto max-w-md w-full rounded-xl p-8 shadow-lg text-justify text-lg">
         <p className="mb-2">
           Noir et blanc est un blog d'expression libre fictif réalisé que j'ai
           réalisé en parallèle de ma formation à la Wild Code School. Il m'a
