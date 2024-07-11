@@ -21,16 +21,17 @@ const getAllArticleTitlesOrderByPublicationDate = async (req, res) => {
 
     const [articles] = await tables.article.getTitlesOrderByDate();
 
-    // Créer un tableau d'objets contenant le titre et la date de publication de chaque article
     const articleData = articles.map((article) => ({
+      id: article.id,
+      thumbnail: article.img_url,
       title: article.title,
       publication_date: new Date(article.created_at)
         .toISOString()
-        .split("T")[0], // Assumant que la date de publication est stockée dans la colonne created_at
+        .split("T")[0],
     }));
 
     // Envoyer les données des articles au client
-    res.status(200).json({ articles: articleData });
+    res.status(200).json(articleData);
   } catch (error) {
     // En cas d'erreur, renvoyer une réponse d'erreur avec le code d'état 500
     res.status(500).send(error);

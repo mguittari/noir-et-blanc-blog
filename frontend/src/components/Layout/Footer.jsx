@@ -97,16 +97,16 @@ function Footer() {
         <ul className="text-[18px] md:text-[22px] p-[5px] relative">
           <h2 className="text-[22px] md:text-[35px]">Articles</h2>
           <li>
-            <Link to="/">Pandas</Link>
+            <Link to="/article/17">Article 1</Link>
           </li>
           <li>
-            <Link to="/">Jeu d'Échecs</Link>
+            <Link to="/article/18">Article 2</Link>
           </li>
           <li>
-            <Link to="/">Yin et Yang</Link>
+            <Link to="/article/19">Article 3</Link>
           </li>
           <li>
-            <Link to="/">Manichéïsme</Link>
+            <Link to="/article/20">Article 4</Link>
           </li>
           <li>
             <a

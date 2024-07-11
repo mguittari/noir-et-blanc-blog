@@ -12,8 +12,6 @@ export default function RandomButton() {
       .then((res) => res.json())
       .then((data) => {
         setArticleIds(data);
-        console.info("state -->", articleIds);
-        console.info("data -->", data);
       });
   }, []);
 

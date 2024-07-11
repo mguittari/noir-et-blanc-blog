@@ -13,7 +13,7 @@ export default function NavDesktop() {
       </li>
       <li>|</li>
       <li>
-        <Link to="/">Archives</Link>
+        <Link to="/archives">Archives</Link>
       </li>
     </ul>
   );
