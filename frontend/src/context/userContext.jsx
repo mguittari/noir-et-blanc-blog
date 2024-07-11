@@ -12,6 +12,10 @@ export function UserProvider({ children }) {
   console.info("token from userProvider", token);
   const [user, setUser] = useState({});
 
+  const updateUser = (updatedUser) => {
+    setUser({ ...user, user: updatedUser });
+  };
+
   useEffect(() => {
     if (!token) {
       setUser({});
@@ -55,6 +59,7 @@ export function UserProvider({ children }) {
     () => ({
       user,
       setUser,
+      updateUser,
       token,
       updateToken: (newToken) => {
         if (newToken) {

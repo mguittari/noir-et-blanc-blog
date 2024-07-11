@@ -7,7 +7,7 @@ export default function UpdateProfilePage() {
   const navigate = useNavigate();
   const [successMessage, setSuccessMessage] = useState("");
   const [failMessage, setFailMessage] = useState("");
-  const { user, token } = useContext(UserContext);
+  const { user, updateUser, token } = useContext(UserContext);
 
   const [data, setData] = useState({
     pseudo: user.user?.pseudo,
@@ -32,13 +32,10 @@ export default function UpdateProfilePage() {
   console.info("pseudo", data);
   const handleClickReturn = () => {
     navigate("/welcome");
-    window.location.reload();
   };
 
   const handleSubmitInfoUser = (e) => {
     e.preventDefault();
-    console.info("fail", failMessage);
-    console.info("success", successMessage);
 
     fetch(`http://localhost:3310/api/user/${user.user?.id_user}`, {
       method: "PATCH",
@@ -58,6 +55,7 @@ export default function UpdateProfilePage() {
           setSuccessMessage("Mise à jour réussie !");
           setFailMessage("");
           setIsSubmitting(true);
+          updateUser({ ...user.user, pseudo: data.pseudo });
         }
       })
       .catch((err) => {
@@ -103,20 +101,24 @@ export default function UpdateProfilePage() {
             Mettre à jour mon pseudo
           </button>
         </div>
-        {successMessage ? (
-          <div className="flex flex-col justify-center items-center gap-2">
-            <div className="text-black text-center mt-4">{successMessage}</div>
-            <button type="button" label="button" onClick={handleClickReturn}>
-              <img
-                src={arrowReturn}
-                alt="arrow return"
-                className="h-10 w-14 md:transition-transform md:hover:scale-110 md:cursor-pointer"
-              />
-            </button>
-          </div>
-        ) : (
-          <p>{failMessage}</p>
-        )}
+        <div className="flex flex-col justify-center items-center gap-2">
+          {successMessage ? (
+            <>
+              <div className="text-black text-center mt-4">
+                {successMessage}
+              </div>
+              <button type="button" label="button" onClick={handleClickReturn}>
+                <img
+                  src={arrowReturn}
+                  alt="arrow return"
+                  className="h-10 w-14 md:transition-transform md:hover:scale-110 md:cursor-pointer"
+                />
+              </button>
+            </>
+          ) : (
+            <p className="">{failMessage}</p>
+          )}
+        </div>
         <div className=" flex flex-col items-center mt-4">
           <Link
             to="/update-password"
