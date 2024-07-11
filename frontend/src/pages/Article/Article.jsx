@@ -16,7 +16,7 @@ export default function Article() {
   return (
     <div>
       {article.map(({ id, title, published_at, img_url, content }) => (
-        <div key={id} className=" m-14 flex flex-col md:my-10 md:mx-40">
+        <div key={id} className="m-8 flex flex-col md:my-10 md:mx-40">
           <h1 className="font-bold text-2xl">{title}</h1>
           <p className="">
             Description Lorem ipsum dolor sit amet, consectetur adipiscing elit,

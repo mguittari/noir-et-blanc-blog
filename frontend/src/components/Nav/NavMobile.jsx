@@ -11,7 +11,7 @@ export default function NavMobile() {
         <RandomButton />
       </li>
       <li>
-        <Link to="/">Archives</Link>
+        <Link to="/archives">Archives</Link>
       </li>
     </ul>
   );

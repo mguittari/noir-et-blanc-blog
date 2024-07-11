@@ -49,7 +49,7 @@ class ArticleManager extends AbstractManager {
 
   getTitlesOrderByDate() {
     return this.database.query(
-      `SELECT title, created_at from ${this.table} order by created_at DESC`
+      `SELECT id, img_url, title, created_at from ${this.table} order by created_at DESC`
     );
   }
 

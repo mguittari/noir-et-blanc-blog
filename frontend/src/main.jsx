@@ -14,6 +14,7 @@ import ForbiddenAccess from "./components/Unauthorized/UnauthorizedAccess";
 import UpdateProfilePage from "./pages/Update/UpdateProfilePage";
 import UpdatePasswordPage from "./pages/Update/UpdatePasswordPage";
 import About from "./pages/About/About";
+import ArchivesPage from "./pages/Archives/ArchivesPage";
 
 function AppLayout() {
   return (
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/archives",
+        element: <ArchivesPage />,
       },
     ],
   },
