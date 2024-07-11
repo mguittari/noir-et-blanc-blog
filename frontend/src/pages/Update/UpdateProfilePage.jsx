@@ -5,7 +5,8 @@ import { UserContext } from "../../context/userContext";
 
 export default function UpdateProfilePage() {
   const navigate = useNavigate();
-  const [message, setMessage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [failMessage, setFailMessage] = useState("");
   const { user, token } = useContext(UserContext);
 
   const [data, setData] = useState({
@@ -28,7 +29,7 @@ export default function UpdateProfilePage() {
     }
   }, [data.pseudo, user.user?.pseudo]);
 
-  console.info(data);
+  console.info("pseudo", data);
   const handleClickReturn = () => {
     navigate("/welcome");
     window.location.reload();
@@ -36,7 +37,9 @@ export default function UpdateProfilePage() {
 
   const handleSubmitInfoUser = (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    console.info("fail", failMessage);
+    console.info("success", successMessage);
+
     fetch(`http://localhost:3310/api/user/${user.user?.id_user}`, {
       method: "PATCH",
       headers: {
@@ -46,9 +49,16 @@ export default function UpdateProfilePage() {
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then((res) => {
-        setMessage("Mise à jour réussie !");
-        console.info("res", res);
+      .then((d) => {
+        if (d.message === "Ce pseudo est déjà pris") {
+          setFailMessage("Ce pseudo est déjà pris");
+          setSuccessMessage("");
+          setIsSubmitting(false);
+        } else {
+          setSuccessMessage("Mise à jour réussie !");
+          setFailMessage("");
+          setIsSubmitting(true);
+        }
       })
       .catch((err) => {
         console.error("Error:", err);
@@ -93,9 +103,9 @@ export default function UpdateProfilePage() {
             Mettre à jour mon pseudo
           </button>
         </div>
-        {message && (
+        {successMessage ? (
           <div className="flex flex-col justify-center items-center gap-2">
-            <div className="text-black text-center mt-4">{message}</div>
+            <div className="text-black text-center mt-4">{successMessage}</div>
             <button type="button" label="button" onClick={handleClickReturn}>
               <img
                 src={arrowReturn}
@@ -104,6 +114,8 @@ export default function UpdateProfilePage() {
               />
             </button>
           </div>
+        ) : (
+          <p>{failMessage}</p>
         )}
         <div className=" flex flex-col items-center mt-4">
           <Link
