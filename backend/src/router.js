@@ -10,12 +10,13 @@ const hashPassword = require("./services/hashPassword");
 const hashEditPassword = require("./services/hashEditPassword");
 const verifyToken = require("./services/auth");
 const upload = require("./services/upload");
+const validateUser = require("./services/validateUser");
 
 // routes publiques
 
 router.get("/home", articleControllers.getFirstFourArticles);
 router.post("/login", userControllers.getUserByEmail);
-router.post("/user", hashPassword, userControllers.addNewUser);
+router.post("/user", validateUser, hashPassword, userControllers.addNewUser);
 router.get("/article/:id", articleControllers.getArticleById);
 router.get("/articles-ids", articleControllers.getAllIdsArticles);
 router.get(

@@ -87,7 +87,6 @@ const addNewUser = async (req, res) => {
     const [existingPseudo] = await tables.user.getUserByPseudo(newUser.pseudo);
     console.info("existingPseudo:", existingPseudo);
     if (existingPseudo.length > 0) {
-      console.info("existingPseudo:", existingPseudo);
       errors.push("Ce pseudo est déjà utilisé.");
     }
 
