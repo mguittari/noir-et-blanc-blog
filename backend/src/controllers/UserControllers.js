@@ -77,23 +77,6 @@ const addNewUser = async (req, res) => {
   try {
     const newUser = req.body;
 
-    const errors = [];
-
-    const [existingUser] = await tables.user.getUserByEmail(newUser.email);
-    if (existingUser.length > 0) {
-      errors.push("Ce courriel est déjà utilisé.");
-    }
-
-    const [existingPseudo] = await tables.user.getUserByPseudo(newUser.pseudo);
-    console.info("existingPseudo:", existingPseudo);
-    if (existingPseudo.length > 0) {
-      errors.push("Ce pseudo est déjà utilisé.");
-    }
-
-    if (errors.length > 0) {
-      return res.status(409).json({ messages: errors });
-    }
-
     const [result] = await tables.user.addNewUser(newUser);
     return res
       .status(201)
