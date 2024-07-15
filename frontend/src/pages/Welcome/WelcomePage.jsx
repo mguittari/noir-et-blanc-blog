@@ -5,9 +5,9 @@ import { UserContext } from "../../context/userContext";
 import LogoutButton from "../../components/Logout-Button/LogoutButton";
 
 export default function WelcomePage() {
-  const { token } = useContext(UserContext);
+  const { token, user } = useContext(UserContext);
 
-  const [pseudo, setPseudo] = useState([]);
+  const [pseudo, setPseudo] = useState("");
 
   useEffect(() => {
     fetch(`http://localhost:3310/api/me`, {
@@ -16,12 +16,10 @@ export default function WelcomePage() {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setPseudo(data.user.pseudo);
-        console.info("data -->", data);
-      });
+    }).then((res) => {
+      console.info(res);
+      setPseudo(user?.user?.pseudo);
+    });
   });
 
   return (

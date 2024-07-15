@@ -49,7 +49,9 @@ function UnauthorizedAccess() {
 
   return (
     <Layout>
-      {user?.message === "isLogged" ? <Outlet /> : <ForbiddenAccess />}
+      <UserProvider>
+        {user?.message === "isLogged" ? <Outlet /> : <ForbiddenAccess />}
+      </UserProvider>
     </Layout>
   );
 }
