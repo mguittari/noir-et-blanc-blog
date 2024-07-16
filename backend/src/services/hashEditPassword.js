@@ -13,7 +13,6 @@ const hashEditPassword = async (req, res, next) => {
 
     if (oldPassword) {
       const id = req.payload;
-      console.info("id -->", id);
 
       const [user] = await tables.user.getUserById(id);
       console.info("user -->", user);
@@ -36,7 +35,7 @@ const hashEditPassword = async (req, res, next) => {
           res.status(401).json("Vérifiez vos données");
         }
       } else {
-        res.status(401).json("User n'existe pas");
+        res.status(401).json("Cet utilisateur n'existe pas");
       }
 
       // const hashedNewPassword = await argon2.hash(newPassword, hashOptions);

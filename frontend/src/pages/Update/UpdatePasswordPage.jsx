@@ -12,11 +12,9 @@ export default function UpdatePasswordPage() {
     confirmNewPassword: "",
   });
 
-  const [message, setMessage] = useState("");
+  const [failMessage, setFailMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  console.info("message", message);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,11 +26,15 @@ export default function UpdatePasswordPage() {
   };
 
   const handleSubmit = (e) => {
-    setIsSubmitting(true);
     e.preventDefault();
 
     if (data.newPassword !== data.confirmNewPassword) {
       console.error("Les nouveaux mots de passe ne correspondent pas");
+      return;
+    }
+
+    if (data.oldPassword === data.newPassword) {
+      console.error("Vous ne pouvez pas changer pour le même mot de passe");
       return;
     }
 
@@ -45,27 +47,34 @@ export default function UpdatePasswordPage() {
       body: JSON.stringify(data),
     })
       .then((res) => {
-        console.info(res);
-        if (!res.ok) {
+        console.info("res -->", res);
+        if (res.status === 401) {
           setIsSubmitting(false);
-          throw new Error("Ancien mot de passe incorrect");
+          throw new Error(setFailMessage("Vérifiez votre ancien mot de passe"));
         }
-        setMessage("");
-        setSuccessMessage("Mise à jour réussie !");
-
-        return res.json();
+        return res.json(); // Convertir la réponse en JSON
       })
-      // eslint-disable-next-line no-unused-vars
       .then((responseData) => {
-        console.info("Réponse du serveur:", responseData);
+        console.info("Réponse du serveur:", responseData); // Utiliser les données JSON
+        if (responseData.errors) {
+          // Si des erreurs existent, utilisez map pour les traiter
+          responseData.errors.map((error) => {
+            setFailMessage(error.message);
+            setIsSubmitting(false);
+            return null; // Vous pouvez retourner null ou tout autre valeur si nécessaire
+          });
+        } else {
+          setSuccessMessage("Mise à jour réussie !");
+          setFailMessage("");
+          setIsSubmitting(true);
+        }
       })
       .catch((error) => {
-        setMessage("Vérifiez votre ancien mot de passe");
-        console.error(error);
+        console.error("Error:", error);
       });
   };
   return (
-    <div className="flex flex-col m-2 justify-center items-center my-14 mx-8">
+    <div className="flex flex-col justify-center items-center my-14 mx-8">
       <h1 className="text-3xl font-serif font-semibold mb-14 text-white bg-black p-4 rounded-xl max-w-md w-full text-center shadow-lg">
         MODIFICATION DU MOT DE PASSE
       </h1>
@@ -135,12 +144,19 @@ export default function UpdatePasswordPage() {
             </button>
           </div>
         )}
-        {message && (
-          <p className="text-red-600 text-center mt-4 italic">{message}</p>
+        {failMessage && (
+          <p className="text-black text-center mb-2 border-2 border-black text-sm p-2 rounded-md mt-4">
+            {failMessage}
+          </p>
         )}
         {data.newPassword !== data.confirmNewPassword && (
-          <p className="text-red-600 text-center mt-4 italic">
+          <p className="text-black text-center mt-4 border-2 border-black text-sm p-2 rounded-md">
             Les nouveaux mots de passe ne correspondent pas
+          </p>
+        )}
+        {data.oldPassword === data.newPassword && (
+          <p className="text-black text-center mt-4 border-2 border-black text-sm p-2 rounded-md">
+            Vous ne pouvez pas changer pour le même mot de passe
           </p>
         )}
       </form>

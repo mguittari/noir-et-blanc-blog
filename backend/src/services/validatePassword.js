@@ -1,21 +1,21 @@
 const validatePassword = async (req, res, next) => {
-  const { password } = req.body;
+  const { newPassword } = req.body;
 
   const errors = [];
 
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-  if (password === "") {
+  if (newPassword === "") {
     errors.push({ field: "password", message: "Ce champ est requis" });
-  } else if (password.length >= 251) {
+  } else if (newPassword.length >= 251) {
     errors.push({
-      field: "password",
+      field: "new_password",
       message: "Doit contenir moins de 250 caractères",
     });
-  } else if (!passwordRegex.test(password)) {
+  } else if (!passwordRegex.test(newPassword)) {
     errors.push({
-      field: "password",
+      field: "new_password",
       message:
         "Le mot de passe doit contenir 8 caractères minimum et être composé d'au moins une minuscule, une majuscule, un chiffre et un caractère spécial parmi @$!%*?&",
     });
