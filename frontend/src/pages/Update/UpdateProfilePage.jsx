@@ -45,12 +45,17 @@ export default function UpdateProfilePage() {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        console.info(res);
+        return res.json();
+      })
       .then((d) => {
-        if (d.message === "Ce pseudo est déjà pris") {
-          setFailMessage("Ce pseudo est déjà pris");
-          setSuccessMessage("");
-          setIsSubmitting(false);
+        console.info(d);
+        if (d.errors) {
+          d.errors.map((error) => {
+            setFailMessage(error.message);
+            return null;
+          });
         } else {
           setSuccessMessage("Mise à jour réussie !");
           setFailMessage("");
@@ -102,7 +107,7 @@ export default function UpdateProfilePage() {
           </button>
         </div>
         <div className="flex flex-col justify-center items-center gap-2">
-          {successMessage ? (
+          {successMessage && (
             <>
               <div className="text-black text-center mt-4">
                 {successMessage}
@@ -115,8 +120,11 @@ export default function UpdateProfilePage() {
                 />
               </button>
             </>
-          ) : (
-            <p className="">{failMessage}</p>
+          )}
+          {failMessage && (
+            <p className="text-black text-center mb-2 border-2 border-black text-sm p-2 rounded-md mt-4">
+              {failMessage}
+            </p>
           )}
         </div>
         <div className=" flex flex-col items-center mt-4">

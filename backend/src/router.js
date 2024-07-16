@@ -12,6 +12,7 @@ const verifyToken = require("./services/auth");
 const upload = require("./services/upload");
 const validateUser = require("./services/validateUser");
 const validatePassword = require("./services/validatePassword");
+const validatePseudo = require("./services/validatePseudo");
 
 // routes publiques
 
@@ -31,7 +32,12 @@ router.get("/article/:id/comments", articleControllers.getAllCommentsByArticle);
 router.get("/me", verifyToken, userControllers.getUserById);
 router.post("/logout", userControllers.logout);
 router.delete("/user", verifyToken, userControllers.deleteUser);
-router.patch("/user/:id", verifyToken, userControllers.updateUser);
+router.patch(
+  "/user/:id",
+  validatePseudo,
+  verifyToken,
+  userControllers.updateUser
+);
 router.patch(
   "/users/update-password",
   validatePassword,
