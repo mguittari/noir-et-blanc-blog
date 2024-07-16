@@ -4,10 +4,11 @@ import { useNavigate } from "react-router-dom";
 export default function InscriptionPage() {
   const navigate = useNavigate();
 
-  const [errorMessagePseudo, setErrorMessagePseudo] = useState("");
-  const [errorMessageEmail, setErrorMessageEmail] = useState("");
-
-  console.info("error?", errorMessagePseudo);
+  const [errorMessages, setErrorMessages] = useState({
+    pseudo: "",
+    email: "",
+    password: "",
+  });
 
   const [formData, setFormData] = useState({
     pseudo: "",
@@ -22,8 +23,7 @@ export default function InscriptionPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrorMessagePseudo("");
-    setErrorMessageEmail("");
+    setErrorMessages({ pseudo: "", email: "", password: "" });
 
     fetch("http://localhost:3310/api/user", {
       method: "POST",
@@ -33,33 +33,23 @@ export default function InscriptionPage() {
       body: JSON.stringify(formData),
     })
       .then((res) => {
-        console.info(res);
         res.json().then((data) => {
           if (!res.ok) {
-            console.info(data);
-            console.info(data.messages);
-            if (res.status === 409 && data.messages) {
-              data.messages.map((error) => {
-                if (error.includes("pseudo")) {
-                  setErrorMessagePseudo(
-                    "Ce pseudo est déjà pris, veuillez en choisir un autre"
-                  );
-                }
-                if (error.includes("courriel")) {
-                  setErrorMessageEmail(
-                    "Ce courriel est déjà enregistré dans notre base de données"
-                  );
-                }
+            const newErrors = { pseudo: "", email: "", password: "" };
+            if (res.status === 422 && data.errors) {
+              data.errors.map((error) => {
+                newErrors[error.field] = error.message;
                 return null;
               });
             }
-          } else if (res.ok) {
+            setErrorMessages(newErrors);
+          } else {
             navigate("/login");
           }
         });
       })
       .catch((error) => {
-        console.error("Erreur:", error.message);
+        console.error(error);
       });
   };
 
@@ -87,11 +77,12 @@ export default function InscriptionPage() {
             required
           />
         </div>
-        {errorMessagePseudo && (
-          <div className="text-red-500 text-center mb-2">
-            {errorMessagePseudo}
+        {errorMessages.pseudo && (
+          <div className="text-black text-center mb-2 border-2 border-black text-sm p-2 rounded-md">
+            {errorMessages.pseudo}
           </div>
         )}
+
         <div className=" flex flex-col items-center mb-4">
           <label htmlFor="email">Courriel</label>
           <input
@@ -104,11 +95,12 @@ export default function InscriptionPage() {
             required
           />
         </div>
-        {errorMessageEmail && (
-          <div className="text-red-500 text-center mb-2">
-            {errorMessageEmail}
+        {errorMessages.email && (
+          <div className="text-black text-center mb-2 border-2 border-black text-sm p-2 rounded-md">
+            {errorMessages.email}
           </div>
         )}
+
         <div className=" flex flex-col items-center mb-4">
           <label htmlFor="password">Mot de passe</label>
           <input
@@ -121,6 +113,11 @@ export default function InscriptionPage() {
             required
           />
         </div>
+        {errorMessages.password && (
+          <div className="text-black text-center mb-2 border-2 border-black text-sm p-2 rounded-md">
+            {errorMessages.password}
+          </div>
+        )}
         <div className="flex justify-center">
           <button
             type="submit"
@@ -133,25 +130,3 @@ export default function InscriptionPage() {
     </div>
   );
 }
-
-// .then((res) => {
-//   if (!res.ok) {
-//     return res.json().then((data) => {
-//       console.info(data);
-//       if (res.status === 409 && data.errors) {
-//         data.errors.map((error) => {
-//           if (error.includes("pseudo")) {
-//             setErrorMessagePseudo(error);
-//           }
-//           if (error.includes("courriel")) {
-//             setErrorMessageEmail(error);
-//           }
-//           return null;
-//         });
-//       } else {
-//         throw new Error(data.message || "Erreur inattendue");
-//       }
-//     });
-//   }
-//   return navigate("/login");
-// })

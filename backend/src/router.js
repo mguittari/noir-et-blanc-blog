@@ -11,6 +11,7 @@ const hashEditPassword = require("./services/hashEditPassword");
 const verifyToken = require("./services/auth");
 const upload = require("./services/upload");
 const validateUser = require("./services/validateUser");
+const validatePassword = require("./services/validatePassword");
 
 // routes publiques
 
@@ -33,6 +34,7 @@ router.delete("/user", verifyToken, userControllers.deleteUser);
 router.patch("/user/:id", verifyToken, userControllers.updateUser);
 router.patch(
   "/users/update-password",
+  validatePassword,
   verifyToken,
   hashEditPassword,
   userControllers.editPassword

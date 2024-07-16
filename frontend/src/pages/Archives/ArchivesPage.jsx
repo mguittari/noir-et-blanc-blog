@@ -24,11 +24,8 @@ export default function ArchivesPage() {
       </div>
       <div className="flex flex-wrap items-center justify-center gap-4 mt-12 mb-8 mx-8">
         {articles.map(({ id, thumbnail, title, publication_date }) => (
-          <Link to={`/article/${id}`}>
-            <div
-              key={id}
-              className="border-2 border-black rounded-xl flex flex-col items-center justify-center md:transition-transform md:hover:scale-105 md:cursor-pointer"
-            >
+          <Link to={`/article/${id}`} key={id}>
+            <div className="border-2 border-black rounded-xl flex flex-col items-center justify-center md:transition-transform md:hover:scale-105 md:cursor-pointer">
               <img
                 className="w-[300px] h-[200px] rounded-t-lg"
                 src={`http://localhost:3310/${thumbnail}`}
