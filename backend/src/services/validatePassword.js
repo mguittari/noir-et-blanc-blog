@@ -11,7 +11,7 @@ const validatePassword = async (req, res, next) => {
   } else if (newPassword.length >= 251) {
     errors.push({
       field: "new_password",
-      message: "Doit contenir moins de 250 caractères",
+      message: "Le mot de passe doit contenir moins de 250 caractères",
     });
   } else if (!passwordRegex.test(newPassword)) {
     errors.push({

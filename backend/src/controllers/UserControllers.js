@@ -110,12 +110,6 @@ const updateUser = async (req, res) => {
   try {
     const id = req.payload;
     const { pseudo } = req.body;
-    const [existingPseudo] = await tables.user.getUserByPseudo(pseudo);
-    console.info(pseudo);
-    if (existingPseudo.length > 0) {
-      return res.status(409).json({ message: "Ce pseudo est déjà pris" });
-    }
-    console.info(id);
 
     const [result] = await tables.user.updateUserWithoutPassword(id, pseudo);
     if (result.affectedRows) {
