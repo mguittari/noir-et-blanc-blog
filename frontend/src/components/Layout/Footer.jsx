@@ -27,7 +27,9 @@ function Footer() {
             <Link to="/">Faire un don</Link>
           </li>
           <li>
-            <Link to="/">Politique de confidentialité</Link>
+            <Link to="https://httpstat.us/404">
+              Politique de confidentialité
+            </Link>
           </li>
           <li>
             <Link
