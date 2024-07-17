@@ -52,9 +52,7 @@ export default function WelcomePage() {
           >
             Mes infos
           </Link>
-          <div className="bg-black text-white text-center cursor-pointer p-4 rounded-xl transition duration-300 hover:bg-white hover:text-black hover:drop-shadow-[0_7px_1.5px_rgba(0,0,0,0.25)]">
-            <LogoutButton />
-          </div>
+          <LogoutButton />
         </div>
       </div>
     </div>

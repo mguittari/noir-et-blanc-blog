@@ -1,8 +1,8 @@
+import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
 import { UserContext } from "../../context/userContext";
-import CommentsAreaSignupButton from "../Buttons/CommentsAreaSignupButton";
 
 export default function LoginForm({ onClick, show, setShow }) {
   const { updateToken } = useContext(UserContext);
@@ -87,7 +87,12 @@ export default function LoginForm({ onClick, show, setShow }) {
         </div>
         <div className="flex flex-col gap-2">
           <p className="text-center mt-4">Pas encore inscrit ?</p>
-          <CommentsAreaSignupButton />
+          <Link
+            to="/signup"
+            className="text-center font-semibold hover:underline cursor-pointer flex justify-center"
+          >
+            Créez votre compte ici
+          </Link>
           <button
             label="croix de fermeture"
             type="button"
