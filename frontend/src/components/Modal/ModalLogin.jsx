@@ -6,12 +6,7 @@ import LoginForm from "../LoginForm/LoginForm";
 export default function ModalLogin({ show, setShow, onClick }) {
   return (
     <div>
-      {show && (
-        <div
-          className="fixed inset-0 bg-gray-800 bg-opacity-50 z-10"
-          onClick={setShow}
-        />
-      )}
+      {show && <div className="fixed inset-0 bg-gray-800 bg-opacity-50 z-10" />}
       <div
         className={`${
           show
@@ -28,9 +23,5 @@ export default function ModalLogin({ show, setShow, onClick }) {
 ModalLogin.propTypes = {
   show: PropTypes.bool.isRequired,
   setShow: PropTypes.func.isRequired,
-  onClick: PropTypes.func,
-};
-
-ModalLogin.defaultProps = {
-  onClick: () => {},
+  onClick: PropTypes.func.isRequired,
 };

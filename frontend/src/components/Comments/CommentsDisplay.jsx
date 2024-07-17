@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useContext } from "react";
 import { UserContext } from "../../context/userContext";
-import LogoutButtonComments from "../Logout-Button/LogoutCommentsDisplay";
 import DeleteButton from "./DeleteButton";
 import LikeButton from "../Buttons/LikeButton";
+import LogoutButtonComments from "../Logout-Button/LogoutButtonComments";
 
 export default function CommentsDisplay({
   comments,

@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
 import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
 import { UserContext } from "../../context/userContext";
@@ -110,9 +110,5 @@ export default function LoginForm({ onClick, show, setShow }) {
 LoginForm.propTypes = {
   show: PropTypes.bool.isRequired,
   setShow: PropTypes.func.isRequired,
-  onClick: PropTypes.func,
-};
-
-LoginForm.defaultProps = {
-  onClick: () => {},
+  onClick: PropTypes.func.isRequired,
 };

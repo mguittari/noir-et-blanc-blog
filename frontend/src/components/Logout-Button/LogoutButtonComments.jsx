@@ -1,9 +1,16 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../context/userContext";
+import ModalLogout from "../Modal/ModalLogout";
 // import ModalLogout from "../Modal/ModalLogout";
 
 export default function LogoutButtonComments() {
   const { setUser, updateToken, token } = useContext(UserContext);
+
+  const [showModal, setShowModal] = useState(false);
+
+  const handleCancel = () => {
+    setShowModal(false);
+  };
 
   const handleClick = () => {
     fetch("http://localhost:3310/api/logout", {
@@ -24,11 +31,16 @@ export default function LogoutButtonComments() {
     <div>
       <button
         type="button"
-        onClick={handleClick}
+        onClick={() => setShowModal(true)}
         className="text-blue-800 font-bold"
       >
-        Déconnexion
+        Deconnexion
       </button>
+      <ModalLogout
+        show={showModal}
+        handleClick={handleClick}
+        handleCancel={handleCancel}
+      />
     </div>
   );
 }

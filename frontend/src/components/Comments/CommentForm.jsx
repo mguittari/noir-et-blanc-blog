@@ -60,7 +60,9 @@ export default function CommentsForm({ idArticle, onNewComment }) {
 
   return (
     <div>
-      {!token || token.message === "vous avez été déconnecté" ? (
+      {user.message !== "isLogged" ||
+      !token ||
+      token.message === "vous avez été déconnecté" ? (
         <div>
           <p>Vous devez être connecté pour poster ou liker un commentaire</p>
           <CommentsAreaLoginButton />
