@@ -4,12 +4,16 @@ import PropTypes from "prop-types";
 import LoginForm from "../LoginForm/LoginForm";
 
 export default function ModalLogin({ show, setShow, onClick }) {
+  const handleClickLogin = () => {
+    setShow(!show);
+    onClick();
+  };
   return (
     <div>
       {show && (
         <div
           className="fixed inset-0 bg-gray-800 bg-opacity-50 z-10"
-          onClick={setShow}
+          onClick={handleClickLogin}
         />
       )}
       <div
@@ -28,9 +32,5 @@ export default function ModalLogin({ show, setShow, onClick }) {
 ModalLogin.propTypes = {
   show: PropTypes.bool.isRequired,
   setShow: PropTypes.func.isRequired,
-  onClick: PropTypes.func,
-};
-
-ModalLogin.defaultProps = {
-  onClick: () => {},
+  onClick: PropTypes.func.isRequired,
 };
