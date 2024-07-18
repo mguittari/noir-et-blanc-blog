@@ -20,6 +20,10 @@ module.exports = {
       fontFamily: {
         questrial: ["questrial", "sans-serif"],
         librebaskerville: ["librebaskerville", "serif"],
+        nationalparkregular: ["nationalpark-regular", "sans-serif"],
+        nationalparkbold: ["nationalpark-bold", "sans-serif"],
+        nationalparkxbold: ["nationalpark-x-bold", "sans-serif"],
+        nationalparkxlight: ["nationalpark-x-light", "sans-serif"],
       },
       scale: {
         175: "1.75",

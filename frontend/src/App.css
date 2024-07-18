@@ -9,3 +9,27 @@
 .fade-in.show {
   @apply opacity-100;
 }
+
+@font-face {
+  font-family: "nationalpark-regular";
+  src: url("./assets/fonts/NationalPark/woff2/NationalPark-Regular.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "nationalpark-bold";
+  src: url("./assets/fonts/NationalPark/woff2/NationalPark-Bold.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "nationalpark-x-bold";
+  src: url("./assets/fonts/NationalPark/woff2/NationalPark-ExtraBold.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "nationalpark-x-light";
+  src: url("./assets/fonts/NationalPark/woff2/NationalPark-ExtraLight.woff2")
+    format("woff2");
+}
