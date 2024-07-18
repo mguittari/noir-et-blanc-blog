@@ -21,7 +21,11 @@ export default function RandomButton() {
   };
 
   return (
-    <button className="hover:underline" type="button" onClick={handleClick}>
+    <button
+      className="hover:underline hover:decoration-4"
+      type="button"
+      onClick={handleClick}
+    >
       Au hasard
     </button>
   );

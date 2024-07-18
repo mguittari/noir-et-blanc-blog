@@ -16,23 +16,33 @@ export default function Home() {
       {articles.map(({ id, title, published_at, img_url }) => (
         <div key={id}>
           <Link to="/">
-            <img src={`http://localhost:3310/${img_url}`} alt={title} />
+            <img
+              src={`http://localhost:3310/${img_url}`}
+              alt={title}
+              className="rounded-xl border-2 border-black"
+            />
           </Link>
-          <h1 className="font-bold mt-1 text-xl">{title}</h1>
-          <p className="italic">Publié le {published_at}</p>
+          <h1 className="mt-1 text-[22px] font-nationalparkbold">{title}</h1>
+          <p className="font-nationalparkregular italic text-[17px]">
+            Publié le {published_at}
+          </p>
           <div className="flex flex-row items-center gap-1">
             <FaPenAlt className="w-4 h-4" />
-            <p className="font-medium">Matt Guittari</p>
+            <p className="font-nationalparksemibold text-[18px]">
+              Mattias Guittari
+            </p>
           </div>
-          <p>
+          <p className="font-nationalparkregular">
             Description Lorem ipsum dolor sit amet, consectetur adipiscing elit,
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
             nisi ut aliquip ex ea commodo consequat.
           </p>
-          <Link to={`/article/${id}`}>
-            <div className="flex flex-row items-center gap-1.5">
-              <p className="font-semibold">Lire l'article</p>
+          <Link to={`/article/${id}`} className="inline-block items-center">
+            <div className="flex flex-row items-center gap-1.5 md:hover:underline md:hover:decoration-4">
+              <p className="font-nationalparksemibold text-[18px] ">
+                Lire l'article
+              </p>
               <FaLongArrowAltRight />
             </div>
           </Link>
