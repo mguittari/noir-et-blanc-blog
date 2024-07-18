@@ -21,6 +21,7 @@ module.exports = {
         questrial: ["questrial", "sans-serif"],
         librebaskerville: ["librebaskerville", "serif"],
         nationalparkregular: ["nationalpark-regular", "sans-serif"],
+        nationalparksemibold: ["nationalpark-semibold", "sans-serif"],
         nationalparkbold: ["nationalpark-bold", "sans-serif"],
         nationalparkxbold: ["nationalpark-x-bold", "sans-serif"],
         nationalparkxlight: ["nationalpark-x-light", "sans-serif"],

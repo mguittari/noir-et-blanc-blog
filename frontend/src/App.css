@@ -17,6 +17,12 @@
 }
 
 @font-face {
+  font-family: "nationalpark-semibold";
+  src: url("./assets/fonts/NationalPark/woff2/NationalPark-SemiBold.woff2")
+    format("woff2");
+}
+
+@font-face {
   font-family: "nationalpark-bold";
   src: url("./assets/fonts/NationalPark/woff2/NationalPark-Bold.woff2")
     format("woff2");

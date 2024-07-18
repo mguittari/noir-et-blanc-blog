@@ -21,7 +21,7 @@ export default function RandomButton() {
   };
 
   return (
-    <button type="button" onClick={handleClick}>
+    <button className="hover:underline" type="button" onClick={handleClick}>
       Au hasard
     </button>
   );
