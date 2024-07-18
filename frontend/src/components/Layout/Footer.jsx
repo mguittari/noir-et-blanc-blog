@@ -18,20 +18,28 @@ function Footer() {
             alt="logo cube"
           />
         </li>
-        <ul className="text-[18px] md:text-[22px] p-[5px]">
-          <h2 className="text-[22px] md:text-[35px]">Infos</h2>
-          <li>
+        <ul className="font-nationalparkregular text-[18px] md:text-[22px] p-[5px]">
+          <h2 className="font-nationalparkbold text-[22px] md:text-[35px]">
+            Infos
+          </h2>
+          <li className="hover:underline">
             <Link to="/about">À propos</Link>
           </li>
-          <li>
-            <Link to="/">Faire un don</Link>
+          <li className="hover:underline">
+            <Link
+              to="https://paypal.com/fr/home"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Faire un don
+            </Link>
           </li>
-          <li>
+          <li className="hover:underline">
             <Link to="https://httpstat.us/404">
               Politique de confidentialité
             </Link>
           </li>
-          <li>
+          <li className="hover:underline">
             <Link
               to="https://wildcodeschool.com"
               target="_blank"
@@ -41,11 +49,13 @@ function Footer() {
             </Link>
           </li>
         </ul>
-        <ul className="text-[18px] md:text-[22px] p-[5px]">
-          <h2 className="text-[22px] md:text-[35px]">Contact</h2>
-          <li>Matt Guittari</li>
-          <li>~</li>
-          <li>mattguittari [at] blackandwhite [dot] com </li>
+        <ul className="font-nationalparkregular text-[18px] md:text-[22px] p-[5px]">
+          <h2 className="font-nationalparkbold text-[22px] md:text-[35px]">
+            Contact
+          </h2>
+          <li>Mattias Guittari</li>
+          {/* <li>~</li> */}
+          <li>mattiasguittari [at] gmail [dot] com </li>
           <div className="">
             <ul className="inline-flex gap-2 mt-2">
               <li className="w-6 h-6">
@@ -96,29 +106,25 @@ function Footer() {
             </ul>
           </div>
         </ul>
-        <ul className="text-[18px] md:text-[22px] p-[5px] relative">
-          <h2 className="text-[22px] md:text-[35px]">Articles</h2>
-          <li>
+        <ul className="font-nationalparkregular text-[18px] md:text-[22px] p-[5px] relative">
+          <h2 className="font-nationalparkbold text-[22px] md:text-[35px]">
+            Articles
+          </h2>
+          <li className="hover:underline">
             <Link to="/article/17">Article 1</Link>
           </li>
-          <li>
+          <li className="hover:underline">
             <Link to="/article/18">Article 2</Link>
           </li>
-          <li>
+          <li className="hover:underline">
             <Link to="/article/19">Article 3</Link>
           </li>
-          <li>
+          <li className="hover:underline">
             <Link to="/article/20">Article 4</Link>
           </li>
-          <li>
-            <a
-              href="https://g.co/kgs/XmXomR6"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <p>Pile ou face ?</p>
-            </a>
-          </li>
+          {/* <li>
+            <Link to="https://httpstat.us/404">Article 5</Link>
+          </li> */}
         </ul>
       </ul>
       <GoToTopButton />
