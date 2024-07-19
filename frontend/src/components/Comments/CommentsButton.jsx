@@ -10,11 +10,11 @@ export default function Comments({ idArticle }) {
   };
 
   return (
-    <div>
+    <div className="">
       <button
         type="button"
         onClick={handleClick}
-        className="border border-black rounded p-2 mt-4"
+        className="border border-black text-lg rounded-xl px-2 py-3 mt-4 font-nunito font-black md:hover:bg-black md:hover:text-white "
       >
         Commentaires
       </button>

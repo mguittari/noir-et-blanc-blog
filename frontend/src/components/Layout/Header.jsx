@@ -19,7 +19,7 @@ function Header() {
           <CircleMenu />
           <div>
             <Link
-              className="font-nationalparkxbold inline-block justify-start ml-[-2.5px] text-[65px] md:text-[90px] leading-[55px] md:leading-[75px]"
+              className="font-nationalparkxbold inline-block justify-start ml-[-2.5px] text-[65px] md:text-[90px] leading-[57px] md:leading-[75px]"
               to="/"
             >
               NOIR ET BLANC
@@ -31,7 +31,7 @@ function Header() {
               src={cube}
               alt="cube logo"
             />
-            <p className="font-nationalparksemibold leading-[23px] text-[22px] md:text-[35px]">
+            <p className="font-nationalparksemibold leading-[26px] text-[22px] md:text-[35px]">
               Un (faux) blog pour apprendre à coder
             </p>
           </div>

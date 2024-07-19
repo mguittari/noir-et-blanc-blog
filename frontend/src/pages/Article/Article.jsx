@@ -14,30 +14,41 @@ export default function Article() {
   }, [params.id]);
 
   return (
-    <div>
+    <div className="flex justify-center">
       {article.map(({ id, title, published_at, img_url, content }) => (
-        <div key={id} className="m-8 flex flex-col md:my-10 md:mx-40">
-          <h1 className="font-bold text-2xl">{title}</h1>
-          <p className="">
+        <div
+          key={id}
+          className="m-8 flex flex-col md:my-10 md:mx-40 max-w-md md:max-w-xl"
+        >
+          <h1 className="font-bold text-[40px] font-nationalparkbold">
+            {title}
+          </h1>
+          <p className="font-nationalparkregular text-[22px]">
             Description Lorem ipsum dolor sit amet, consectetur adipiscing elit,
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
             nisi ut aliquip ex ea commodo consequat.{" "}
           </p>
-          <div className="flex flex-row gap-3 mb-6">
-            <p className="italic">Publié le {published_at} </p>
+          <div className="flex flex-row gap-3 mb-6 mt-3">
+            <p className="font-nationalparkregular italic text-[18px]">
+              Publié le {published_at}{" "}
+            </p>
             <div className="flex flex-row items-center gap-1">
               <FaPenAlt className="w-4 h-4" />
-              <p className="font-medium">Matt Guittari</p>
+              <p className="font-nationalparksemibold text-[18px]">
+                Mattias Guittari
+              </p>
             </div>
           </div>
           <img
-            className=""
+            className="rounded-xl border-2 border-black"
             src={`http://localhost:3310/${img_url}`}
             alt={`Illustration of article ${id}`}
           />
-          <p className="mb-6">Petite légende à propos de l'image</p>
-          <div className="text-justify">
+          <p className="mb-6 mt-2 font-nationalparkregular italic text-[20px]">
+            Petite légende à propos de l'image
+          </p>
+          <div className="font-nunito font-medium text-md md:text-xl">
             <p className="mb-4">
               {content} : Lorem ipsum dolor sit amet, consectetur adipiscing
               elit. Aliquam libero nisl, maximus nec urna nec, lacinia congue

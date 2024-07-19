@@ -15,7 +15,7 @@ export default function Home() {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 m-4">
       {articles.map(({ id, title, published_at, img_url }) => (
         <div key={id}>
-          <Link to="/">
+          <Link to={`/article/${id}`}>
             <img
               src={`http://localhost:3310/${img_url}`}
               alt={title}

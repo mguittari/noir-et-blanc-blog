@@ -42,5 +42,7 @@
 
 @font-face {
   font-family: "Nunito";
-  src: url("./assets/fonts/Nunito/Nunito-Medium.ttf") format("truetype");
+  src:
+    url("./assets/fonts/Nunito/Nunito-Medium.ttf") format("truetype"),
+    url("./assets/fonts/Nunito/Nunito-Black.ttf") format("truetype");
 }
