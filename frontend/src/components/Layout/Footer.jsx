@@ -54,7 +54,6 @@ function Footer() {
             Contact
           </h2>
           <li>Mattias Guittari</li>
-          {/* <li>~</li> */}
           <li>mattiasguittari [at] gmail [dot] com </li>
           <div className="">
             <ul className="inline-flex gap-2 mt-2">

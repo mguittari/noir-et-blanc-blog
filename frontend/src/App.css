@@ -39,3 +39,8 @@
   src: url("./assets/fonts/NationalPark/woff2/NationalPark-ExtraLight.woff2")
     format("woff2");
 }
+
+@font-face {
+  font-family: "Nunito";
+  src: url("./assets/fonts/Nunito/Nunito-Medium.ttf") format("truetype");
+}

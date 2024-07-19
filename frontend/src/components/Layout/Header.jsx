@@ -32,7 +32,7 @@ function Header() {
               alt="cube logo"
             />
             <p className="font-nationalparksemibold leading-[23px] text-[22px] md:text-[35px]">
-              Un blog pour apprendre à coder
+              Un (faux) blog pour apprendre à coder
             </p>
           </div>
         </div>
