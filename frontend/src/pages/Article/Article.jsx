@@ -20,9 +20,7 @@ export default function Article() {
           key={id}
           className="m-8 flex flex-col md:my-10 md:mx-40 max-w-md md:max-w-xl"
         >
-          <h1 className="font-bold text-[40px] font-nationalparkbold">
-            {title}
-          </h1>
+          <h1 className="text-[40px] font-nationalparkbold">{title}</h1>
           <p className="font-nationalparkregular text-[22px]">
             Description Lorem ipsum dolor sit amet, consectetur adipiscing elit,
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

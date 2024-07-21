@@ -20,7 +20,7 @@ export default function CommentsDisplay({
           comment.commentDate === null &&
           comment.pseudoUser === null
       ) ? (
-        <p className="font-nunito font-light text-lg">
+        <p className="font-nunito font-light text-lg mt-4">
           Aucun commentaire pour le moment
         </p>
       ) : (
@@ -33,7 +33,7 @@ export default function CommentsDisplay({
               pseudoUser,
               nbLike,
             }) => (
-              <div key={commentId} className="my-2 py-2">
+              <div key={commentId} className="my-2 py-1">
                 <div className="flex flex-col-3 gap-2 font-nationalparkregular">
                   <p className="font-victormono">{pseudoUser}</p>
                   <p>le {commentDate}</p>

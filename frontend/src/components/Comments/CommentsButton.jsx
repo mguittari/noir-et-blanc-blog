@@ -17,7 +17,7 @@ export default function Comments({ idArticle }) {
         className={
           !showCommentsArea
             ? `font-arialnarrow font-bold text-2xl border-4 border-black rounded-xl px-2 py-3 mt-4`
-            : `font-arialnarrow font-bold text-2xl border-4 border-black rounded-xl px-2 py-3 mt-4 bg-black text-white`
+            : `font-arialnarrow font-bold text-2xl border-4 border-black rounded-xl px-2 py-3 mt-4 mb-4 bg-black text-white`
         }
       >
         COMMENTAIRES

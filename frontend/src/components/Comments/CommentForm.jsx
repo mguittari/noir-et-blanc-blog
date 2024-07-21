@@ -73,7 +73,7 @@ export default function CommentsForm({ idArticle, onNewComment }) {
         <form onSubmit={handleSubmit}>
           <div>
             <label>
-              <p className="font-nunito font-light text-lg">
+              <p className="font-nunito font-light text-lg mb-2">
                 Écrivez un commentaire
               </p>
               <textarea
