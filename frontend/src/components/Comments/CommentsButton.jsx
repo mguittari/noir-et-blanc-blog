@@ -14,9 +14,13 @@ export default function Comments({ idArticle }) {
       <button
         type="button"
         onClick={handleClick}
-        className="border border-black text-lg rounded-xl px-2 py-3 mt-4 font-nunito font-black md:hover:bg-black md:hover:text-white "
+        className={
+          !showCommentsArea
+            ? `font-arialnarrow font-bold text-2xl border-4 border-black rounded-xl px-2 py-3 mt-4`
+            : `font-arialnarrow font-bold text-2xl border-4 border-black rounded-xl px-2 py-3 mt-4 bg-black text-white`
+        }
       >
-        Commentaires
+        COMMENTAIRES
       </button>
       {showCommentsArea && <CommentsArea idArticle={idArticle} />}
     </div>

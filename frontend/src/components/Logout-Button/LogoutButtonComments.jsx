@@ -32,9 +32,9 @@ export default function LogoutButtonComments() {
       <button
         type="button"
         onClick={() => setShowModal(true)}
-        className="text-blue-800 font-bold"
+        className="font-arialnarrow font-bold text-xl hover:underline hover:decoration-4"
       >
-        Deconnexion
+        Déconnexion
       </button>
       <ModalLogout
         show={showModal}

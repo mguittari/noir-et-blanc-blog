@@ -11,8 +11,6 @@ export default function CommentsDisplay({
   onRefreshLikeCounter,
 }) {
   const { user } = useContext(UserContext);
-  console.info("user-->", user);
-  console.info("comments-->", comments);
   return (
     <div>
       {comments.every(
@@ -22,7 +20,9 @@ export default function CommentsDisplay({
           comment.commentDate === null &&
           comment.pseudoUser === null
       ) ? (
-        <p>Aucun commentaire pour le moment</p>
+        <p className="font-nunito font-light text-lg">
+          Aucun commentaire pour le moment
+        </p>
       ) : (
         <div>
           {comments.map(
@@ -33,10 +33,10 @@ export default function CommentsDisplay({
               pseudoUser,
               nbLike,
             }) => (
-              <div key={commentId}>
-                <div className="flex flex-col-3 gap-2">
-                  <p className="font-bold">{pseudoUser}</p>
-                  <p>{commentDate}</p>
+              <div key={commentId} className="my-2 py-2">
+                <div className="flex flex-col-3 gap-2 font-nationalparkregular">
+                  <p className="font-victormono">{pseudoUser}</p>
+                  <p>le {commentDate}</p>
                   <LikeButton
                     commentId={commentId}
                     onRefreshLikeCounter={onRefreshLikeCounter}
@@ -49,14 +49,18 @@ export default function CommentsDisplay({
                     pseudoUser={pseudoUser}
                   />
                 </div>
-                <p className="whitespace-pre-wrap">{commentContent}</p>
-                <hr />
+                <hr className="border-black" />
+                <p className="whitespace-pre-wrap my-1 font-sans text-lg">
+                  {commentContent}
+                </p>
               </div>
             )
           )}
           {user.message === "isLogged" && (
-            <div className="flex flex-col-2 gap-2">
-              <p>Connecté en tant que {user.user.pseudo} </p>
+            <div className="flex flex-col-2 gap-2 mt-4">
+              <p className="font-nunito font-light text-lg">
+                Connecté en tant que <i>{user.user.pseudo}</i>{" "}
+              </p>
               <LogoutButtonComments />
             </div>
           )}

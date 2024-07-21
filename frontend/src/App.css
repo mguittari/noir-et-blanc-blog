@@ -46,3 +46,23 @@
     url("./assets/fonts/Nunito/Nunito-Medium.ttf") format("truetype"),
     url("./assets/fonts/Nunito/Nunito-Black.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: "catv6";
+  src: url("./assets/fonts/catv-6x12-9/CatV_6x12_9.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "ostrich-sans";
+  src: url("./assets/fonts/OstrichSans-Heavy.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "arial-narrow";
+  src: url("./assets/fonts/ArialNarrow/arial_narrow_7.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "victor-mono";
+  src: url("./assets/fonts/VictorMono/VictorMono-Bold.woff2") format("woff2");
+}

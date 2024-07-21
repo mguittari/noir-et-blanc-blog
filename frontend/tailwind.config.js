@@ -26,6 +26,10 @@ module.exports = {
         nationalparkxbold: ["nationalpark-x-bold", "sans-serif"],
         nationalparkxlight: ["nationalpark-x-light", "sans-serif"],
         nunito: ["nunito", "sans-serif"],
+        catv6: ["catv6", "sans-serif"],
+        ostrichsans: ["ostrich-sans", "sans-serif"],
+        arialnarrow: ["arial-narrow", "sans-serif"],
+        victormono: ["victor-mono", "sans-serif"],
       },
       scale: {
         175: "1.75",

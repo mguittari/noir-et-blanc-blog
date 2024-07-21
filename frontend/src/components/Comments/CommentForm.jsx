@@ -64,14 +64,18 @@ export default function CommentsForm({ idArticle, onNewComment }) {
       !token ||
       token.message === "vous avez été déconnecté" ? (
         <div>
-          <p>Vous devez être connecté pour poster ou liker un commentaire</p>
+          <p className="font-nunito font-light italic text-lg">
+            Vous devez être connecté pour poster ou liker un commentaire
+          </p>
           <CommentsAreaLoginButton />
         </div>
       ) : (
         <form onSubmit={handleSubmit}>
           <div>
             <label>
-              Ecrivez un commentaire
+              <p className="font-nunito font-light text-lg">
+                Écrivez un commentaire
+              </p>
               <textarea
                 name="comment"
                 value={data.comment}
@@ -88,7 +92,7 @@ export default function CommentsForm({ idArticle, onNewComment }) {
             {spaceError && <p className="text-red-600">{spaceError}</p>}
             <button
               type="submit"
-              className="bg-black text-white border border-black py-2 px-4 rounded transition duration-300 hover:bg-white hover:text-black shadow-md"
+              className="bg-black text-white border border-black font-nationalparkbold py-2 px-4 rounded transition duration-300 hover:bg-white hover:text-black shadow-md"
             >
               Publier
             </button>

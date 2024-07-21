@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useContext } from "react";
+import { ImBin } from "react-icons/im";
 import { UserContext } from "../../context/userContext";
 
 export default function DeleteButton({
@@ -34,9 +35,11 @@ export default function DeleteButton({
         console.error("Error:", error);
       });
   };
-  return (
-    <button type="button" onClick={handleClick} className="text-red-700">
-      Bouton Delete
+  return pseudoUser === user.user?.pseudo ? (
+    <button label="bin button" type="button" onClick={handleClick}>
+      <ImBin />
     </button>
+  ) : (
+    ""
   );
 }
