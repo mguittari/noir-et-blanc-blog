@@ -45,55 +45,62 @@ export default function LoginPage() {
       .catch((err) => console.info("err :>>", err));
   };
   return (
-    <div className="flex flex-col justify-center items-center m-8">
-      <h1 className="text-3xl font-serif font-semibold mb-14 bg-black text-white p-4 rounded-xl max-w-md w-full text-center shadow-lg">
-        CONNEXION
-      </h1>
-      <form
-        className="font-serif text-xl border-2 border-black p-8 rounded-xl max-w-md w-full shadow-lg"
-        onSubmit={handleSubmit}
-      >
-        <div className=" flex flex-col items-center mb-4">
-          <label htmlFor="email">Courriel</label>
-          <input
-            className="border border-black h-10 focus:outline-none rounded-md focus:border-2 shadow-md p-2"
-            type="email"
-            id="email"
-            name="email"
-            value={data.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className=" flex flex-col items-center mb-4">
-          <label htmlFor="password">Mot de passe</label>
-          <input
-            className="border border-black h-10 focus:outline-none rounded-md focus:border-2 shadow-md p-2"
-            type="password"
-            id="password"
-            name="password"
-            value={data.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="flex justify-center">
-          <button
-            type="submit"
-            onClick={handleSubmitConnexionButton}
-            className="bg-white text-black border border-black py-2 px-4 mt-2 rounded transition duration-300 hover:bg-black hover:text-white shadow-md"
+    <>
+      <div className="flex justify-center items-center">
+        <h1 className="text-3xl font-nationalparkbold m-8 bg-black text-white p-4 rounded-xl max-w-md w-full text-center shadow-lg">
+          CONNEXION
+        </h1>
+      </div>
+      <div className="flex justify-center">
+        <div className="flex flex-col m-8 border-2 border-black p-8 rounded-xl max-w-md w-full shadow-lg">
+          <form className="font-serif text-xl " onSubmit={handleSubmit}>
+            <div className=" flex flex-col items-center mb-4">
+              <label htmlFor="email" className="font-victormono">
+                Courriel
+              </label>
+              <input
+                className="border border-black h-10 focus:outline-none rounded-md focus:border-2 shadow-md p-2"
+                type="email"
+                id="email"
+                name="email"
+                value={data.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="flex flex-col items-center mb-4">
+              <label htmlFor="password" className="font-victormono">
+                Mot de passe
+              </label>
+              <input
+                className="border border-black h-10 focus:outline-none rounded-md focus:border-2 shadow-md p-2"
+                type="password"
+                id="password"
+                name="password"
+                value={data.password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="flex justify-center">
+              <button
+                type="submit"
+                onClick={handleSubmitConnexionButton}
+                className="bg-white text-black border border-black py-2 px-4 mt-2 rounded transition duration-300 hover:bg-black hover:text-white shadow-md font-nationalparkbold"
+              >
+                {isSubmitting ? "Connexion..." : "Se connecter"}
+              </button>
+            </div>
+          </form>
+          <p className="text-center mt-4 font-nunito">Pas encore inscrit ?</p>
+          <Link
+            to="/signup"
+            className="text-center font-nunito font-bold hover:underline  cursor-pointer flex justify-center text-xl"
           >
-            {isSubmitting ? "Connexion..." : "Se connecter"}
-          </button>
+            Créez votre compte ici
+          </Link>
         </div>
-        <p className="text-center mt-4">Pas encore inscrit ?</p>
-        <Link
-          to="/signup"
-          className="text-center font-semibold hover:underline cursor-pointer flex justify-center"
-        >
-          Créez votre compte ici
-        </Link>
-      </form>
-    </div>
+      </div>
+    </>
   );
 }

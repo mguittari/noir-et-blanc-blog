@@ -32,12 +32,16 @@ export default function ArchivesPage() {
                 alt={`Article n°${id}`}
               />
               <div className="mt-2 text-center">
-                <p className="font-nationalparkbold">{title}</p>
-                <p className="font-nationalparkregular">{publication_date}</p>
+                <p className="font-nationalparkbold md:text-lg">{title}</p>
+                <p className="font-nationalparkregular md:text-lg">
+                  {publication_date}
+                </p>
               </div>
               <div className="flex flex-row items-center mb-2 gap-1">
                 <FaPenAlt className="w-4 h-4" />
-                <p className="font-nationalparksemibold">Mattias Guittari</p>
+                <p className="font-nationalparksemibold md:text-lg">
+                  Mattias Guittari
+                </p>
               </div>
             </div>
           </Link>

@@ -55,7 +55,7 @@ export default function InscriptionPage() {
 
   return (
     <div className="flex flex-col justify-center items-center m-8">
-      <h1 className="text-3xl font-serif font-semibold mb-14 bg-black text-white p-4 rounded-xl max-w-md w-full text-center shadow-lg">
+      <h1 className="text-3xl font-nationalparkbold mb-14 bg-black text-white p-4 rounded-xl max-w-md w-full text-center shadow-lg">
         INSCRIPTION
       </h1>
       <form
@@ -63,7 +63,9 @@ export default function InscriptionPage() {
         onSubmit={handleSubmit}
       >
         <div className=" flex flex-col items-center mb-4">
-          <label htmlFor="pseudo">Pseudo</label>
+          <label htmlFor="pseudo" className="font-victormono">
+            Pseudo
+          </label>
           <input
             className="border border-black h-10 focus:outline-none rounded-md focus:border-2 shadow-md p-2"
             type="text"
@@ -84,7 +86,9 @@ export default function InscriptionPage() {
         )}
 
         <div className=" flex flex-col items-center mb-4">
-          <label htmlFor="email">Courriel</label>
+          <label htmlFor="email" className="font-victormono">
+            Courriel
+          </label>
           <input
             className="border border-black h-10 focus:outline-none rounded-md focus:border-2 shadow-md p-2"
             type="email"
@@ -102,7 +106,9 @@ export default function InscriptionPage() {
         )}
 
         <div className=" flex flex-col items-center mb-4">
-          <label htmlFor="password">Mot de passe</label>
+          <label htmlFor="password" className="font-victormono">
+            Mot de passe
+          </label>
           <input
             className="border border-black h-10 focus:outline-none rounded-md focus:border-2 shadow-md p-2"
             type="password"
@@ -121,7 +127,7 @@ export default function InscriptionPage() {
         <div className="flex justify-center">
           <button
             type="submit"
-            className="bg-white text-black border border-black py-2 px-4 mt-2 rounded transition duration-300 hover:bg-black hover:text-white shadow-md"
+            className="bg-white text-black border border-black py-2 px-4 mt-2 rounded transition duration-300 hover:bg-black hover:text-white shadow-md font-nationalparkbold"
           >
             S'inscrire
           </button>

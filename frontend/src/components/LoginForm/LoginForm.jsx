@@ -50,10 +50,12 @@ export default function LoginForm({ onClick, show, setShow }) {
     <div className="flex flex-col justify-center items-center">
       <form className="font-serif text-xl" onSubmit={handleSubmit}>
         <div className=" flex flex-col items-center mb-4">
-          <h1 className="text-xl font-serif font-semibold mb-7 bg-black text-white p-4 max-w-md w-full text-center shadow-lg rounded-xl">
+          <h1 className="text-xl font-nationalparkbold mb-7 bg-black text-white p-4 max-w-md w-full text-center shadow-lg rounded-xl">
             CONNEXION
           </h1>
-          <label htmlFor="email">Courriel</label>
+          <label htmlFor="email" className="font-victormono">
+            Courriel
+          </label>
           <input
             className="border border-black h-10 focus:outline-none rounded-md focus:border-2 shadow-md p-2"
             type="email"
@@ -65,7 +67,9 @@ export default function LoginForm({ onClick, show, setShow }) {
           />
         </div>
         <div className=" flex flex-col items-center mb-4">
-          <label htmlFor="password">Mot de passe</label>
+          <label htmlFor="password" className="font-victormono">
+            Mot de passe
+          </label>
           <input
             className="border border-black h-10 focus:outline-none rounded-md focus:border-2 shadow-md p-2"
             type="password"
@@ -80,29 +84,29 @@ export default function LoginForm({ onClick, show, setShow }) {
           <button
             type="submit"
             onClick={handleSubmitConnexionButton}
-            className="bg-white text-black border border-black py-2 px-4 mt-2 rounded transition duration-300 hover:bg-black hover:text-white shadow-md"
+            className="bg-white text-black border border-black py-2 px-4 mt-2 rounded transition duration-300 hover:bg-black hover:text-white shadow-md font-nationalparkbold"
           >
             {isSubmitting ? "Connexion..." : "Se connecter"}
           </button>
         </div>
-        <div className="flex flex-col gap-2">
-          <p className="text-center mt-4">Pas encore inscrit ?</p>
-          <Link
-            to="/signup"
-            className="text-center font-semibold hover:underline cursor-pointer flex justify-center"
-          >
-            Créez votre compte ici
-          </Link>
-          <button
-            label="croix de fermeture"
-            type="button"
-            onClick={onClick}
-            className="flex justify-center mt-4 md:transition-transform md:hover:scale-110 md:cursor-pointer"
-          >
-            <ImCross />
-          </button>
-        </div>
       </form>
+      <div className="flex flex-col gap-1">
+        <p className="text-center mt-4 font-nunito">Pas encore inscrit ?</p>
+        <Link
+          to="/signup"
+          className="text-center font-nunito font-bold hover:underline  cursor-pointer flex justify-center text-xl"
+        >
+          Créez votre compte ici
+        </Link>
+        <button
+          label="croix de fermeture"
+          type="button"
+          onClick={onClick}
+          className="flex justify-center mt-4 md:transition-transform md:hover:scale-110 md:cursor-pointer"
+        >
+          <ImCross />
+        </button>
+      </div>
     </div>
   );
 }

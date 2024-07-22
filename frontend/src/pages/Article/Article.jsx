@@ -46,7 +46,7 @@ export default function Article() {
           <p className="mb-6 mt-2 font-nationalparkregular italic text-[20px]">
             Petite légende à propos de l'image
           </p>
-          <div className="font-nunito font-medium text-md md:text-xl">
+          <div className="font-nunito text-lg md:text-xl">
             <p className="mb-4">
               {content} : Lorem ipsum dolor sit amet, consectetur adipiscing
               elit. Aliquam libero nisl, maximus nec urna nec, lacinia congue
