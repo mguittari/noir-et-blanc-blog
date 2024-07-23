@@ -99,7 +99,7 @@ export default function LoginPage() {
           <p className="text-center mt-4 font-nunito">Pas encore inscrit ?</p>
           <Link
             to="/signup"
-            className="text-center font-nunito font-bold hover:underline  cursor-pointer flex justify-center text-xl"
+            className="text-center font-arialnarrow font-bold hover:underline  cursor-pointer flex justify-center text-xl"
           >
             Créez votre compte ici
           </Link>
