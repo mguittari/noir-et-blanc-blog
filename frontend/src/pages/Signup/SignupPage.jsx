@@ -80,7 +80,7 @@ export default function InscriptionPage() {
           />
         </div>
         {errorMessages.pseudo && (
-          <div className="text-black text-center mb-2 border-2 border-black text-sm p-2 rounded-md">
+          <div className="font-victormono text-black text-center mb-2 border-2 border-black text-sm p-2 rounded-md">
             {errorMessages.pseudo}
           </div>
         )}
@@ -100,7 +100,7 @@ export default function InscriptionPage() {
           />
         </div>
         {errorMessages.email && (
-          <div className="text-black text-center mb-2 border-2 border-black text-sm p-2 rounded-md">
+          <div className="font-victormono text-black text-center mb-2 border-2 border-black text-sm p-2 rounded-md">
             {errorMessages.email}
           </div>
         )}
@@ -120,7 +120,7 @@ export default function InscriptionPage() {
           />
         </div>
         {errorMessages.password && (
-          <div className="text-black text-center mb-2 border-2 border-black text-sm p-2 rounded-md">
+          <div className="font-victormono text-black text-center mb-2 border-2 border-black text-sm p-2 rounded-md">
             {errorMessages.password}
           </div>
         )}

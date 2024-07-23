@@ -14,7 +14,8 @@ export default function LoginPage() {
     setData({ ...data, [name]: value });
   };
 
-  const [isSubmitting, setIsSubmitting] = useState();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [failMessage, setFailMessage] = useState("");
   const handleSubmitConnexionButton = () => {
     setIsSubmitting(true);
     setTimeout(() => {
@@ -34,6 +35,9 @@ export default function LoginPage() {
       .then((res) => {
         console.info(res);
         if (!res.ok) {
+          setFailMessage(
+            "Courriel et/ou mot de passe incorrect(s), vérifiez votre saisie"
+          );
           throw new Error("Identifiants incorrects");
         }
         return res.json();
@@ -99,6 +103,11 @@ export default function LoginPage() {
           >
             Créez votre compte ici
           </Link>
+          {failMessage && (
+            <p className="font-victormono text-black text-center mt-3 border-2 border-black text-sm p-2 rounded-md">
+              {failMessage}
+            </p>
+          )}
         </div>
       </div>
     </>
