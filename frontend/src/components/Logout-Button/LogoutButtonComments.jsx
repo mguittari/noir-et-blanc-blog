@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context/userContext";
 import ModalLogout from "../Modal/ModalLogout";
@@ -45,7 +44,3 @@ export default function LogoutButtonComments() {
     </div>
   );
 }
-
-LogoutButtonComments.propTypes = {
-  onRefreshLikeCounter: PropTypes.func.isRequired,
-};
