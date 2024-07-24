@@ -8,7 +8,7 @@ Inscription : hachage du mot de passe, impossibilité de choisir un pseudo/email
 
 Connexion : message d'erreur si les données de connexion (email et mot de passe) ne sont pas valide, création d'un token jwt à la validation
 
-![Texte alternatif test](Readme-Pictures/Screen-14.png)
+![Texte alternatif test](Readme-Pictures/Screen-14bis.png)
 ![Texte alternatif test](Readme-Pictures/Screen-15.png)
 
 L'utilisateur peut publier un commentaire sous un article s'il le souhaite. Pour que l'UX soit optimale, j'ai fait en sorte que les commentaires postés s'affichent en temps réel (grâce à un fetch déclenché au submit) sans que l'on ait besoin de rafraichir la page. Pareil pour la suppression. Il est également possible de liker/unliker un commentaire. Le problème que j'ai eu est que je n'ai pas réussi à gérer l'état du bouton like (son apparence change en fonction) autrement qu'avec le localstorage. C'est fonctionnel sur un même et seul navigateur (je like, le bouton se remplit, j'unlike il se vide). La prochaine fois il faudra que je comprenne comment envoyer l'état dans la base de donnée. Ceci dit ça m'a permis de mieux comprendre comment marche le localstorage, donc c'est toujours ça de pris.
