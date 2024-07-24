@@ -40,6 +40,7 @@ export default function WelcomePage() {
           <button
             className="bg-black text-white p-4 rounded-xl transition duration-300 hover:bg-white hover:text-black hover:drop-shadow-[0_7px_1.5px_rgba(0,0,0,0.25)]"
             type="button"
+            disabled
           >
             Mes commentaires
           </button>

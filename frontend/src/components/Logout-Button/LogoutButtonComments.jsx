@@ -1,7 +1,7 @@
+import PropTypes from "prop-types";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context/userContext";
 import ModalLogout from "../Modal/ModalLogout";
-// import ModalLogout from "../Modal/ModalLogout";
 
 export default function LogoutButtonComments() {
   const { setUser, updateToken, token } = useContext(UserContext);
@@ -22,6 +22,7 @@ export default function LogoutButtonComments() {
     })
       .then((res) => res.json())
       .then((res) => {
+        console.info("Response received:", res);
         updateToken(res);
         setUser({});
       })
@@ -44,3 +45,7 @@ export default function LogoutButtonComments() {
     </div>
   );
 }
+
+LogoutButtonComments.propTypes = {
+  onRefreshLikeCounter: PropTypes.func.isRequired,
+};

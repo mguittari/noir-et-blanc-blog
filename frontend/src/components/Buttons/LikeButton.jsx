@@ -48,11 +48,11 @@ export default function LikeButton({ commentId, onRefreshLikeCounter }) {
   return (
     <div className="flex flex-col-2">
       {isLiked ? (
-        <button label="unlike button" type="button" onClick={handleClick}>
+        <button label="like button" type="button" onClick={handleClick}>
           <AiFillLike />
         </button>
       ) : (
-        <button label="like button" type="button" onClick={handleClick}>
+        <button label="unlike button" type="button" onClick={handleClick}>
           <AiOutlineLike />
         </button>
       )}
