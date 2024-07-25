@@ -10,7 +10,7 @@ class ArticleManager extends AbstractManager {
 
   getFirstFourArticles() {
     return this.database.query(
-      `select *, DATE_FORMAT(created_at, '%d-%m-%Y') AS published_at from ${this.table} LIMIT 4`
+      `select *, DATE_FORMAT(created_at, '%d-%m-%Y') AS published_at from ${this.table} ORDER BY created_at DESC LIMIT 4`
     );
   }
 

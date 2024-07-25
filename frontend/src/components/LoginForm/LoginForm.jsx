@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { ImCross } from "react-icons/im";
 import PropTypes from "prop-types";
 import { UserContext } from "../../context/userContext";
+import CommentsAreaSignupButton from "../Buttons/CommentsAreaSignupButton";
 
 export default function LoginForm({ onClick, show, setShow }) {
   const { updateToken } = useContext(UserContext);
@@ -16,7 +16,21 @@ export default function LoginForm({ onClick, show, setShow }) {
     setData({ ...data, [name]: value });
   };
 
+  const resetData = () => {
+    setData({
+      email: "",
+      password: "",
+    });
+  };
+
+  const handleClose = () => {
+    resetData();
+    onClick();
+  };
+
   const [isSubmitting, setIsSubmitting] = useState();
+  const [failMessage, setFailMessage] = useState("");
+
   const handleSubmitConnexionButton = () => {
     setIsSubmitting(true);
     setTimeout(() => {
@@ -36,6 +50,9 @@ export default function LoginForm({ onClick, show, setShow }) {
       .then((res) => {
         console.info(res);
         if (!res.ok) {
+          setFailMessage(
+            "Courriel et/ou mot de passe incorrect(s), vérifiez votre saisie"
+          );
           throw new Error("Identifiants incorrects");
         }
         return res.json();
@@ -48,12 +65,14 @@ export default function LoginForm({ onClick, show, setShow }) {
   };
   return (
     <div className="flex flex-col justify-center items-center">
+      <h1 className="text-3xl font-nationalparkbold mb-7 bg-black text-white p-4 max-w-md md:max-w-lg w-full text-center shadow-lg rounded-xl">
+        CONNEXION
+      </h1>
       <form className="font-serif text-xl" onSubmit={handleSubmit}>
         <div className=" flex flex-col items-center mb-4">
-          <h1 className="text-xl font-serif font-semibold mb-7 bg-black text-white p-4 max-w-md w-full text-center shadow-lg rounded-xl">
-            CONNEXION
-          </h1>
-          <label htmlFor="email">Courriel</label>
+          <label htmlFor="email" className="font-victormono">
+            Courriel
+          </label>
           <input
             className="border border-black h-10 focus:outline-none rounded-md focus:border-2 shadow-md p-2"
             type="email"
@@ -65,7 +84,9 @@ export default function LoginForm({ onClick, show, setShow }) {
           />
         </div>
         <div className=" flex flex-col items-center mb-4">
-          <label htmlFor="password">Mot de passe</label>
+          <label htmlFor="password" className="font-victormono">
+            Mot de passe
+          </label>
           <input
             className="border border-black h-10 focus:outline-none rounded-md focus:border-2 shadow-md p-2"
             type="password"
@@ -80,29 +101,29 @@ export default function LoginForm({ onClick, show, setShow }) {
           <button
             type="submit"
             onClick={handleSubmitConnexionButton}
-            className="bg-white text-black border border-black py-2 px-4 mt-2 rounded transition duration-300 hover:bg-black hover:text-white shadow-md"
+            className="bg-white text-black border border-black py-2 px-4 mt-2 rounded transition duration-300 hover:bg-black hover:text-white shadow-md font-nationalparkbold"
           >
             {isSubmitting ? "Connexion..." : "Se connecter"}
           </button>
         </div>
-        <div className="flex flex-col gap-2">
-          <p className="text-center mt-4">Pas encore inscrit ?</p>
-          <Link
-            to="/signup"
-            className="text-center font-semibold hover:underline cursor-pointer flex justify-center"
-          >
-            Créez votre compte ici
-          </Link>
-          <button
-            label="croix de fermeture"
-            type="button"
-            onClick={onClick}
-            className="flex justify-center mt-4 md:transition-transform md:hover:scale-110 md:cursor-pointer"
-          >
-            <ImCross />
-          </button>
-        </div>
       </form>
+      {failMessage && (
+        <p className="font-victormono text-black text-center mt-3 border-2 border-black text-sm p-2 rounded-md">
+          {failMessage}
+        </p>
+      )}
+      <div className="flex flex-col gap-1">
+        <p className="text-center mt-4 font-nunito">Pas encore inscrit ?</p>
+        <CommentsAreaSignupButton />
+      </div>
+      <button
+        label="croix de fermeture"
+        type="button"
+        onClick={handleClose}
+        className="flex justify-center mt-4 md:transition-transform md:hover:scale-110 md:cursor-pointer border-4 border-black rounded-full p-2"
+      >
+        <ImCross />
+      </button>
     </div>
   );
 }

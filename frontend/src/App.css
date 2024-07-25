@@ -9,3 +9,60 @@
 .fade-in.show {
   @apply opacity-100;
 }
+
+@font-face {
+  font-family: "nationalpark-regular";
+  src: url("./assets/fonts/NationalPark/woff2/NationalPark-Regular.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "nationalpark-semibold";
+  src: url("./assets/fonts/NationalPark/woff2/NationalPark-SemiBold.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "nationalpark-bold";
+  src: url("./assets/fonts/NationalPark/woff2/NationalPark-Bold.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "nationalpark-x-bold";
+  src: url("./assets/fonts/NationalPark/woff2/NationalPark-ExtraBold.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "nationalpark-x-light";
+  src: url("./assets/fonts/NationalPark/woff2/NationalPark-ExtraLight.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Nunito";
+  src:
+    url("./assets/fonts/Nunito/Nunito-Medium.ttf") format("truetype"),
+    url("./assets/fonts/Nunito/Nunito-Black.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "catv6";
+  src: url("./assets/fonts/catv-6x12-9/CatV_6x12_9.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "ostrich-sans";
+  src: url("./assets/fonts/OstrichSans-Heavy.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "arial-narrow";
+  src: url("./assets/fonts/ArialNarrow/arial_narrow_7.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "victor-mono";
+  src: url("./assets/fonts/VictorMono/VictorMono-Bold.woff2") format("woff2");
+}

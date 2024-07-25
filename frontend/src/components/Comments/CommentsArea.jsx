@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import { useEffect, useState } from "react";
 import CommentForm from "./CommentForm";
 import CommentsDisplay from "./CommentsDisplay";
@@ -14,6 +15,8 @@ export default function CommentsArea({ idArticle }) {
         console.info("data -->", data);
       });
   };
+
+  console.info("comments", comments);
 
   useEffect(() => {
     fetchComments();

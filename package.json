@@ -33,6 +33,7 @@
     "lint-staged": "^13.2.3"
   },
   "dependencies": {
-    "react-hook-form": "^7.51.4"
+    "react-hook-form": "^7.51.4",
+    "victormono": "^1.5.6"
   }
 }

@@ -3,8 +3,8 @@ import RandomButton from "../Buttons/RandomButton";
 
 export default function NavDesktop() {
   return (
-    <ul className="flex flex-row text-[35px] gap-2 ml-4">
-      <li>
+    <ul className="flex flex-row text-[35px] gap-2 ml-4 font-nationalparksemibold">
+      <li className="hover:underline hover:decoration-4">
         <Link to="/about">À propos</Link>
       </li>
       <li>|</li>
@@ -12,7 +12,7 @@ export default function NavDesktop() {
         <RandomButton />
       </li>
       <li>|</li>
-      <li>
+      <li className="hover:underline hover:decoration-4">
         <Link to="/archives">Archives</Link>
       </li>
     </ul>

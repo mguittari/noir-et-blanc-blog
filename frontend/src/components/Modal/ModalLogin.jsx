@@ -10,7 +10,7 @@ export default function ModalLogin({ show, setShow, onClick }) {
       <div
         className={`${
           show
-            ? "z-20 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white border-2 border-black rounded-2xl shadow-lg py-14 px-20 md:px-36"
+            ? "z-20 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white border-2 border-black rounded-2xl shadow-lg py-14 px-14 md:px-36"
             : "hidden"
         }`}
       >

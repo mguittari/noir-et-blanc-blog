@@ -8,11 +8,11 @@ export default function ModalLogout({ show, handleClick, handleCancel }) {
       <div
         className={`${
           show
-            ? "z-20 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white border-2 border-black rounded-2xl shadow-lg py-14 px-12 md:px-20"
+            ? "z-20 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white border-2 border-black rounded-2xl shadow-lg py-14 px-12 md:px-20 font-nationalparkbold"
             : "hidden"
         }`}
       >
-        <p className="text-center mb-4">
+        <p className="text-center mb-8">
           Voulez-vous vraiment vous déconnecter ?
         </p>
         <div className="flex flex-col-2 gap-4 text-center justify-center">

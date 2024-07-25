@@ -15,10 +15,14 @@ export default function UpdatePasswordPage() {
   const [failMessage, setFailMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [samePasswordErrorMsg, setSamePasswordErrorMsg] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
+    if (data.oldPassword === data.newPassword) {
+      setSamePasswordErrorMsg("");
+    }
   };
 
   const handleClickReturn = () => {
@@ -34,6 +38,9 @@ export default function UpdatePasswordPage() {
     }
 
     if (data.oldPassword === data.newPassword) {
+      setSamePasswordErrorMsg(
+        "Vous ne pouvez pas changer pour le même mot de passe"
+      );
       console.error("Vous ne pouvez pas changer pour le même mot de passe");
       return;
     }
@@ -55,10 +62,11 @@ export default function UpdatePasswordPage() {
         return res.json(); // Convertir la réponse en JSON
       })
       .then((responseData) => {
-        console.info("Réponse du serveur:", responseData); // Utiliser les données JSON
+        // Utiliser les données JSON
         if (responseData.errors) {
           // Si des erreurs existent, utilisez map pour les traiter
           responseData.errors.map((error) => {
+            console.info(responseData.erros);
             setFailMessage(error.message);
             setIsSubmitting(false);
             return null; // Vous pouvez retourner null ou tout autre valeur si nécessaire
@@ -67,6 +75,7 @@ export default function UpdatePasswordPage() {
           setSuccessMessage("Mise à jour réussie !");
           setFailMessage("");
           setIsSubmitting(true);
+          setSamePasswordErrorMsg("");
         }
       })
       .catch((error) => {
@@ -74,8 +83,8 @@ export default function UpdatePasswordPage() {
       });
   };
   return (
-    <div className="flex flex-col justify-center items-center my-14 mx-8">
-      <h1 className="text-3xl font-serif font-semibold mb-14 text-white bg-black p-4 rounded-xl max-w-md w-full text-center shadow-lg">
+    <div className="flex flex-col justify-center items-center m-8">
+      <h1 className="text-3xl font-nationalparkbold mb-14 text-white bg-black p-4 rounded-xl max-w-md w-full text-center shadow-lg">
         MODIFICATION DU MOT DE PASSE
       </h1>
 
@@ -84,7 +93,9 @@ export default function UpdatePasswordPage() {
         onSubmit={handleSubmit}
       >
         <div className=" flex flex-col items-center mb-6">
-          <label htmlFor="oldPassword">Ancien mot de passe</label>
+          <label htmlFor="oldPassword" className="font-victormono">
+            Ancien mot de passe
+          </label>
           <input
             className="border border-black h-10 focus:outline-none rounded-md focus:border-2 shadow-md p-2"
             type="text"
@@ -96,7 +107,9 @@ export default function UpdatePasswordPage() {
           />
         </div>
         <div className=" flex flex-col items-center mb-6">
-          <label htmlFor="newPassword">Nouveau mot de passe</label>
+          <label htmlFor="newPassword" className="font-victormono">
+            Nouveau mot de passe
+          </label>
           <input
             className="border border-black h-10 focus:outline-none rounded-md focus:border-2 shadow-md p-2"
             type="text"
@@ -108,7 +121,9 @@ export default function UpdatePasswordPage() {
           />
         </div>
         <div className=" flex flex-col items-center mb-6">
-          <label htmlFor="confirmNewPassword">Confirmation</label>
+          <label htmlFor="confirmNewPassword" className="font-victormono">
+            Confirmation
+          </label>
           <input
             className="border border-black h-10 focus:outline-none rounded-md focus:border-2 shadow-md p-2"
             type="text"
@@ -124,8 +139,8 @@ export default function UpdatePasswordPage() {
             type="submit"
             className={
               isSubmitting
-                ? "bg-white text-black border border-black py-2 px-4 rounded shadow-md text-[16px]"
-                : `bg-black text-white border border-black py-2 px-4 rounded transition duration-300 hover:bg-white hover:text-black shadow-md text-[16px]`
+                ? "bg-white text-black border border-black py-2 px-4 rounded shadow-md text-[16px] font-nationalparkbold"
+                : `bg-black text-white border border-black py-2 px-4 rounded transition duration-300 hover:bg-white hover:text-black shadow-md text-[16px] font-nationalparkbold`
             }
             disabled={isSubmitting}
           >
@@ -134,7 +149,9 @@ export default function UpdatePasswordPage() {
         </div>
         {successMessage && (
           <div className="flex flex-col justify-center items-center gap-2">
-            <div className="text-black text-center mt-4">{successMessage}</div>
+            <div className="text-black text-center mt-4 font-victormono">
+              {successMessage}
+            </div>
             <button type="button" label="button" onClick={handleClickReturn}>
               <img
                 src={arrowReturn}
@@ -145,18 +162,18 @@ export default function UpdatePasswordPage() {
           </div>
         )}
         {failMessage && (
-          <p className="text-black text-center mb-2 border-2 border-black text-sm p-2 rounded-md mt-4">
+          <p className="text-black text-center mb-2 border-2 border-black text-sm p-2 rounded-md mt-4 font-victormono">
             {failMessage}
           </p>
         )}
         {data.newPassword !== data.confirmNewPassword && (
-          <p className="text-black text-center mt-4 border-2 border-black text-sm p-2 rounded-md">
+          <p className="text-black text-center mt-4 border-2 border-black text-sm p-2 rounded-md font-victormono">
             Les nouveaux mots de passe ne correspondent pas
           </p>
         )}
-        {data.oldPassword === data.newPassword && (
-          <p className="text-black text-center mt-4 border-2 border-black text-sm p-2 rounded-md">
-            Vous ne pouvez pas changer pour le même mot de passe
+        {samePasswordErrorMsg && (
+          <p className="text-black text-center mt-4 border-2 border-black text-sm p-2 rounded-md font-victormono">
+            {samePasswordErrorMsg}
           </p>
         )}
       </form>

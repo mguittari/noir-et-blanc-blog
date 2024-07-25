@@ -69,9 +69,9 @@ export default function UpdateProfilePage() {
   };
 
   return (
-    <div className="flex flex-col m-2 justify-center items-center my-14 mx-8">
-      <h1 className="text-3xl font-serif font-semibold mb-14 text-white bg-black p-4 rounded-xl max-w-md w-full text-center shadow-lg">
-        MODIFICATIONS
+    <div className="flex flex-col justify-center items-center m-8">
+      <h1 className="text-3xl font-nationalparkbold mb-14 text-white bg-black p-4 rounded-xl max-w-md w-full text-center shadow-lg">
+        MODIFICATION DU PSEUDO
       </h1>
 
       <form
@@ -79,7 +79,9 @@ export default function UpdateProfilePage() {
         onSubmit={handleSubmitInfoUser}
       >
         <div className=" flex flex-col items-center mb-6">
-          <label htmlFor="pseudo">Pseudo</label>
+          <label htmlFor="pseudo" className="font-victormono">
+            Pseudo
+          </label>
           <input
             className="border border-black h-10 focus:outline-none rounded-md focus:border-2 shadow-md p-2"
             type="text"
@@ -98,8 +100,8 @@ export default function UpdateProfilePage() {
             type="submit"
             className={
               isSubmitting || isDisabled
-                ? "bg-white text-black border border-black py-2 px-4 rounded shadow-md text-[16px]"
-                : `bg-black text-white border border-black py-2 px-4 rounded transition duration-300 hover:bg-white hover:text-black shadow-md text-[16px]`
+                ? "bg-white text-black border border-black py-2 px-4 rounded shadow-md text-[16px] font-nationalparkbold"
+                : `bg-black text-white border border-black py-2 px-4 rounded transition duration-300 hover:bg-white hover:text-black shadow-md text-[16px] font-nationalparkbold`
             }
             disabled={isSubmitting || isDisabled}
           >
@@ -109,7 +111,7 @@ export default function UpdateProfilePage() {
         <div className="flex flex-col justify-center items-center gap-2">
           {successMessage && (
             <>
-              <div className="text-black text-center mt-4">
+              <div className="text-black text-center mt-4 font-victormono">
                 {successMessage}
               </div>
               <button type="button" label="button" onClick={handleClickReturn}>
@@ -122,7 +124,7 @@ export default function UpdateProfilePage() {
             </>
           )}
           {failMessage && (
-            <p className="text-black text-center mb-2 border-2 border-black text-sm p-2 rounded-md mt-4">
+            <p className="text-black text-center mb-2 border-2 border-black text-sm p-2 rounded-md mt-4 font-victormono">
               {failMessage}
             </p>
           )}
@@ -131,7 +133,7 @@ export default function UpdateProfilePage() {
           <Link
             to="/update-password"
             type="button"
-            className="border border-black flex items-center text-center rounded py-2 px-4 bg-black text-white transition duration-300 hover:bg-white hover:text-black shadow-md text-[16px] "
+            className="border border-black flex items-center text-center rounded py-2 px-4 bg-black text-white transition duration-300 hover:bg-white hover:text-black shadow-md text-[16px] font-nationalparkbold"
           >
             Mise à jour du mot de passe
           </Link>
