@@ -1,12 +1,20 @@
 import PropTypes from "prop-types";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { UserContext } from "../../context/userContext";
 
 export default function LikeButton({ commentId, onRefreshLikeCounter }) {
   const { token, user } = useContext(UserContext);
+  const localStorageKey = `isLiked_${commentId}_${user.user?.id_user}`;
 
   const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    const storedLikeStatus = localStorage.getItem(localStorageKey);
+    if (storedLikeStatus) {
+      setIsLiked(JSON.parse(storedLikeStatus));
+    }
+  }, [localStorageKey]);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -23,19 +31,14 @@ export default function LikeButton({ commentId, onRefreshLikeCounter }) {
       },
       body: JSON.stringify({
         id_comment: commentId,
-        id_user: user.user?.id_user,
+        id_user: user.user?.id,
       }),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.info("data post", data);
-        if (data.message === "Commentaire liké") {
-          onRefreshLikeCounter();
-          setIsLiked(true);
-        } else {
-          setIsLiked(false);
-          onRefreshLikeCounter();
-        }
+      .then(() => {
+        onRefreshLikeCounter();
+        const newIsLiked = !isLiked;
+        setIsLiked(newIsLiked);
+        localStorage.setItem(localStorageKey, JSON.stringify(newIsLiked));
       })
       .catch((error) => {
         console.error("Error:", error);

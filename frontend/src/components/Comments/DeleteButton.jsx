@@ -29,6 +29,7 @@ export default function DeleteButton({
       .then((res) => {
         console.info("res", res);
         onDeleteComment();
+        localStorage.removeItem(`isLiked_${commentId}_${user.user?.id_user}`);
       })
       .catch((error) => {
         console.error("Error:", error);
