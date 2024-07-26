@@ -1,5 +1,3 @@
-# Black and White Blog
-
 ![Page d'accueil](Readme-Pictures/Screen-8.png)
 
 Avec Noir et Blanc, j'ai voulu développer un site responsive de A à Z en y intégrant un maximum de fonctionnalités. Il s'agit d'un blog personnel de libre expression dans lequel il possible, pour un utilisateur, de lire des articles et d'y publier des commentaires. Pour cette dernière fonctionnalité, l'utilisateur doit passer par une inscription puis une authentification.
@@ -17,13 +15,22 @@ L'utilisateur peut publier un commentaire sous un article s'il le souhaite. Pour
 
 ![Page d'accueil responsive](Readme-Pictures/Screen-9.png)
 
-|---------------------------------------------------------------------------------------|
+-
+-
+-
+-
 
 ![Page d'accueil responsive](Readme-Pictures/Screen-10.png)
 
 Commentaires : incrémentation/décrémentation des likes dans la base de données, changement de couleur pour un commentaire liké (retour à l'état initial lors du unlike), impossibilité de supprimer le commentaire d'un autre utilisateur (masquage du bouton delete en css), formatage du texte (limite de caractères, effacement des blancs au submit, impossibilité de poster un commentaire vide), affichage de la mention "aucun commentaire pour le moment" si 0 commentaires postés, impossibilité de poster si non connecté, possibilité de se connecter/déconnecter et de s'inscrire directement depuis l'espace commentaire
 
 ![Aucun commentaire pour le moment](Readme-Pictures/Screen-17.png)
+
+-
+-
+-
+-
+
 ![Commentaires avec like et delete](Readme-Pictures/Screen-16.png)
 
 J'ai créé un bouton random-article qui permet de naviguer sur un article au hasard quand on clique dessus. J'ai un peu galéré à concevoir ce bouton et d'ailleurs la solution que j'ai trouvée n'est peut-être pas idéale en terme de performance car les id des articles (récupérés pour choisir un nombre aléatoire) sont fetchés à chaque rendu du composant header, et non quand on clique sur le bouton, mais peut-être que c'est comme ça qu'on fait finalement.
