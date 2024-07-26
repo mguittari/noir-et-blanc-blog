@@ -17,7 +17,7 @@ L'utilisateur peut publier un commentaire sous un article s'il le souhaite. Pour
 
 ![Page d'accueil responsive](Readme-Pictures/Screen-9.png)
 
-----------------------------------------------------------------------------------|
+|---------------------------------------------------------------------------------------|
 
 ![Page d'accueil responsive](Readme-Pictures/Screen-10.png)
 
