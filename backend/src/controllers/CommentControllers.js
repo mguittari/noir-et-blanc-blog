@@ -39,7 +39,22 @@ const deleteComment = async (req, res) => {
   }
 };
 
+const getLikesOfComments = async (req, res) => {
+  try {
+    const [result] = await tables.user_like.getLikes();
+    if (result.length) {
+      console.info(result);
+      res.status(200).json(result);
+    } else {
+      res.status(404).send(false);
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   postComment,
   deleteComment,
+  getLikesOfComments,
 };
