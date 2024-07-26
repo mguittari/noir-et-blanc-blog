@@ -26,6 +26,10 @@ router.get(
   articleControllers.getAllArticleTitlesOrderByPublicationDate
 );
 router.get("/article/:id/comments", articleControllers.getAllCommentsByArticle);
+// router.get(
+//   "/comment/:id_comment/isliked",
+//   commentControllers.getLikesOfComments
+// );
 
 // routes utilisateur
 

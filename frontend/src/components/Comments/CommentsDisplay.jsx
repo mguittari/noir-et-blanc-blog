@@ -56,14 +56,14 @@ export default function CommentsDisplay({
               </div>
             )
           )}
-          {user.message === "isLogged" && (
-            <div className="flex flex-col-2 gap-2 mt-4">
-              <p className="font-nunito font-light text-lg">
-                Connecté en tant que <i>{user.user.pseudo}</i>{" "}
-              </p>
-              <LogoutButtonComments />
-            </div>
-          )}
+        </div>
+      )}
+      {user.message === "isLogged" && (
+        <div className="flex flex-col-2 gap-2 mt-4">
+          <p className="font-nunito font-light text-lg">
+            Connecté en tant que <i>{user.user.pseudo}</i>{" "}
+          </p>
+          <LogoutButtonComments />
         </div>
       )}
     </div>

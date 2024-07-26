@@ -12,11 +12,8 @@ export default function CommentsArea({ idArticle }) {
       .then((res) => res.json())
       .then((data) => {
         setComments(data);
-        console.info("data -->", data);
       });
   };
-
-  console.info("comments", comments);
 
   useEffect(() => {
     fetchComments();
