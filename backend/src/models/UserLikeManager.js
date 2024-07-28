@@ -29,20 +29,20 @@ class UserLikeManager extends AbstractManager {
     );
   }
 
-  // getLikes(id_comment) {
-  //   return this.database.query(
-  //     `SELECT
-  //      c.id AS id_comment,
-  //      c.content AS comment_text,
-  //      u.id AS id_user,
-  //      u.pseudo AS user_pseudo
-  //      FROM user_like ul
-  //      JOIN user u ON ul.id_user = u.id
-  //      JOIN comment c ON ul.id_comment = c.id
-  //      WHERE id_comment = ?`,
-  //     [id_comment]
-  //   );
-  // }
+  getLikes(id_comment) {
+    return this.database.query(
+      `SELECT
+       ul.id AS id_like,
+       ul.id_user,
+       ul.id_comment,
+       u.pseudo AS who_likes
+      FROM ${this.table} as ul
+      JOIN user as u
+      ON ul.id_user = u.id
+       WHERE id_comment = ?`,
+      [id_comment]
+    );
+  }
 }
 
 module.exports = UserLikeManager;

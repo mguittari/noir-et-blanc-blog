@@ -5,16 +5,24 @@ import { UserContext } from "../../context/userContext";
 
 export default function LikeButton({ commentId, onRefreshLikeCounter }) {
   const { token, user } = useContext(UserContext);
-  const localStorageKey = `isLiked_${commentId}_${user.user?.id_user}`;
 
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
-    const storedLikeStatus = localStorage.getItem(localStorageKey);
-    if (storedLikeStatus) {
-      setIsLiked(JSON.parse(storedLikeStatus));
+    if (user.message === "isLogged") {
+      fetch(`http://localhost:3310/api/comment/${commentId}/isliked`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.info("data", data);
+          if (data.some((a) => a.id_user === user.user.id_user)) {
+            setIsLiked(true);
+          }
+        })
+        .catch((error) => error);
+    } else {
+      setIsLiked(false);
     }
-  }, [localStorageKey]);
+  }, [user]);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -38,7 +46,6 @@ export default function LikeButton({ commentId, onRefreshLikeCounter }) {
         onRefreshLikeCounter();
         const newIsLiked = !isLiked;
         setIsLiked(newIsLiked);
-        localStorage.setItem(localStorageKey, JSON.stringify(newIsLiked));
       })
       .catch((error) => {
         console.error("Error:", error);
