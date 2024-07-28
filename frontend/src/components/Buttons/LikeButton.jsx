@@ -13,14 +13,10 @@ export default function LikeButton({ commentId, onRefreshLikeCounter }) {
       fetch(`http://localhost:3310/api/comment/${commentId}/isliked`)
         .then((res) => res.json())
         .then((data) => {
-          let liked = false;
-          data.map((a) => {
-            if (a.id_user === user.user.id_user) {
-              liked = true;
-            }
-            return null;
-          });
-          setIsLiked(liked);
+          console.info("data", data);
+          if (data.some((a) => a.id_user === user.user.id_user)) {
+            setIsLiked(true);
+          }
         })
         .catch((error) => error);
     } else {
