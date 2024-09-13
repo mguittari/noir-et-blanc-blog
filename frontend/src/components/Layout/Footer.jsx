@@ -110,16 +110,16 @@ function Footer() {
             Articles
           </h2>
           <li className="hover:underline">
-            <Link to="/article/17">Article 1</Link>
+            <Link to="/article/1">Article 1</Link>
           </li>
           <li className="hover:underline">
-            <Link to="/article/18">Article 2</Link>
+            <Link to="/article/2">Article 2</Link>
           </li>
           <li className="hover:underline">
-            <Link to="/article/19">Article 3</Link>
+            <Link to="/article/3">Article 3</Link>
           </li>
           <li className="hover:underline">
-            <Link to="/article/20">Article 4</Link>
+            <Link to="/article/4">Article 4</Link>
           </li>
           {/* <li>
             <Link to="https://httpstat.us/404">Article 5</Link>

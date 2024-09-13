@@ -1,4 +1,4 @@
-const tables = require("../tables"); // Assurez-vous d'importer correctement vos fonctions pour accéder à la base de données
+const tables = require("../tables");
 
 const validateUser = async (req, res, next) => {
   const { pseudo, email, password } = req.body;
@@ -9,7 +9,6 @@ const validateUser = async (req, res, next) => {
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-  // Validation du pseudo
   if (pseudo === "") {
     errors.push({ field: "pseudo", message: "Ce champ est requis" });
   } else if (pseudo.length >= 21) {

@@ -59,17 +59,15 @@ export default function UpdatePasswordPage() {
           setIsSubmitting(false);
           throw new Error(setFailMessage("Vérifiez votre ancien mot de passe"));
         }
-        return res.json(); // Convertir la réponse en JSON
+        return res.json();
       })
       .then((responseData) => {
-        // Utiliser les données JSON
         if (responseData.errors) {
-          // Si des erreurs existent, utilisez map pour les traiter
           responseData.errors.map((error) => {
             console.info(responseData.erros);
             setFailMessage(error.message);
             setIsSubmitting(false);
-            return null; // Vous pouvez retourner null ou tout autre valeur si nécessaire
+            return null;
           });
         } else {
           setSuccessMessage("Mise à jour réussie !");
@@ -144,7 +142,7 @@ export default function UpdatePasswordPage() {
             }
             disabled={isSubmitting}
           >
-            Mettre à jour mon mot de passe
+            Valider
           </button>
         </div>
         {successMessage && (

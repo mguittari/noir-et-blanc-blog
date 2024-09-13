@@ -13,9 +13,7 @@ const hashEditPassword = async (req, res, next) => {
 
     if (oldPassword) {
       const id = req.payload;
-
       const [user] = await tables.user.getUserById(id);
-      console.info("user -->", user);
       if (user.length) {
         const isVerify = await argon2.verify(
           user[0].hashed_password,

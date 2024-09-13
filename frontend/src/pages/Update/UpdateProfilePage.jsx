@@ -50,7 +50,6 @@ export default function UpdateProfilePage() {
         return res.json();
       })
       .then((d) => {
-        console.info(d);
         if (d.errors) {
           d.errors.map((error) => {
             setFailMessage(error.message);
